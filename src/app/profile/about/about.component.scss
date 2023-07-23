@@ -1,0 +1,43 @@
+.section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+.card {
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    opacity: 0;
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+.card .card-body {
+    color: black;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    transition: background-color 1s ease-out;
+}
+
+.card::before {
+    left: 0;
+}
+
+.card::after {
+    right: 0;
+}
+
+.card[state='green']::before,
+.card[state='green']::after {
+    background-color: #28a745;
+}
