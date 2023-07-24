@@ -11,7 +11,7 @@ export class IntroductionComponent {
   public title = 'resume';
   @ViewChild('textContainer', { static: true })
   public textContainerRef!: ElementRef;
-  public roles = ['Software Engineer', 'Front End web Developer - Angular 13+', 'Data Modeler'];
+  public roles = ['Software Engineer', 'Front End web Developer - Angular 13+', 'Data Modeler','Java'];
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;
@@ -39,7 +39,7 @@ export class IntroductionComponent {
       this.index++;
       if (this.index > currentRole.length) {
         this.isInDeletingState = true;
-        setTimeout(() => this.typeWriter(), 2000); // Pause before deleting
+        setTimeout(() => this.typeWriter(), 3000); // Pause before deleting
       } else {
         setTimeout(() => this.typeWriter(), 100); // Typing speed
       }

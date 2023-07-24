@@ -5,9 +5,9 @@
 .cc-profile-image a:before {
     content: "";
     border: 15px solid rgba(251, 252, 252, 0.6);
-    border-radius: 50%;
+    border-radius: 40%;
     height: 240px;
-    width: 240px;
+    width: 210px;
     position: absolute;
     left: 0;
     -webkit-animation: pulsate 2.6s ease-out;
@@ -20,9 +20,9 @@
 
 .cc-profile-image img {
     position: relative;
-    border-radius: 50%;
+    border-radius: 40%; /* Remove the border-radius */
     height: 240px;
-    width: 240px;
+    width: 210px;
     padding: 0;
     margin: 0;
     border: 15px solid transparent;
@@ -34,14 +34,11 @@
 .cc-profile-image a:hover img {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
 
 .cc-profile-image a:hover:before {
     -webkit-animation: none;
     animation: none;
-}
-
-.typing {
-    font-size: 24px;
-    min-height: 26px;
 }

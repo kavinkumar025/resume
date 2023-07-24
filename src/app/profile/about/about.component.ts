@@ -7,12 +7,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./about.component.scss'],
   animations: [
     trigger('colorChangeAnimation', [
-      state('blue', style({ backgroundColor: '#007bff' })),
+      state('blue', style({ backgroundColor: '#3b5998' })),
       state('green', style({ backgroundColor: '#28a745' })),
       transition('blue => green, green => blue', [animate('1s ease-out')]),
     ]),
     trigger('textColorChange', [
-      state('blue', style({ color: '#007bff' })),
+      state('blue', style({ color: '#3b5998' })),
       state('green', style({ color: '#28a745' })),
       transition('blue => green, green => blue', [animate('0s ease-out')]),
     ]),

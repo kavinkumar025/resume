@@ -8,6 +8,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './profile/about/about.component';
 import { HeaderComponent } from './profile/header/header.component';
 import { IntroductionComponent } from './profile/introduction/introduction.component';
+import { ExperienceComponent } from './profile/experience/experience.component';
+import { EducationComponent } from './profile/education/education.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { IntroductionComponent } from './profile/introduction/introduction.compo
     AboutComponent,
     HeaderComponent,
     IntroductionComponent,
+    ExperienceComponent,
+    EducationComponent,
 
   ],
   imports: [
