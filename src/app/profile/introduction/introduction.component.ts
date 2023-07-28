@@ -11,10 +11,11 @@ export class IntroductionComponent {
   public title = 'resume';
   @ViewChild('textContainer', { static: true })
   public textContainerRef!: ElementRef;
-  public roles = ['Software Engineer', 'Front End web Developer - Angular 13+', 'Data Modeler','Java'];
+  public roles = ['Full Stack Web Developer - Angular 13+ / Java', 'Data Modeler'];
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;
+  public myPhoneNumber = '9092850954';
 
   ngOnInit() {
     this.typeWriter();
@@ -39,9 +40,9 @@ export class IntroductionComponent {
       this.index++;
       if (this.index > currentRole.length) {
         this.isInDeletingState = true;
-        setTimeout(() => this.typeWriter(), 3000); // Pause before deleting
+        setTimeout(() => this.typeWriter(), 3000);
       } else {
-        setTimeout(() => this.typeWriter(), 100); // Typing speed
+        setTimeout(() => this.typeWriter(), 100);
       }
     } else {
       this.index--;
@@ -49,16 +50,13 @@ export class IntroductionComponent {
         this.isInDeletingState = false;
         this.roleIndex = (this.roleIndex + 1) % this.roles.length;
       }
-      setTimeout(() => this.typeWriter(), 50); // Deleting speed
+      setTimeout(() => this.typeWriter(), 50);
     }
   }
 
+  public openWhatsApp() {
+    const whatsappLink = `https://wa.me/${this.myPhoneNumber}`;
+    window.open(whatsappLink, '_blank');
+  }
+
 }
-
-
-
-
-
-
-
-

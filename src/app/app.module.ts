@@ -11,6 +11,10 @@ import { IntroductionComponent } from './profile/introduction/introduction.compo
 import { ExperienceComponent } from './profile/experience/experience.component';
 import { EducationComponent } from './profile/education/education.component';
 import { SkillComponent } from './profile/skill/skill.component';
+import { ContactComponent } from './profile/contact/contact.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -23,12 +27,16 @@ import { SkillComponent } from './profile/skill/skill.component';
     ExperienceComponent,
     EducationComponent,
     SkillComponent,
+    ContactComponent,
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

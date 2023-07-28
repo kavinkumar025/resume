@@ -80,3 +80,76 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
 }
+
+/* CSS for the skills section */
+#skill {
+    padding: 50px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .skills-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .skills-list li {
+    margin-bottom: 20px;
+  }
+  
+  .skill-name {
+    font-weight: bold;
+  }
+  
+  .bar-container {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    height: 20px;
+    overflow: hidden;
+  }
+  
+  .bar {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    height: 100%;
+  }
+  
+  /* CSS for the right side (additional information) */
+  .info-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .info-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .info-container:hover .info-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
