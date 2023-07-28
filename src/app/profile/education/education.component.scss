@@ -121,3 +121,63 @@ hr {
     margin: 10px 0;
   }
   
+
+/* Add attractive styles to the education section */
+.education {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.education-list {
+    margin-top: 30px;
+}
+
+.education-item {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+.date {
+    color: #999;
+}
+
+.degree {
+    color: #666;
+}
+
+.institute {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-weight: bold;
+    color: #444;
+    margin: 5px 0;
+}
+
+.result {
+    color: #222;
+}

@@ -14,7 +14,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     trigger('textColorChange', [
       state('blue', style({ color: '#3b5998' })),
       state('green', style({ color: '#28a745' })),
-      transition('blue => green, green => blue', [animate('0s ease-out')]),
+      transition('blue => green, green => blue', [animate('1s ease-out')]),
     ]),
   ],
 })
@@ -28,7 +28,6 @@ export class AboutComponent {
 
   public toggleColor() {
     this.currentColor = this.currentColor === 'blue' ? 'green' : 'blue';
-    console.log(this.currentColor);
   }
 
 }

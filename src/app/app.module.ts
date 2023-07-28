@@ -10,6 +10,7 @@ import { HeaderComponent } from './profile/header/header.component';
 import { IntroductionComponent } from './profile/introduction/introduction.component';
 import { ExperienceComponent } from './profile/experience/experience.component';
 import { EducationComponent } from './profile/education/education.component';
+import { SkillComponent } from './profile/skill/skill.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { EducationComponent } from './profile/education/education.component';
     IntroductionComponent,
     ExperienceComponent,
     EducationComponent,
+    SkillComponent,
 
   ],
   imports: [
