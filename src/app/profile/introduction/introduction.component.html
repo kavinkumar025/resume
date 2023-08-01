@@ -1,8 +1,7 @@
 <div class="profile-page">
     <div class="wrapper">
         <div class="page-header page-header-small" filter-color="blue">
-            <div class="page-header-image" data-parallax="true"
-                style="background-image: url('assets/images/images.jpeg');">
+            <div class="page-header-image" data-parallax="true">
             </div>
             <div class="container">
                 <div class="content-center">
@@ -13,13 +12,15 @@
                     </div>
                     <h1 class="h2 title">Kavinkumar M</h1>
                     <p class="category text-white typing" #textContainer>Software Developer</p>
-                    <a class="btn btn-primary smooth-scroll mr-2" target="_blank"
+                    <a class="btn btn-primary animate-zoom smooth-scroll mr-2" target="_blank"
                         href="mailto:kavinkumar025@gmail.com?subject=Regarding%20Job%20Opportunity" data-aos="zoom-in"
                         data-aos-anchor="data-aos-anchor">
-                        Hire Me
+                        Recruit me
                     </a>
-                    <a class="btn btn-primary smooth-scroll mr-2" data-aos="zoom-in" data-aos-anchor="data-aos-anchor"
-                        (click)="downloadPDF()">Download CV</a>
+                    <a class="btn btn-secondary animate-slide smooth-scroll mr-2" data-aos="zoom-in"
+                        data-aos-anchor="data-aos-anchor" (click)="downloadPDF()">
+                        Grab Resume
+                    </a>
                 </div>
             </div>
             <div class="section">
@@ -30,14 +31,11 @@
                             title="Follow me on LinkedIn">
                             <i class="fa fa-linkedin"></i>
                         </a>
-
                         <a class="btn btn-default btn-round btn-lg btn-icon" href="javascript:void(0)"
                             (click)="openWhatsApp()" target="_blank" rel="tooltip" title="Text me on WhatsApp">
                             <i class="fa fa-whatsapp"></i>
                         </a>
-
-                        <a class="btn btn-default btn-round btn-lg btn-icon"
-                            href="https://github.com/kavinkumar025/resume" target="_blank" rel="tooltip"
+                        <a class="btn btn-default btn-round btn-lg btn-icon" target="_blank" rel="tooltip"
                             title="Follow me on Github">
                             <i class="fa fa-github"></i>
                         </a>

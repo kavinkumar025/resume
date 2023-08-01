@@ -14,6 +14,7 @@ import { SkillComponent } from './profile/skill/skill.component';
 import { ContactComponent } from './profile/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ScrollComponent } from './profile/scroll/scroll.component';
 
 
 
@@ -28,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     EducationComponent,
     SkillComponent,
     ContactComponent,
-
+    ScrollComponent,
   ],
   imports: [
     BrowserModule,

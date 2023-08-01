@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']
 })
+
 export class EducationComponent {
 
 }

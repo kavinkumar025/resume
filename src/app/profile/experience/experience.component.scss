@@ -96,12 +96,11 @@ p {
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect on the info section */
 .education-item:hover .info {
     color: #fff;
 }
 
-/* Fade-in animation for the education items */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -119,7 +118,6 @@ p {
     animation-fill-mode: forwards;
 }
 
-/* Add a decorative horizontal line with custom styles */
 hr {
     border: none;
     height: 2px;

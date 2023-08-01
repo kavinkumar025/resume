@@ -74,7 +74,6 @@ body {
     font-size: 14px;
     margin-bottom: 5px;
     list-style-type: disc;
-    /* Add bullet points */
 }
 
 .info b {
@@ -82,7 +81,6 @@ body {
     color: #007bff;
 }
 
-/* Hover effect on the education item details */
 .education-item:hover .education-details {
     background-color: #007bff;
     color: #fff;
@@ -90,7 +88,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect on the info section */
 .education-item:hover .info {
     color: #fff;
 }
@@ -99,7 +96,7 @@ body {
     color: #fff;
 }
 
-/* Fade-in animation for the education items */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -117,7 +114,6 @@ body {
     animation-fill-mode: forwards;
 }
 
-/* Add a decorative horizontal line with custom styles */
 hr {
     border: none;
     height: 2px;
@@ -125,15 +121,13 @@ hr {
     margin: 10px 0;
 }
 
-
-/* Add attractive styles to the education section */
 .education {
     background-color: #f9f9f9;
     padding: 40px 0;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -186,7 +180,7 @@ hr {
     color: #222;
 }
 
-/* CSS for mobile devices */
+
 @media (max-width: 767px) {
     .education-item {
         display: block;
@@ -204,7 +198,7 @@ hr {
         margin-top: 0;
     }
 }
-/* Additional styling for the education section */
+
 .education-item {
     border: 2px solid #4CAF50;
     padding: 20px;
@@ -212,51 +206,50 @@ hr {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     transition: transform 0.3s ease;
-  }
-  
-  .education-item:hover {
+}
+
+.education-item:hover {
     transform: scale(1.05);
-  }
-  
-  .education-header {
+}
+
+.education-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 10px;
-  }
-  
-  .date {
+}
+
+.date {
     color: #FF9800;
     font-weight: bold;
-  }
-  
-  .degree {
+}
+
+.degree {
     color: #E91E63;
     font-weight: bold;
-  }
-  
-  .institute {
-    color: #007bff;;
+}
+
+.institute {
+    color: #007bff;
     font-size: 24px;
     font-weight: bold;
-  }
-  
-  .result b {
+}
+
+.result b {
     color: #8BC34A;
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     margin-bottom: 30px;
     font-size: 36px;
     color: #333;
     text-transform: uppercase;
-  }
-  
-  .container {
-    max-width: 800px;
+}
+
+.container {
+    max-width: 1000px;
     margin: 0 auto;
-  }
-  
+}
