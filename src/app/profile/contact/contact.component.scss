@@ -157,3 +157,35 @@ h2 {
     color: #333;
     text-transform: uppercase;
 }
+
+/* Existing styles ... */
+
+@media (max-width: 767px) {
+    .contact-me {
+        flex-direction: column;
+        /* Stack elements vertically on smaller screens */
+    }
+
+    .form-container,
+    .details-container {
+        border-radius: 10px;
+        /* Maintain border radius on top/bottom corners */
+    }
+
+    .details-container {
+        margin-top: 20px;
+        /* Add some spacing between form and details */
+    }
+
+    .contact-info {
+        margin-top: 20px;
+        /* Add spacing between contact items */
+    }
+
+    .contact-image {
+        position: static;
+        /* Remove absolute positioning on mobile */
+        margin-top: 20px;
+        /* Add spacing to the image */
+    }
+}
