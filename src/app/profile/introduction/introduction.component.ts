@@ -11,7 +11,7 @@ export class IntroductionComponent {
   public title = 'resume';
   @ViewChild('textContainer', { static: true })
   public textContainerRef!: ElementRef;
-  public roles = ['Full Stack Web Developer - Angular 13+ / Java', 'Data Modeler'];
+  public roles = ['Front End Web Developer - Angular 13+', 'Data Modeler'];
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;

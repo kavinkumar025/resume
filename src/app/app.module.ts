@@ -18,7 +18,6 @@ import { ScrollComponent } from './profile/scroll/scroll.component';
 import { ReferenceComponent } from './profile/reference/reference.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

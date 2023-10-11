@@ -54,3 +54,21 @@ span {
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
+
+:root {
+  --primary-bg-color-light: #ffffff;
+  --primary-bg-color-dark: #111111;
+  --text-color-light: #333333;
+  --text-color-dark: #ffffff;
+  /* Define more variables for your theme here */
+}
+
+[data-theme='dark'] {
+  --primary-bg-color: var(--primary-bg-color-dark);
+  --text-color: var(--text-color-dark);
+}
+
+[data-theme='light'] {
+  --primary-bg-color: var(--primary-bg-color-light);
+  --text-color: var(--text-color-light);
+}

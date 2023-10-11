@@ -11,6 +11,7 @@ export class ContactComponent {
   constructor(private formBuilder: FormBuilder) {
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
+      subject:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.pattern(/^\+?\d*$/)]],
       description: ['', Validators.required]
@@ -18,6 +19,7 @@ export class ContactComponent {
   }
 
   submitForm() {
+    console.log(this.contactForm.value)
     if (this.contactForm.valid) {
       console.log('Form data:', this.contactForm.value);
       this.contactForm.reset();
