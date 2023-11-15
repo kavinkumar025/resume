@@ -22,7 +22,7 @@ export class IntroductionComponent {
   }
 
   public downloadPDF() {
-    const pdfFilePath = 'assets/Kavinkumar.M_CV.pdf';
+    const pdfFilePath = 'assets/Kavinkumar_Resume.pdf';
     const link = document.createElement('a');
     link.href = pdfFilePath;
     link.download = 'Kavinkuamar_Resume.pdf';
