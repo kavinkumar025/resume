@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  public onRightClick(event: MouseEvent): void {
+    event.preventDefault();
+    console.log('Right-click is Disabled !');
+  }
+
 }
