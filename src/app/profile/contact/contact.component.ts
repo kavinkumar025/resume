@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+// import { Firestore } from'@angular/fire/firestore';
+// import { addDoc,collection} from 'firebase/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

@@ -3423,7 +3423,7 @@ img {
 }
 
 .profile-page .page-header {
-  min-height: 550px;
+  min-height: 90vh;
 }
 
 .profile-page .profile-container {

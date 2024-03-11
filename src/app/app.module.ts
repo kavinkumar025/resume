@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollComponent } from './profile/scroll/scroll.component';
 import { ReferenceComponent } from './profile/reference/reference.component';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { ReferenceComponent } from './profile/reference/reference.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    // ,
+    // AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
