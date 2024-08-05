@@ -21,7 +21,6 @@ export class ContactComponent {
   }
 
   submitForm() {
-    console.log(this.contactForm.value)
     if (this.contactForm.valid) {
       console.log('Form data:', this.contactForm.value);
       this.contactForm.reset();
