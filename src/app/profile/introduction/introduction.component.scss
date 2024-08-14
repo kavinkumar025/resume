@@ -5,9 +5,9 @@
 .cc-profile-image a:before {
     content: "";
     border: 15px solid rgba(251, 252, 252, 0.6);
-    border-radius: 40%;
-    height: 240px;
-    width: 210px;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
     position: absolute;
     left: 0;
     -webkit-animation: pulsate 2.6s ease-out;
@@ -16,15 +16,17 @@
     animation-iteration-count: infinite;
     opacity: 0.0;
     z-index: 99;
+    margin-top: 30px;
 }
 
 .cc-profile-image img {
+    margin-top: 30px;
     position: relative;
-    border-radius: 40%;
-    height: 240px;
-    width: 210px;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
     padding: 0;
-    margin: 0;
+    // margin: 0;
     border: 15px solid transparent;
     z-index: 9999;
     -webkit-transition: all .3s ease-out;
@@ -111,3 +113,7 @@
 .typeText:hover {
     transform: scale(1.2);
 }
+
+// .margin {
+//     margin-top: 10px;
+// }
