@@ -38,7 +38,9 @@ import { ReferenceComponent } from './profile/reference/reference.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // AngularFirestoreModule
+    // AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
