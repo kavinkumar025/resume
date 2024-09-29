@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -16,7 +15,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollComponent } from './profile/scroll/scroll.component';
 import { ReferenceComponent } from './profile/reference/reference.component';
+import { initializeApp } from '@angular/fire/app';
+import { getFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDDFRIxoujk_rAcWEM2DAzlDJu0iZE70z4",
+  authDomain: "my-prortfolio-e2f51.firebaseapp.com",
+  projectId: "my-prortfolio-e2f51",
+  storageBucket: "my-prortfolio-e2f51.appspot.com",
+  messagingSenderId: "119998992581",
+  appId: "1:119998992581:web:0ff8cd31ff6dc9288d60ac",
+  measurementId: "G-1M4V5XZHL3"
+};
 
 @NgModule({
   declarations: [
@@ -39,10 +51,18 @@ import { ReferenceComponent } from './profile/reference/reference.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // AngularFirestoreModule
-    // AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [{
+    provide: 'firebaseApp',
+    useFactory: () => initializeApp(firebaseConfig)
+  },
+  {
+    provide: 'firestore',
+    useFactory: () => getFirestore()
+  }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
