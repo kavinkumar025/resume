@@ -25,20 +25,12 @@ export class ContactComponent {
   public submitForm() {
     if (this.contactForm.valid) {
       const formValue = this.contactForm.value;
-      const currentDate = new Date();
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const year = currentDate.getFullYear();
-      const hours = String(currentDate.getHours()).padStart(2, '0');
-      const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-      const istFormattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
       const dataToStore = {
         name: formValue.name,
         subject: formValue.subject,
         email: formValue.email,
         phone: Number(formValue.phone),
         description: formValue.description,
-        dateTime: istFormattedDate
       };
       this.firestore.collection('contacts').add(dataToStore)
         .then(() => {
@@ -55,15 +47,9 @@ export class ContactComponent {
         .catch((error) => {
           console.error('Error saving data: ', error);
         });
-    }
-    else {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Invalid form",
-        showConfirmButton: true
-      });
+    } else {
       console.log('Invalid form');
     }
   }
+
 }
