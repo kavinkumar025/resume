@@ -19,15 +19,30 @@ import { initializeApp } from '@angular/fire/app';
 import { getFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import * as CryptoJS from 'crypto-js';
+
+const firebaseConfigEncrypt = {
+  apiKey: "U2FsdGVkX19sZDlwVg+VxbD5ubgGxmlYdBQnA701qtsmWJ9XRHYJeVGAE8z4QW+ghdl0jP3hkvTMnQbzyJvfmQ==",
+  authDomain: "U2FsdGVkX1+SIiR+OjbZO9zyq/+m/IOAAmHvNG6NN0mvF14CTJzlLxwB51kjYFVFk0w0Zhlv/feeRIEVeHFFGQ==",
+  projectId: "U2FsdGVkX1/Ds+KVsIX57AItE2aon9GVavct3WgUfkyHQeAnj3ujT7PaifctOHpM",
+  storageBucket: "U2FsdGVkX19EDCVfkzMZjCQr0MTGGf0ky8LTBVy1zEmx7DbtG7yGETpW5R/b1MSE",
+  messagingSenderId: "U2FsdGVkX1+fUQXwsX8IQf8y4/sHOGEnUauLX1o/VqE=",
+  appId: "U2FsdGVkX1+ZErWwT2V5R/TEceHlCx9p91/kuBkaKZg2JcwTipdFToP9B9z8NJw9uIVN92he1yUSjNXpiWNbPA==",
+  measurementId: "U2FsdGVkX1+T447NcH/CNYYbM41gbNdyfq6h/mgrYr8="
+}
+
+function decryptConfig(value: string): string {
+  return CryptoJS.AES.decrypt(value, 'KavinKumar').toString(CryptoJS.enc.Utf8);
+}
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDDFRIxoujk_rAcWEM2DAzlDJu0iZE70z4",
-  authDomain: "my-prortfolio-e2f51.firebaseapp.com",
-  projectId: "my-prortfolio-e2f51",
-  storageBucket: "my-prortfolio-e2f51.appspot.com",
-  messagingSenderId: "119998992581",
-  appId: "1:119998992581:web:0ff8cd31ff6dc9288d60ac",
-  measurementId: "G-1M4V5XZHL3"
+  apiKey: decryptConfig(firebaseConfigEncrypt.apiKey),
+  authDomain: decryptConfig(firebaseConfigEncrypt.authDomain),
+  projectId: decryptConfig(firebaseConfigEncrypt.projectId),
+  storageBucket: decryptConfig(firebaseConfigEncrypt.storageBucket),
+  messagingSenderId: decryptConfig(firebaseConfigEncrypt.messagingSenderId),
+  appId: decryptConfig(firebaseConfigEncrypt.appId),
+  measurementId: decryptConfig(firebaseConfigEncrypt.measurementId),
 };
 
 @NgModule({
