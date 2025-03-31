@@ -21,6 +21,11 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 
 export class AboutComponent {
   public currentColor: string = 'blue';
+  public experience: string = '';
+
+  constructor() {
+    this.calculateExperience();
+  }
 
   ngOnInit() {
     setInterval(() => { this.toggleColor(); }, 5000);
@@ -28,6 +33,18 @@ export class AboutComponent {
 
   public toggleColor() {
     this.currentColor = this.currentColor === 'blue' ? 'green' : 'blue';
+  }
+
+  public calculateExperience() {
+    const startDate = new Date(2022, 8); // September 2021
+    const currentDate = new Date();
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    this.experience = `${years}.${months}`;
   }
 
 }

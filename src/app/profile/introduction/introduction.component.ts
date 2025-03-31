@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-introduction',
@@ -6,7 +6,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./introduction.component.scss']
 })
 
-export class IntroductionComponent {
+export class IntroductionComponent implements OnInit {
 
   public title = 'resume';
   @ViewChild('textContainer', { static: true })
@@ -16,16 +16,21 @@ export class IntroductionComponent {
   public roleIndex = 0;
   public isInDeletingState = false;
   public myPhoneNumber = '9092850954';
+  public experience: string = '';
+
+  constructor(){
+    this.calculateExperience();
+  }
 
   ngOnInit() {
     this.typeWriter();
   }
 
   public downloadPDF() {
-    const pdfFilePath = 'assets/kavinkumar_Angular_developer.pdf';
+    const pdfFilePath = 'assets/Kavinkumar_AngularDeveloper.pdf';
     const link = document.createElement('a');
     link.href = pdfFilePath;
-    link.download = 'Kavinkuamar_Resume.pdf';
+    link.download = 'Kavinkumar_AngularDeveloper.pdf';
     link.dispatchEvent(new MouseEvent('click'));
     link.remove();
     window.open(pdfFilePath, '_blank');
@@ -57,6 +62,18 @@ export class IntroductionComponent {
   public openWhatsApp() {
     const whatsappLink = `https://wa.me/${this.myPhoneNumber}`;
     window.open(whatsappLink, '_blank');
+  }
+
+  public calculateExperience() {
+    const startDate = new Date(2022, 8); // September 2021
+    const currentDate = new Date();
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    this.experience = `${years}.${months}`;
   }
 
 }
