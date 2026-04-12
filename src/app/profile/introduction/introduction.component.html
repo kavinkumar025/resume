@@ -1,53 +1,66 @@
-<div class="profile-page" style="background-image: url('assets/images/lines.jpg');">
-    <div class="wrapper">
-        <div class="page-header page-header-small" filter-color="blue">
-            <div class="page-header-image" data-parallax="true">
-            </div>
-            <div class="container margin">
-                <div class="content-center">
-                    <div class="cc-profile-image">
-                        <a href="#">
-                            <img src="assets/images/img4.jpg" alt="Image" />
-                        </a>
-                    </div>
-                    <h1 class="h2 title">Kavinkumar M</h1>
-                    <p class="category text-white typing typeText">Passionate Angular Developer with {{ experience }}
-                        years of hands-on experience.</p>
-                    <a class="btn btn-primary animate-zoom smooth-scroll mr-2" target="_blank"
-                        href="mailto:kavinkumar025@gmail.com?subject=Regarding%20Job%20Opportunity" data-aos="zoom-in"
-                        data-aos-anchor="data-aos-anchor">
-                        Recruit me
-                    </a>
-                    <a class="btn btn-secondary animate-slide smooth-scroll mr-2" data-aos="zoom-in"
-                        data-aos-anchor="data-aos-anchor" (click)="downloadPDF()">
-                        Grab Resume
-                    </a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="container">
-                    <div class="button-container">
-                        <a class="btn btn-default btn-round btn-lg btn-icon"
-                            href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" rel="tooltip"
-                            title="Follow me on LinkedIn">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                        <a class="btn btn-default btn-round btn-lg btn-icon" href="javascript:void(0)"
-                            (click)="openWhatsApp()" target="_blank" rel="tooltip" title="Text me on WhatsApp">
-                            <i class="fa fa-whatsapp"></i>
-                        </a>
-                        <a class="btn btn-default btn-round btn-lg btn-icon" target="_blank" rel="tooltip"
-                            title="Follow me on Github" href="https://github.com/kavinkumar025/resume">
-                            <i class="fa fa-github"></i>
-                        </a>
-                        <a class="btn btn-default btn-round btn-lg btn-icon"
-                            href="https://instagram.com/im_kavin__25?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D "
-                            target="_blank" rel="tooltip" title="Follow me on Instagram">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="hero" id="introduction">
+  <div class="hero-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+        <span class="badge-dot"></span>
+        Available for opportunities
+      </div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+        Hi, I'm <span class="highlight">Kavinkumar M</span>
+      </h1>
+      <div class="hero-role" data-aos="fade-up" data-aos-delay="300">
+        <span #textContainer class="typewriter"></span><span class="cursor">|</span>
+      </div>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+        Passionate Angular Developer with <strong>{{ experience }}+ years</strong> of hands-on experience
+        crafting dynamic, high-performance web applications.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
+        <a class="btn-primary-custom" target="_blank"
+           href="mailto:kavinkumar025&#64;gmail.com?subject=Regarding%20Job%20Opportunity">
+          <i class="fa-solid fa-paper-plane"></i>
+          Recruit Me
+        </a>
+        <a class="btn-outline-custom" (click)="downloadPDF()">
+          <i class="fa-solid fa-download"></i>
+          Download CV
+        </a>
+      </div>
+      <div class="hero-socials" data-aos="fade-up" data-aos-delay="600">
+        <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" class="social-link" title="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a (click)="openWhatsApp()" class="social-link" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://github.com/kavinkumar025/resume" target="_blank" class="social-link" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://instagram.com/im_kavin__25" target="_blank" class="social-link" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
     </div>
-</div>
+    <div class="hero-image" data-aos="zoom-in" data-aos-delay="400">
+      <div class="image-wrapper">
+        <div class="image-ring"></div>
+        <img src="assets/images/img4.jpg" alt="Kavinkumar M" />
+        <div class="image-glow"></div>
+      </div>
+      <div class="floating-card card-1" data-aos="fade-left" data-aos-delay="700">
+        <i class="fa-brands fa-angular"></i>
+        <span>Angular Expert</span>
+      </div>
+      <div class="floating-card card-2" data-aos="fade-right" data-aos-delay="800">
+        <i class="fa-solid fa-code"></i>
+        <span>{{ experience }}+ Years</span>
+      </div>
+    </div>
+  </div>
+</section>

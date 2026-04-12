@@ -1,48 +1,114 @@
-<br>
-<h2 class="title">Contact Me</h2>
-<section class="contact-me" id="contact">
-    <div class="form-container">
-        <p>Feel free to reach out to me anytime you have a query or require support.</p>
-        <form [formGroup]="contactForm">
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Have a project in mind? Let's work together</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form-wrapper" data-aos="fade-right" data-aos-delay="100">
+        <form [formGroup]="contactForm" class="contact-form" (ngSubmit)="submitForm()" novalidate>
+          <div class="form-row">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" formControlName="name" name="name" required>
+              <label for="name">Full Name</label>
+              <input type="text" id="name" formControlName="name" placeholder="Your name" autocomplete="name"
+                maxlength="60" (blur)="trimControl('name')" [class.input-error]="isInvalid('name')">
+              <span class="field-error" *ngIf="isInvalid('name')">
+                {{ getErrorMessage('name') }}
+              </span>
             </div>
             <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" formControlName="subject" name="subject" required>
+              <label for="email">Email</label>
+              <input type="email" id="email" formControlName="email" placeholder="your&#64;email.com" autocomplete="email"
+                maxlength="80" (blur)="trimControl('email')" [class.input-error]="isInvalid('email')">
+              <span class="field-error" *ngIf="isInvalid('email')">
+                {{ getErrorMessage('email') }}
+              </span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" formControlName="subject" placeholder="Project inquiry"
+                maxlength="80" (blur)="trimControl('subject')" [class.input-error]="isInvalid('subject')">
+              <span class="field-error" *ngIf="isInvalid('subject')">
+                {{ getErrorMessage('subject') }}
+              </span>
             </div>
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" formControlName="email" name="email" required>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" formControlName="phone" placeholder="9876543210" autocomplete="tel"
+                inputmode="numeric" maxlength="10" (input)="sanitizePhoneInput()"
+                [class.input-error]="isInvalid('phone')">
+              <span class="field-error" *ngIf="isInvalid('phone')">
+                {{ getErrorMessage('phone') }}
+              </span>
             </div>
-            <div class="form-group">
-                <label for="phone">phone</label>
-                <input type="phone" formControlName="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea formControlName="description" name="description" required></textarea>
-            </div>
-            <button type="submit" (click)="submitForm()">Submit</button>
+          </div>
+          <div class="form-group full-width">
+            <label for="message">Message</label>
+            <textarea id="message" formControlName="description" placeholder="Tell me about your project..." rows="5"
+              maxlength="600" (blur)="trimControl('description')" [class.input-error]="isInvalid('description')"></textarea>
+            <span class="field-error" *ngIf="isInvalid('description')">
+              {{ getErrorMessage('description') }}
+            </span>
+          </div>
+          <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+            <i class="fa-solid" [class.fa-paper-plane]="!isSubmitting" [class.fa-spinner]="isSubmitting" [class.fa-spin]="isSubmitting"></i>
+            {{ isSubmitting ? 'Sending Message...' : 'Send Message' }}
+          </button>
         </form>
-    </div>
-    <div class="details-container">
-        <div class="contact-info">
-            <div class="contact-item">
-                <a href="tel:+919092850954" class="contact-link">
-                    <i class="fas fa-phone white-icon"></i>
-                </a>
-                <p>+91 9092850954</p>
-            </div>
-            <div class="contact-item">
-                <a href="mailto:kavinkumar025@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope white-icon"></i>
-                </a>
-                <p>kavinkumar025&#64;gmail.com</p>
-            </div>
+      </div>
+      <div class="contact-info-wrapper" data-aos="fade-left" data-aos-delay="200">
+        <div class="info-card">
+          <div class="info-bg-pattern"></div>
+          <h3>Let's connect</h3>
+          <p>Feel free to reach out anytime you have a query or require support. I'm always open to new opportunities.</p>
+          <div class="info-items">
+            <a href="tel:+919092850954" class="info-item">
+              <div class="info-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <span class="info-label">Phone</span>
+                <span class="info-value">+91 9092850954</span>
+              </div>
+            </a>
+            <a href="mailto:kavinkumar025&#64;gmail.com" class="info-item">
+              <div class="info-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <span class="info-label">Email</span>
+                <span class="info-value">kavinkumar025&#64;gmail.com</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" class="info-item">
+              <div class="info-icon">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </div>
+              <div>
+                <span class="info-label">LinkedIn</span>
+                <span class="info-value">kavinkumar-m</span>
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-    <br>
+  </div>
 </section>
-<br>
+
+<div class="toast-wrapper" role="status" aria-live="polite"
+  [class.toast-visible]="toast.visible" [class.toast-success]="toast.type === 'success'" [class.toast-error]="toast.type === 'error'">
+  <div class="toast-icon-wrap">
+    <i class="fa-solid" [class.fa-circle-check]="toast.type === 'success'" [class.fa-circle-xmark]="toast.type === 'error'"></i>
+  </div>
+  <div class="toast-body">
+    <p class="toast-title">{{ toast.title }}</p>
+    <p class="toast-message">{{ toast.message }}</p>
+  </div>
+  <button class="toast-close" (click)="dismissToast()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <div class="toast-progress"></div>
+</div>

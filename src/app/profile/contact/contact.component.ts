@@ -1,7 +1,48 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnDestroy } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
+
+const trimmedRequired: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const value = `${control.value ?? ''}`.trim();
+  return value.length > 0 ? null : { required: true };
+};
+
+const minTrimmedLength = (minimumLength: number): ValidatorFn => {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = `${control.value ?? ''}`.trim();
+
+    if (!value.length) {
+      return null;
+    }
+
+    return value.length >= minimumLength
+      ? null
+      : {
+          minTrimmedLength: {
+            requiredLength: minimumLength,
+            actualLength: value.length
+          }
+        };
+  };
+};
+
+const tenDigitPhone: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const value = `${control.value ?? ''}`.trim();
+
+  if (!value.length) {
+    return null;
+  }
+
+  return /^\d{10}$/.test(value) ? null : { phoneDigits: true };
+};
+
+export interface ToastConfig {
+  type: 'success' | 'error';
+  title: string;
+  message: string;
+  visible: boolean;
+}
 
 @Component({
   selector: 'app-contact',
@@ -9,61 +50,166 @@ import Swal from 'sweetalert2';
   styleUrls: ['./contact.component.scss']
 })
 
-export class ContactComponent {
+export class ContactComponent implements OnDestroy {
   public contactForm: FormGroup;
+  public toast: ToastConfig = { type: 'success', title: '', message: '', visible: false };
+  public isSubmitting = false;
+  private toastTimer?: ReturnType<typeof setTimeout>;
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.contactForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      subject: ['', Validators.required],
+      name: ['', [trimmedRequired, minTrimmedLength(3)]],
+      subject: ['', [trimmedRequired, minTrimmedLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.pattern(/^\+?\d*$/)]],
-      description: ['', Validators.required]
+      phone: ['', [tenDigitPhone]],
+      description: ['', [trimmedRequired, minTrimmedLength(10)]]
     });
   }
 
-  public submitForm() {
+  showToast(type: 'success' | 'error', title: string, message: string) {
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
+
+    this.toast = { type, title, message, visible: true };
+    this.toastTimer = setTimeout(() => {
+      this.toast.visible = false;
+    }, 4000);
+  }
+
+  dismissToast() {
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
+
+    this.toast.visible = false;
+  }
+
+  ngOnDestroy() {
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
+  }
+
+  getControl(controlName: string) {
+    return this.contactForm.get(controlName);
+  }
+
+  isInvalid(controlName: string) {
+    const control = this.getControl(controlName);
+    return !!control && control.invalid && (control.touched || control.dirty);
+  }
+
+  getErrorMessage(controlName: string) {
+    const control = this.getControl(controlName);
+
+    if (!control?.errors) {
+      return '';
+    }
+
+    if (control.errors['required']) {
+      switch (controlName) {
+        case 'name':
+          return 'Full name is required.';
+        case 'subject':
+          return 'Subject is required.';
+        case 'email':
+          return 'Email is required.';
+        case 'description':
+          return 'Message is required.';
+        default:
+          return 'This field is required.';
+      }
+    }
+
+    if (control.errors['email']) {
+      return 'Enter a valid email address.';
+    }
+
+    if (control.errors['phoneDigits']) {
+      return 'Phone number must contain exactly 10 digits.';
+    }
+
+    if (control.errors['minTrimmedLength']) {
+      switch (controlName) {
+        case 'name':
+          return 'Full name must be at least 3 characters.';
+        case 'subject':
+          return 'Subject must be at least 3 characters.';
+        case 'description':
+          return 'Message must be at least 10 characters.';
+        default:
+          return 'Please enter more details.';
+      }
+    }
+
+    return 'Invalid value.';
+  }
+
+  trimControl(controlName: string) {
+    const control = this.getControl(controlName);
+    const value = control?.value;
+
+    if (typeof value === 'string') {
+      control?.setValue(value.trim(), { emitEvent: false });
+      control?.updateValueAndValidity({ emitEvent: false });
+    }
+  }
+
+  sanitizePhoneInput() {
+    const phoneControl = this.getControl('phone');
+    const digitsOnly = `${phoneControl?.value ?? ''}`.replace(/\D/g, '').slice(0, 10);
+
+    if (phoneControl && phoneControl.value !== digitsOnly) {
+      phoneControl.setValue(digitsOnly, { emitEvent: false });
+      phoneControl.updateValueAndValidity({ emitEvent: false });
+    }
+  }
+
+  public async submitForm() {
     if (this.contactForm.valid) {
-      const formValue = this.contactForm.value;
+      const formValue = {
+        name: `${this.contactForm.value.name ?? ''}`.trim(),
+        subject: `${this.contactForm.value.subject ?? ''}`.trim(),
+        email: `${this.contactForm.value.email ?? ''}`.trim(),
+        phone: `${this.contactForm.value.phone ?? ''}`.trim(),
+        description: `${this.contactForm.value.description ?? ''}`.trim()
+      };
+
       const currentDate = new Date();
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const year = currentDate.getFullYear();
-      const hours = String(currentDate.getHours()).padStart(2, '0');
-      const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-      const istFormattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+      const formattedDate = new Intl.DateTimeFormat('en-IN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Kolkata'
+      }).format(currentDate);
+
       const dataToStore = {
         name: formValue.name,
         subject: formValue.subject,
         email: formValue.email,
-        phone: Number(formValue.phone),
+        phone: formValue.phone || null,
         description: formValue.description,
-        dateTime: istFormattedDate
+        dateTime: formattedDate
       };
-      this.firestore.collection('contacts').add(dataToStore)
-        .then(() => {
-          console.log('Data saved successfully!');
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Hi " + formValue.name + " Your work has been saved",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          this.contactForm.reset();
-        })
-        .catch((error) => {
-          console.error('Error saving data: ', error);
-        });
-    }
-    else {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Invalid form",
-        showConfirmButton: true
-      });
-      console.log('Invalid form');
+
+      try {
+        this.isSubmitting = true;
+        await firstValueFrom(this.http.post('/api/contact', dataToStore));
+        this.showToast('success', 'Message sent', `Thanks ${formValue.name}, your message has been delivered successfully.`);
+        this.contactForm.reset();
+      } catch (error) {
+        console.error('Error sending message: ', error);
+        this.showToast('error', 'Unable to send', 'The message could not be sent right now. Please try again shortly.');
+      } finally {
+        this.isSubmitting = false;
+      }
+    } else {
+      this.contactForm.markAllAsTouched();
+      this.showToast('error', 'Please fix the errors', 'Fill in all required fields correctly before submitting.');
     }
   }
 }

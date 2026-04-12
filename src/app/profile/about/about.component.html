@@ -1,36 +1,76 @@
-<div class="section" id="about">
-    <div class="container">
-        <div class="card" [@colorChangeAnimation]="currentColor" data-aos="fade-up" data-aos-offset="10">
-            <div class="col-lg-12 col-md-12">
-                <div class="card-body">
-                    <div class="h4 mt-0 title">About</div>
-                    <p>
-                        Hi! I am <b [@textColorChange]="currentColor">Kavinkumar M</b>, a passionate and driven
-                        25-year-old professional with <strong>{{ experience }}</strong> years of
-                        hands-on experience in Angular. I also have a keen interest in other domains
-                        like Java and Data Modelling, recognizing the importance of staying
-                        versatile in the ever-evolving technology landscape.
-                    </p>
-                    <p><strong>Experience:</strong> <br>
-                        During the past year, I focused on honing my skills in Angular through various projects. As a
-                        result, I gained practical knowledge in front-end development, user interface design, and
-                        responsive web applications. I have become proficient in building dynamic and interactive web
-                        solutions while prioritizing enhanced user experiences and effective teamwork.</p>
-                    <p> <strong>Objectives:</strong> <br>
-                        Now, I am eager to secure a challenging position in a reputed organization that encourages
-                        continuous learning and professional growth. My objective is to contribute
-                        my existing skills while actively acquiring new ones. I aim to deliver innovative and
-                        cutting-edge solutions that push the boundaries of technology.</p>
-                    <p>With a strong work ethic, adaptability, and an insatiable thirst for knowledge, I am confident in
-                        my ability to bring valuable insights and fresh perspectives to any project.
-                        I am excited to embark on this new journey and make a positive impact on the technological
-                        landscape.</p>
-                    <p>Thank you for considering my profile, and I invite you to visit my LinkedIn profile for more
-                        details about my experience and achievements.
-                    </p>
-                    <p> Best Regards, <br> <b [@textColorChange]="currentColor">Kavinkumar M</b> </p>
-                </div>
-            </div>
-        </div>
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Get to know the person behind the code</p>
     </div>
-</div>
+    <div class="about-grid">
+      <div class="about-intro" data-aos="fade-right" data-aos-delay="100">
+        <div class="about-card">
+          <div class="card-accent"></div>
+          <p class="greeting">Hello! I'm <span class="name-highlight">Kavinkumar M</span></p>
+          <p>A passionate and driven Angular Developer from <strong>Erode, Tamil Nadu</strong> with
+            <strong>{{ experience }}+ years</strong> of hands-on experience in frontend development.
+            I specialize in building responsive, scalable web applications using Angular 13+ and modern web technologies.</p>
+          <p>With a strong work ethic, adaptability, and an insatiable thirst for knowledge, I am confident in
+            my ability to bring valuable insights and fresh perspectives to any project.</p>
+          <div class="about-quick-info">
+            <div class="info-chip"><i class="fa-solid fa-map-marker-alt"></i> Erode, Tamil Nadu</div>
+            <div class="info-chip"><i class="fa-solid fa-language"></i> Tamil &amp; English</div>
+            <div class="info-chip"><i class="fa-solid fa-graduation-cap"></i> B.E - CSE</div>
+            <div class="info-chip"><i class="fa-solid fa-calendar"></i> Born 25 Jan 2001</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-details" data-aos="fade-left" data-aos-delay="200">
+        <div class="detail-card">
+          <div class="detail-icon">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3>Experience</h3>
+          <p>{{ experience }}+ years of professional Angular development across insurance, payment systems,
+            and in-house enterprise applications. Proficient in API integration, state management, and performance optimization.</p>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <h3>Objective</h3>
+          <p>Seeking a challenging position in a reputed organization where I can learn new skills, expand my knowledge,
+            and apply my expertise while contributing to the organization's growth.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roles & Responsibilities -->
+    <div class="roles-section" data-aos="fade-up" data-aos-delay="300">
+      <h3 class="subsection-title"><i class="fa-solid fa-clipboard-check"></i> Roles &amp; Responsibilities</h3>
+      <div class="roles-grid">
+        <div class="role-item">
+          <i class="fa-solid fa-bug-slash"></i>
+          <span>Developing bug-free applications</span>
+        </div>
+        <div class="role-item">
+          <i class="fa-solid fa-comments"></i>
+          <span>Participating in backlog grooming calls &amp; understanding requirements</span>
+        </div>
+        <div class="role-item">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <span>Conducting code reviews for junior developers</span>
+        </div>
+        <div class="role-item">
+          <i class="fa-solid fa-vial"></i>
+          <span>Writing unit tests for specific user stories</span>
+        </div>
+        <div class="role-item">
+          <i class="fa-solid fa-people-group"></i>
+          <span>Collaborating with the architecture team</span>
+        </div>
+        <div class="role-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Delivering the application within set deadlines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
