@@ -14,6 +14,26 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Contact API
+
+The Vercel contact endpoint lives at `/api/contact`.
+
+For direct email delivery, configure one of these environment variable sets:
+
+- `GMAIL_USER` and `GMAIL_APP_PASSWORD`
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS`
+
+Optional variables:
+
+- `CONTACT_FROM_EMAIL`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_CC_EMAIL`
+- `FIREBASE_WEB_API_KEY`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CONFIG_KEY`
+
+If SMTP delivery is unavailable, the endpoint now falls back to queueing the contact payload into Firestore so the existing Firebase trigger can continue mail delivery.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).

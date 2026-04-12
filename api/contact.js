@@ -1,3 +1,4 @@
+const CryptoJS = require('crypto-js');
 const nodemailer = require('nodemailer');
 
 const corsHeaders = {
@@ -5,6 +6,227 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type'
 };
+
+const encryptedFirebaseConfig = {
+  apiKey: 'U2FsdGVkX19sZDlwVg+VxbD5ubgGxmlYdBQnA701qtsmWJ9XRHYJeVGAE8z4QW+ghdl0jP3hkvTMnQbzyJvfmQ==',
+  projectId: 'U2FsdGVkX1/Ds+KVsIX57AItE2aon9GVavct3WgUfkyHQeAnj3ujT7PaifctOHpM'
+};
+
+const firebaseConfigKey = process.env.FIREBASE_CONFIG_KEY || 'KavinKumar';
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function createHttpError(statusCode, message) {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
+}
+
+function readEnv(name) {
+  const value = process.env[name];
+
+  if (typeof value !== 'string') {
+    return '';
+  }
+
+  return value.trim();
+}
+
+function setCorsHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', corsHeaders['Access-Control-Allow-Origin']);
+  res.setHeader('Access-Control-Allow-Methods', corsHeaders['Access-Control-Allow-Methods']);
+  res.setHeader('Access-Control-Allow-Headers', corsHeaders['Access-Control-Allow-Headers']);
+}
+
+function decryptFirebaseValue(value) {
+  return CryptoJS.AES.decrypt(value, firebaseConfigKey).toString(CryptoJS.enc.Utf8);
+}
+
+function getFirebasePublicConfig() {
+  return {
+    apiKey: readEnv('FIREBASE_WEB_API_KEY') || decryptFirebaseValue(encryptedFirebaseConfig.apiKey),
+    projectId: readEnv('FIREBASE_PROJECT_ID') || decryptFirebaseValue(encryptedFirebaseConfig.projectId)
+  };
+}
+
+function normalizeBody(body) {
+  if (!body) {
+    return {};
+  }
+
+  if (Buffer.isBuffer(body)) {
+    return normalizeBody(body.toString('utf8'));
+  }
+
+  if (typeof body === 'string') {
+    try {
+      return JSON.parse(body);
+    } catch (error) {
+      throw createHttpError(400, 'Invalid JSON payload');
+    }
+  }
+
+  if (typeof body === 'object') {
+    return body;
+  }
+
+  throw createHttpError(400, 'Unsupported request body');
+}
+
+function normalizeContactPayload(body) {
+  const name = `${body.name ?? ''}`.trim();
+  const email = `${body.email ?? ''}`.trim();
+  const phone = `${body.phone ?? ''}`.trim();
+  const subject = `${body.subject ?? ''}`.trim();
+  const description = `${body.description ?? ''}`.trim();
+  const dateTime = `${body.dateTime ?? ''}`.trim() || new Date().toISOString();
+
+  if (!name || !email || !subject || !description) {
+    throw createHttpError(400, 'Missing required fields');
+  }
+
+  if (!emailPattern.test(email)) {
+    throw createHttpError(400, 'A valid email address is required');
+  }
+
+  if (phone && !/^\d{10}$/.test(phone)) {
+    throw createHttpError(400, 'Phone number must contain exactly 10 digits');
+  }
+
+  return {
+    name,
+    email,
+    phone: phone || null,
+    subject,
+    description,
+    dateTime
+  };
+}
+
+function getTransportOptions() {
+  const smtpHost = readEnv('SMTP_HOST');
+  const smtpPort = Number(readEnv('SMTP_PORT') || 0);
+  const smtpUser = readEnv('SMTP_USER');
+  const smtpPass = readEnv('SMTP_PASS');
+  const gmailUser = readEnv('GMAIL_USER');
+  const gmailPassword = readEnv('GMAIL_APP_PASSWORD');
+
+  if (smtpHost && smtpPort && smtpUser && smtpPass) {
+    return {
+      transport: {
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpPort === 465,
+        auth: {
+          user: smtpUser,
+          pass: smtpPass
+        }
+      },
+      fromAddress: readEnv('CONTACT_FROM_EMAIL') || smtpUser
+    };
+  }
+
+  if (gmailUser && gmailPassword) {
+    return {
+      transport: {
+        service: 'gmail',
+        auth: {
+          user: gmailUser,
+          pass: gmailPassword
+        }
+      },
+      fromAddress: readEnv('CONTACT_FROM_EMAIL') || gmailUser
+    };
+  }
+
+  return null;
+}
+
+async function sendContactEmail(payload) {
+  const transportOptions = getTransportOptions();
+
+  if (!transportOptions) {
+    throw new Error('SMTP transport is not configured');
+  }
+
+  const toAddress = readEnv('CONTACT_TO_EMAIL') || transportOptions.fromAddress;
+  const ccAddress = readEnv('CONTACT_CC_EMAIL') || 'kavinkumarkk026@gmail.com';
+
+  if (!transportOptions.fromAddress || !toAddress) {
+    throw new Error('Email recipients are not configured');
+  }
+
+  const transporter = nodemailer.createTransport(transportOptions.transport);
+  const html = buildEmailTemplate(payload);
+
+  await transporter.sendMail({
+    from: `"Portfolio Contact" <${transportOptions.fromAddress}>`,
+    to: toAddress,
+    cc: ccAddress,
+    replyTo: payload.email,
+    subject: `New portfolio enquiry: ${payload.subject}`,
+    text: [
+      'A new portfolio message has been submitted.',
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone || 'Not provided'}`,
+      `Subject: ${payload.subject}`,
+      `Date: ${payload.dateTime}`,
+      '',
+      payload.description
+    ].join('\n'),
+    html
+  });
+}
+
+function buildFirestoreFields(payload, fallbackReason) {
+  const fields = {
+    name: { stringValue: payload.name },
+    email: { stringValue: payload.email },
+    subject: { stringValue: payload.subject },
+    description: { stringValue: payload.description },
+    dateTime: { stringValue: payload.dateTime },
+    mailStatus: { stringValue: 'queued' },
+    source: { stringValue: 'vercel-api' },
+    queuedAt: { timestampValue: new Date().toISOString() }
+  };
+
+  if (payload.phone) {
+    fields.phone = { stringValue: payload.phone };
+  } else {
+    fields.phone = { nullValue: null };
+  }
+
+  if (fallbackReason) {
+    fields.fallbackReason = { stringValue: fallbackReason.slice(0, 500) };
+  }
+
+  return fields;
+}
+
+async function queueContactInFirestore(payload, fallbackReason) {
+  const firebaseConfig = getFirebasePublicConfig();
+
+  if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+    throw new Error('Firebase fallback is not configured');
+  }
+
+  const response = await fetch(
+    `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(firebaseConfig.projectId)}/databases/(default)/documents/contacts?key=${encodeURIComponent(firebaseConfig.apiKey)}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fields: buildFirestoreFields(payload, fallbackReason)
+      })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Firestore fallback failed with status ${response.status}`);
+  }
+}
 
 function escapeHtml(value = '') {
   return String(value)
@@ -121,62 +343,43 @@ function buildEmailTemplate({ name, email, phone, subject, description, dateTime
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method === 'OPTIONS') {
-    return res.status(200).setHeader('Access-Control-Allow-Origin', corsHeaders['Access-Control-Allow-Origin'])
-      .setHeader('Access-Control-Allow-Methods', corsHeaders['Access-Control-Allow-Methods'])
-      .setHeader('Access-Control-Allow-Headers', corsHeaders['Access-Control-Allow-Headers'])
-      .end();
-  }
+  setCorsHeaders(res);
 
-  res.setHeader('Access-Control-Allow-Origin', corsHeaders['Access-Control-Allow-Origin']);
-  res.setHeader('Access-Control-Allow-Methods', corsHeaders['Access-Control-Allow-Methods']);
-  res.setHeader('Access-Control-Allow-Headers', corsHeaders['Access-Control-Allow-Headers']);
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, phone, subject, description, dateTime } = req.body || {};
-
-  if (!name || !email || !subject || !description) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD
-    }
-  });
-
-  const html = buildEmailTemplate({ name, email, phone, subject, description, dateTime });
-  const ccAddress = process.env.CONTACT_CC_EMAIL || 'kavinkumarkk026@gmail.com';
-  const toAddress = process.env.CONTACT_TO_EMAIL || process.env.GMAIL_USER;
-
   try {
-    await transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
-      to: toAddress,
-      cc: ccAddress,
-      replyTo: email,
-      subject: `New portfolio enquiry: ${subject}`,
-      text: [
-        'A new portfolio message has been submitted.',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone || 'Not provided'}`,
-        `Subject: ${subject}`,
-        `Date: ${dateTime}`,
-        '',
-        description
-      ].join('\n'),
-      html
-    });
+    const payload = normalizeContactPayload(normalizeBody(req.body));
 
-    return res.status(200).json({ ok: true });
+    try {
+      await sendContactEmail(payload);
+      return res.status(200).json({ ok: true, delivery: 'smtp' });
+    } catch (mailError) {
+      const fallbackReason = mailError instanceof Error ? mailError.message : 'SMTP delivery failed';
+
+      if (fallbackReason === 'SMTP transport is not configured' || fallbackReason === 'Email recipients are not configured') {
+        console.warn('Direct email delivery is unavailable, queueing contact in Firestore instead.');
+      } else {
+        console.error('Unable to send portfolio email directly, falling back to Firestore queue.', mailError);
+      }
+
+      await queueContactInFirestore(
+        payload,
+        fallbackReason
+      );
+
+      return res.status(202).json({ ok: true, delivery: 'queued' });
+    }
   } catch (error) {
-    console.error('Unable to send portfolio email', error);
-    return res.status(500).json({ error: 'Unable to send message' });
+    const statusCode = Number(error?.statusCode) || 500;
+    const errorMessage = statusCode >= 500 ? 'Unable to send message' : error.message;
+
+    console.error('Unable to handle portfolio contact request', error);
+    return res.status(statusCode).json({ error: errorMessage });
   }
 };
