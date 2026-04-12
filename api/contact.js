@@ -110,6 +110,19 @@ function getTransportOptions() {
   const gmailUser = readEnv('GMAIL_USER');
   const gmailPassword = readEnv('GMAIL_APP_PASSWORD');
 
+  if (gmailUser && gmailPassword) {
+    return {
+      transport: {
+        service: 'gmail',
+        auth: {
+          user: gmailUser,
+          pass: gmailPassword
+        }
+      },
+      fromAddress: readEnv('CONTACT_FROM_EMAIL') || gmailUser
+    };
+  }
+
   if (smtpHost && smtpPort && smtpUser && smtpPass) {
     return {
       transport: {
@@ -125,19 +138,6 @@ function getTransportOptions() {
     };
   }
 
-  if (gmailUser && gmailPassword) {
-    return {
-      transport: {
-        service: 'gmail',
-        auth: {
-          user: gmailUser,
-          pass: gmailPassword
-        }
-      },
-      fromAddress: readEnv('CONTACT_FROM_EMAIL') || gmailUser
-    };
-  }
-
   return null;
 }
 
@@ -148,8 +148,8 @@ async function sendContactEmail(payload) {
     throw new Error('SMTP transport is not configured');
   }
 
-  const toAddress = readEnv('CONTACT_TO_EMAIL') || transportOptions.fromAddress;
-  const ccAddress = readEnv('CONTACT_CC_EMAIL') || 'kavinkumarkk026@gmail.com';
+  const toAddress = payload.email;
+  const ccAddress = 'kavinkumarkk026@gmail.com';
 
   if (!transportOptions.fromAddress || !toAddress) {
     throw new Error('Email recipients are not configured');
@@ -162,7 +162,7 @@ async function sendContactEmail(payload) {
     from: `"Portfolio Contact" <${transportOptions.fromAddress}>`,
     to: toAddress,
     cc: ccAddress,
-    replyTo: payload.email,
+    replyTo: ccAddress,
     subject: `New portfolio enquiry: ${payload.subject}`,
     text: [
       'A new portfolio message has been submitted.',

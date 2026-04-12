@@ -9,7 +9,6 @@ initializeApp();
 
 const gmailUser = defineSecret('GMAIL_USER');
 const gmailAppPassword = defineSecret('GMAIL_APP_PASSWORD');
-const contactToEmail = defineSecret('CONTACT_TO_EMAIL');
 const contactCcEmail = 'kavinkumarkk026@gmail.com';
 
 type ContactPayload = {
@@ -33,7 +32,7 @@ const escapeHtml = (value: string) => {
 export const sendContactNotification = onDocumentCreated(
   {
     document: 'contacts/{contactId}',
-    secrets: [gmailUser, gmailAppPassword, contactToEmail]
+    secrets: [gmailUser, gmailAppPassword]
   },
   async (event) => {
     const snapshot = event.data;
@@ -82,9 +81,9 @@ export const sendContactNotification = onDocumentCreated(
     try {
       await transporter.sendMail({
         from: `"Resume Contact Form" <${gmailUser.value()}>`,
-        to: contactToEmail.value(),
+        to: contact.email,
         cc: contactCcEmail,
-        replyTo: contact.email,
+        replyTo: contactCcEmail,
         subject: `New resume contact: ${contact.subject ?? 'No subject'}`,
         text: [
           'New contact submission received.',

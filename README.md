@@ -18,15 +18,19 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 The Vercel contact endpoint lives at `/api/contact`.
 
-For direct email delivery, configure one of these environment variable sets:
+For direct email delivery, set deployment secrets and do not hardcode mail passwords in source files.
+
+Preferred setup:
 
 - `GMAIL_USER` and `GMAIL_APP_PASSWORD`
+
+Alternative setup:
+
 - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS`
 
 Optional variables:
 
 - `CONTACT_FROM_EMAIL`
-- `CONTACT_TO_EMAIL`
 - `CONTACT_CC_EMAIL`
 - `FIREBASE_WEB_API_KEY`
 - `FIREBASE_PROJECT_ID`
