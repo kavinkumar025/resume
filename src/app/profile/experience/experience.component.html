@@ -1,8 +1,12 @@
-<section class="experience-section" id="experience">
+﻿<section class="experience-section" id="experience">
   <div class="experience-container">
     <div class="section-header" data-aos="fade-up">
       <h2 class="section-title">Experience</h2>
       <p class="section-subtitle">My professional journey and growth</p>
+      <div class="exp-total-badge">
+        <i class="fa-solid fa-briefcase"></i>
+        <span>{{ totalExperience }} of professional experience</span>
+      </div>
     </div>
     <div class="timeline">
       <div class="timeline-line"></div>
@@ -13,7 +17,9 @@
         </div>
         <div class="timeline-card">
           <div class="card-badge current">Current</div>
-          <span class="card-date">JAN 2025 - Present</span>
+          <span class="card-date">JAN 2025 – Present
+            <span class="card-duration">· {{ currentJobDuration }}</span>
+          </span>
           <h3 class="card-role">Angular Developer</h3>
           <h4 class="card-company">Revalsys Technologies</h4>
           <p>Experienced Angular Developer with strong knowledge of Angular dynamics. Proficient in working with
@@ -32,7 +38,9 @@
           <i class="fa-solid fa-laptop-code"></i>
         </div>
         <div class="timeline-card">
-          <span class="card-date">SEP 2022 - NOV 2024</span>
+          <span class="card-date">SEP 2022 – NOV 2024
+            <span class="card-duration">· 2 yrs 2 mo</span>
+          </span>
           <h3 class="card-role">Junior Angular Developer</h3>
           <h4 class="card-company">Aseuro Technologies Private Limited</h4>
           <p>Strong knowledge of modern frontend technologies such as Angular 13+, executing frontend
@@ -82,94 +90,163 @@
       <p class="section-subtitle">Professional and personal projects I've built</p>
     </div>
 
+    <!-- Professional Projects -->
     <div class="projects-category" data-aos="fade-up" data-aos-delay="100">
       <h3 class="category-label"><i class="fa-solid fa-building"></i> Professional Projects</h3>
-      <div class="projects-grid">
-        <div class="project-card" data-aos="fade-up" data-aos-delay="150">
-          <div class="project-card-top">
-            <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <span class="project-tag">Insurance</span>
+      <div class="projects-grid pro-grid">
+
+        <div class="pcard accent-blue" data-aos="fade-up" data-aos-delay="100">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+            <span class="pcard-badge">Insurance</span>
           </div>
-          <h4 class="project-title">FMG - Digital Self-Service</h4>
-          <p class="project-desc">Customer-facing insurance application where users manage policy payments,
+          <span class="pcard-company">Aseuro Technologies</span>
+          <h4 class="pcard-title">FMG &ndash; Digital Self-Service</h4>
+          <p class="pcard-desc">Customer-facing insurance application where users manage policy payments,
             beneficiaries, and upsell options. Migrated the entire application, developed new functionality
             based on client requirements, and conducted Jasmine &amp; Karma tests.</p>
           <div class="project-tech">
             <span>Angular</span><span>Kendo UI</span><span>Jasmine</span><span>Karma</span><span>SonarQube</span>
           </div>
         </div>
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-card-top">
-            <div class="project-icon"><i class="fa-solid fa-server"></i></div>
-            <span class="project-tag client-award">Client Appreciated</span>
+
+        <div class="pcard accent-purple" data-aos="fade-up" data-aos-delay="150">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-server"></i></div>
+            <span class="pcard-badge award-badge"><i class="fa-solid fa-star fa-xs"></i> Client Appreciated</span>
           </div>
-          <h4 class="project-title">FMG - In House Applications</h4>
-          <p class="project-desc">Worked on five in-house applications fully utilizing Kendo Angular libraries.
+          <span class="pcard-company">Aseuro Technologies</span>
+          <h4 class="pcard-title">FMG &ndash; In House Applications</h4>
+          <p class="pcard-desc">Worked on five in-house applications fully utilizing Kendo Angular libraries.
             Handled Angular and Kendo migrations, developed screens across all applications, and contributed
             to iFrame and microservice applications.</p>
           <div class="project-tech">
             <span>Angular 12-17</span><span>Kendo Angular</span><span>Microservices</span><span>iFrame</span>
           </div>
         </div>
+
+        <div class="pcard accent-teal" data-aos="fade-up" data-aos-delay="200">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-diagram-project"></i></div>
+            <span class="pcard-badge">ERP</span>
+          </div>
+          <span class="pcard-company">Revalsys Technologies</span>
+          <h4 class="pcard-title">Revalsys ERP</h4>
+          <p class="pcard-desc">Worked on Module Federation architecture and developed a new module from scratch.
+            Implemented performance optimization strategies including network throttling handling and load
+            efficiency improvements for a scalable ERP platform.</p>
+          <div class="project-tech">
+            <span>Angular</span><span>Module Federation</span><span>Performance Optimization</span><span>Network Throttling</span>
+          </div>
+          <a href="https://revalsys.revalerp.com/login" target="_blank" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Project
+          </a>
+        </div>
+
+        <div class="pcard accent-orange" data-aos="fade-up" data-aos-delay="250">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-clock"></i></div>
+            <span class="pcard-badge">eCommerce</span>
+          </div>
+          <span class="pcard-company">Next.js</span>
+          <h4 class="pcard-title">Watch Station India</h4>
+          <p class="pcard-desc">Worked on SEO optimization and implemented progressive enhancement to fully
+            support the site when JavaScript is disabled, ensuring accessibility for all users regardless
+            of browser capabilities.</p>
+          <div class="project-tech">
+            <span>Next.js</span><span>SEO</span><span>Progressive Enhancement</span><span>SSR</span>
+          </div>
+          <a href="https://www.watchstationindia.com" target="_blank" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site
+          </a>
+        </div>
+
+        <div class="pcard accent-rose" data-aos="fade-up" data-aos-delay="300">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-store"></i></div>
+            <span class="pcard-badge">eCommerce</span>
+          </div>
+          <span class="pcard-company">Next.js</span>
+          <h4 class="pcard-title">Fossil India</h4>
+          <p class="pcard-desc">Built the complete eCommerce application from scratch using the Next.js
+            framework. Developed with a dynamic architecture and scalable approach to handle product
+            catalogs, user flows, and performance at scale.</p>
+          <div class="project-tech">
+            <span>Next.js</span><span>TypeScript</span><span>Dynamic Routing</span><span>SSR</span>
+          </div>
+          <a href="https://www.fossil.in" target="_blank" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site
+          </a>
+        </div>
+
       </div>
     </div>
 
-    <div class="projects-category" data-aos="fade-up" data-aos-delay="250">
+    <!-- Personal Projects -->
+    <div class="projects-category" data-aos="fade-up" data-aos-delay="200">
       <h3 class="category-label"><i class="fa-solid fa-rocket"></i> Personal Projects</h3>
-      <div class="projects-grid four-col">
-        <a class="project-card personal" href="https://www.kongumatrimonyonline.in/login" target="_blank"
-           data-aos="fade-up" data-aos-delay="300">
-          <div class="project-card-top">
-            <div class="project-icon personal-icon"><i class="fa-solid fa-heart"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+      <div class="projects-grid per-grid">
+
+        <a class="pcard accent-rose pcard-link-card" href="https://www.kongumatrimonyonline.in/login"
+           target="_blank" data-aos="fade-up" data-aos-delay="100">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-heart"></i></div>
+            <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
           </div>
-          <h4 class="project-title">Kongu Matrimony Online</h4>
-          <p class="project-desc">Full-featured Tamil matrimony platform with verified profiles, 24x7 support,
-            chat facility, and instant matching. Handles user authentication, profile management, and payment integration.</p>
+          <h4 class="pcard-title">Kongu Matrimony Online</h4>
+          <p class="pcard-desc">Full-featured Tamil matrimony platform with verified profiles, 24x7 support,
+            chat facility, and instant matching. Handles user authentication, profile management, and
+            payment integration.</p>
           <div class="project-tech">
             <span>Angular</span><span>Firebase</span><span>Zoho Pay</span>
           </div>
         </a>
-        <a class="project-card personal" href="https://www.minyfin.com/" target="_blank"
-           data-aos="fade-up" data-aos-delay="350">
-          <div class="project-card-top">
-            <div class="project-icon personal-icon"><i class="fa-solid fa-piggy-bank"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+
+        <a class="pcard accent-green pcard-link-card" href="https://www.minyfin.com/"
+           target="_blank" data-aos="fade-up" data-aos-delay="150">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-piggy-bank"></i></div>
+            <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
           </div>
-          <h4 class="project-title">Minyfin</h4>
-          <p class="project-desc">Financial literacy app teaching kids money management through tasks, rewards,
+          <h4 class="pcard-title">Minyfin</h4>
+          <p class="pcard-desc">Financial literacy app teaching kids money management through tasks, rewards,
             SIP investing simulation, credit scoring, and interactive stories. Trusted by 2,400+ families.</p>
           <div class="project-tech">
             <span>Angular</span><span>Firebase</span><span>Gamification</span>
           </div>
         </a>
-        <a class="project-card personal" href="https://invoice-alpha-rosy.vercel.app/" target="_blank"
-           data-aos="fade-up" data-aos-delay="400">
-          <div class="project-card-top">
-            <div class="project-icon personal-icon"><i class="fa-solid fa-file-invoice"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+
+        <a class="pcard accent-blue pcard-link-card" href="https://invoice-alpha-rosy.vercel.app/"
+           target="_blank" data-aos="fade-up" data-aos-delay="200">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-file-invoice"></i></div>
+            <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
           </div>
-          <h4 class="project-title">InvoiceHub</h4>
-          <p class="project-desc">B2B cold chain commerce platform for suppliers and buyers of perishable goods.
+          <h4 class="pcard-title">InvoiceHub</h4>
+          <p class="pcard-desc">B2B cold chain commerce platform for suppliers and buyers of perishable goods.
             Features role-based auth, real-time catalog, orders, and invoices with Firebase.</p>
           <div class="project-tech">
             <span>Angular</span><span>Firebase Auth</span><span>Realtime DB</span>
           </div>
         </a>
-        <a class="project-card personal" href="https://calculators.kongumatrimonyonline.in/" target="_blank"
-           data-aos="fade-up" data-aos-delay="450">
-          <div class="project-card-top">
-            <div class="project-icon personal-icon"><i class="fa-solid fa-calculator"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square project-link-icon"></i>
+
+        <a class="pcard accent-amber pcard-link-card" href="https://calculators.kongumatrimonyonline.in/"
+           target="_blank" data-aos="fade-up" data-aos-delay="250">
+          <div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-calculator"></i></div>
+            <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
           </div>
-          <h4 class="project-title">Interactive Calculators</h4>
-          <p class="project-desc">Free online calculator suite with BMI, EMI, SIP, mortgage calculators and more.
+          <h4 class="pcard-title">Interactive Calculators</h4>
+          <p class="pcard-desc">Free online calculator suite with BMI, EMI, SIP, mortgage calculators and more.
             Mobile-friendly with instant results across finance, health, and utility categories.</p>
           <div class="project-tech">
             <span>Angular</span><span>SEO</span><span>PWA</span>
           </div>
         </a>
+
       </div>
     </div>
+
   </div>
 </section>
+

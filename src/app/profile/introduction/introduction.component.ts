@@ -11,7 +11,7 @@ export class IntroductionComponent implements OnInit {
   public title = 'resume';
   @ViewChild('textContainer', { static: true })
   public textContainerRef!: ElementRef;
-  public roles = ['Front End Web Developer - Angular 13+', 'Data Modeler'];
+  public roles = ['Senior Web Developer', 'Data Modeler'];
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;

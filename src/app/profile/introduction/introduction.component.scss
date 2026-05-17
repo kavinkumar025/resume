@@ -221,6 +221,44 @@
   gap: 12px;
 }
 
+.hero-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  transition: all 0.25s ease;
+  cursor: default;
+
+  i, svg {
+    font-size: 0.82rem;
+    color: #a5b4fc;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #e2e8f0;
+    i, svg { color: #c4b5fd; }
+  }
+
+  &.next-chip svg { color: #e2e8f0; }
+  &.next-chip:hover svg { color: #ffffff; }
+}
+
 .social-link {
   width: 44px;
   height: 44px;
@@ -330,6 +368,22 @@
   bottom: 10%;
   left: -5%;
   animation-delay: -2s;
+}
+
+.card-3 {
+  top: 48%;
+  right: -12%;
+  animation-delay: -1s;
+
+  svg { color: #e2e8f0; flex-shrink: 0; }
+}
+
+.card-4 {
+  bottom: 30%;
+  left: -8%;
+  animation-delay: -3s;
+
+  i { color: #f59e0b; }
 }
 
 @keyframes float-card {
