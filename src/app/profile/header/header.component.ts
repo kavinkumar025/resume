@@ -10,7 +10,31 @@ export class HeaderComponent implements OnDestroy {
   activeSection: string = 'introduction';
   isScrolled: boolean = false;
   menuOpen: boolean = false;
-  private readonly mobileBreakpoint = 768;
+  private readonly mobileBreakpoint = 1100;
+  isLight = document.documentElement.dataset['theme'] === 'light';
+
+  toggleTheme() {
+    this.isLight = !this.isLight;
+    const theme = this.isLight ? 'light' : 'dark';
+    document.documentElement.dataset['theme'] = theme;
+    try { localStorage.setItem('portfolio-theme', theme); } catch (_) {}
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onTab(event: KeyboardEvent) {
+    if (!this.menuOpen || event.key !== 'Tab') return;
+    const controls = Array.from(document.querySelectorAll<HTMLElement>('.navbar a, .navbar button'))
+      .filter(element => element.getBoundingClientRect().width > 0 && !element.classList.contains('nav-backdrop'));
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    if (this.menuOpen) { this.closeMenu(); document.querySelector<HTMLButtonElement>('.nav-toggle')?.focus(); }
+  }
 
   sections = [
     { id: 'about', label: 'About' },
@@ -32,6 +56,7 @@ export class HeaderComponent implements OnDestroy {
     }
 
     const scrollPosition = window.pageYOffset + window.innerHeight / 2;
+    this.activeSection = 'introduction';
 
     for (let section of this.sections) {
       const element = document.getElementById(section.id);
@@ -49,16 +74,7 @@ export class HeaderComponent implements OnDestroy {
   }
 
   toggleMenu() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const checkScrollEnd = () => {
-    if (window.scrollY === 0) {
-      this.menuOpen = !this.menuOpen;
-      window.removeEventListener('scroll', checkScrollEnd);
-    }
-  };
-
-  window.addEventListener('scroll', checkScrollEnd);
+    this.menuOpen = !this.menuOpen;
     this.syncBodyScrollLock();
   }
 

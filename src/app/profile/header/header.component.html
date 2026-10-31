@@ -1,24 +1,15 @@
-<nav class="navbar" [class.scrolled]="isScrolled">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav class="navbar" [class.scrolled]="isScrolled" aria-label="Main navigation">
   <div class="nav-container">
-    <a class="nav-brand" href="#introduction" (click)="scrollTo('introduction', $event)">
-      <span class="brand-icon">K</span>
-      <span class="brand-text">Kavin</span>
-    </a>
-    <button class="nav-toggle" type="button" (click)="toggleMenu()" [class.active]="menuOpen"
-      [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <button type="button" class="nav-backdrop" [class.open]="menuOpen" (click)="closeMenu()"
-      aria-label="Close navigation menu"></button>
-    <ul class="nav-links" [class.open]="menuOpen">
-      <li *ngFor="let section of sections">
-        <a class="nav-link" [class.active]="activeSection === section.id"
-           [attr.href]="'#' + section.id" (click)="scrollTo(section.id, $event)">
-          {{ section.label }}
-        </a>
-      </li>
+    <a class="nav-brand" href="#introduction" (click)="scrollTo('introduction', $event)" aria-label="Kavinkumar home"><span class="brand-icon">k<span>.</span></span><span class="brand-text">kavinkumar<span class="brand-dot">.</span></span></a>
+    <ul class="nav-links" id="primary-navigation" [class.open]="menuOpen">
+      <li *ngFor="let section of sections"><a class="nav-link" [class.active]="activeSection === section.id" [attr.aria-current]="activeSection === section.id ? 'location' : null" [attr.href]="'#' + section.id" (click)="scrollTo(section.id, $event)">{{ section.label }}</a></li>
     </ul>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isLight ? 'Switch to dark theme' : 'Switch to light theme'" [attr.aria-pressed]="isLight"><i class="fa-solid" [class.fa-sun]="!isLight" [class.fa-moon]="isLight" aria-hidden="true"></i></button>
+      <a class="button nav-resume" href="assets/Kavinkumar_AngularDeveloper.pdf" download>Resume <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+      <button class="nav-toggle" type="button" (click)="toggleMenu()" [class.active]="menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="primary-navigation" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+    </div>
+    <button type="button" class="nav-backdrop" [class.open]="menuOpen" (click)="closeMenu()" aria-label="Close navigation menu" [attr.tabindex]="menuOpen ? 0 : -1"></button>
   </div>
 </nav>

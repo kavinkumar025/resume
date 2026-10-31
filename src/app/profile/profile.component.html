@@ -1,13 +1,13 @@
 <app-header></app-header>
-<div class="page-content" (contextmenu)="onRightClick($event)">
-    <app-introduction id="introduction"></app-introduction>
-    <app-about id="about"></app-about>
-    <app-experience id="experience"></app-experience>
-    <app-skill id="skill"></app-skill>
-    <app-education id="education"></app-education>
-    <app-contact id="contact"></app-contact>
+<main class="page-content" id="main-content" tabindex="-1">
+    <app-introduction></app-introduction>
+    <app-about></app-about>
+    <app-experience></app-experience>
+    <app-skill></app-skill>
+    <app-education></app-education>
+    <app-contact></app-contact>
     <app-scroll id="scroll"></app-scroll>
-</div>
+</main>
 <!-- Footer -->
 <footer class="site-footer">
   <div class="footer-content">
@@ -17,11 +17,11 @@
     </div>
     <p class="footer-tagline">Angular Developer &middot; Erode, Tamil Nadu</p>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="https://github.com/kavinkumar025" target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="mailto:kavinkumar025@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://www.kongumatrimonyonline.in" target="_blank"><i class="fa-solid fa-globe"></i></a>
-      <a href="https://www.minyfin.com" target="_blank"><i class="fa-solid fa-piggy-bank"></i></a>
+      <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      <a href="https://github.com/kavinkumar025" target="_blank" aria-label="GitHub profile"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+      <a href="mailto:kavinkumar025@gmail.com" aria-label="Email Kavinkumar"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      <a href="https://www.kongumatrimonyonline.in" target="_blank" aria-label="Kongu Matrimony personal project"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
+      <a href="https://www.minyfin.com" target="_blank" aria-label="Minyfin personal project"><i class="fa-solid fa-piggy-bank" aria-hidden="true"></i></a>
     </div>
     <p class="footer-copy">&copy; {{ currentYear }} Kavinkumar M. Built with Angular &amp; passion.</p>
   </div>

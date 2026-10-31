@@ -1,7 +1,7 @@
 ﻿<section class="experience-section" id="experience">
   <div class="experience-container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Experience</h2>
+      <p class="eyebrow">02 / THE JOURNEY</p><h2 class="section-title">Real teams.<br><span class="muted-heading">Real-world engineering.</span></h2>
       <p class="section-subtitle">My professional journey and growth</p>
       <div class="exp-total-badge">
         <i class="fa-solid fa-briefcase"></i>
@@ -24,12 +24,12 @@
           <h4 class="card-company">Revalsys Technologies</h4>
           <p>Experienced Angular Developer with strong knowledge of Angular dynamics. Proficient in working with
             the latest Angular versions and modern concepts.</p>
-          <ul class="card-highlights">
+          <details class="experience-details"><summary>Responsibilities &amp; contributions</summary><ul class="card-highlights">
             <li>Building responsive and scalable web applications</li>
             <li>Integrating APIs, state management, and performance optimization</li>
             <li>Writing clean, maintainable, and efficient code</li>
             <li>Collaborating with the architecture team on technical decisions</li>
-          </ul>
+          </ul></details>
         </div>
       </div>
 
@@ -45,12 +45,12 @@
           <h4 class="card-company">Aseuro Technologies Private Limited</h4>
           <p>Strong knowledge of modern frontend technologies such as Angular 13+, executing frontend
             projects on the client side using Kendo UI and Bootstrap 5.</p>
-          <ul class="card-highlights">
+          <details class="experience-details"><summary>Responsibilities &amp; contributions</summary><ul class="card-highlights">
             <li>Handled customer-facing applications including payment systems</li>
             <li>Performed Jasmine and Karma testing with SonarQube for code quality</li>
             <li>Migrated applications from Angular 12 to 17 across 5+ in-house apps</li>
             <li>Received client appreciation for project delivery excellence</li>
-          </ul>
+          </ul></details>
         </div>
       </div>
 
@@ -86,14 +86,30 @@
 <section class="projects-section" id="projects">
   <div class="projects-container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">Professional and personal projects I've built</p>
+      <p class="eyebrow">SELECTED WORK / 2022 - PRESENT</p><h2 class="section-title">Ideas into interfaces.<br><span class="muted-heading">Code into impact.</span></h2>
+      <p class="section-subtitle">A selection of enterprise platforms and personal products.</p>
     </div>
 
     <!-- Professional Projects -->
     <div class="projects-category" data-aos="fade-up" data-aos-delay="100">
       <h3 class="category-label"><i class="fa-solid fa-building"></i> Professional Projects</h3>
       <div class="projects-grid pro-grid">
+        <div class="pcard featured-project accent-rose" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-image"><img src="assets/images/projects/fossil.jpg" alt="Fossil India homepage featuring its watches and accessories storefront" width="1440" height="1000" loading="lazy" decoding="async"></div>
+          <p class="eyebrow">FEATURED / PROFESSIONAL WORK</p><div class="pcard-top">
+            <div class="pcard-icon-wrap"><i class="fa-solid fa-store"></i></div>
+            <span class="pcard-badge">eCommerce</span>
+          </div>
+          <span class="pcard-company">Revalsys Technologies</span>
+          <h4 class="pcard-title">Fossil India<span class="project-subtitle">A storefront built for scale.</span></h4>
+          <p class="pcard-desc">Next.js e-commerce engineering for a global watch and accessories brand.</p><details class="project-details"><summary>View engineering details</summary><p>Built the complete eCommerce application from scratch using the Next.js
+            framework. Developed with a dynamic architecture and scalable approach to handle product
+            catalogs, user flows, and performance at scale.</p></details>
+          <app-technology-tags [tags]="['Next.js', 'TypeScript', 'Dynamic Routing', 'SSR']" [compact]="true"></app-technology-tags>
+          <a href="https://www.fossil.in" target="_blank" rel="noopener noreferrer" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View website
+          </a>
+        </div>
 
         <div class="pcard accent-blue" data-aos="fade-up" data-aos-delay="100">
           <div class="pcard-top">
@@ -105,9 +121,7 @@
           <p class="pcard-desc">Customer-facing insurance application where users manage policy payments,
             beneficiaries, and upsell options. Migrated the entire application, developed new functionality
             based on client requirements, and conducted Jasmine &amp; Karma tests.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>Kendo UI</span><span>Jasmine</span><span>Karma</span><span>SonarQube</span>
-          </div>
+          <app-technology-tags [tags]="['Angular', 'Kendo UI', 'Jasmine', 'Karma', 'SonarQube']" [compact]="true"></app-technology-tags>
         </div>
 
         <div class="pcard accent-purple" data-aos="fade-up" data-aos-delay="150">
@@ -120,9 +134,7 @@
           <p class="pcard-desc">Worked on five in-house applications fully utilizing Kendo Angular libraries.
             Handled Angular and Kendo migrations, developed screens across all applications, and contributed
             to iFrame and microservice applications.</p>
-          <div class="project-tech">
-            <span>Angular 12-17</span><span>Kendo Angular</span><span>Microservices</span><span>iFrame</span>
-          </div>
+          <app-technology-tags [tags]="['Angular 12-17', 'Kendo Angular', 'Microservices', 'iFrame']" [compact]="true"></app-technology-tags>
         </div>
 
         <div class="pcard accent-teal" data-aos="fade-up" data-aos-delay="200">
@@ -135,15 +147,14 @@
           <p class="pcard-desc">Worked on Module Federation architecture and developed a new module from scratch.
             Implemented performance optimization strategies including network throttling handling and load
             efficiency improvements for a scalable ERP platform.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>Module Federation</span><span>Performance Optimization</span><span>Network Throttling</span>
-          </div>
-          <a href="https://revalsys.revalerp.com/login" target="_blank" class="pcard-link">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Project
+          <app-technology-tags [tags]="['Angular', 'Module Federation', 'Performance Optimization', 'Network Throttling']" [compact]="true"></app-technology-tags>
+          <a href="https://revalsys.revalerp.com/login" target="_blank" rel="noopener noreferrer" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View project
           </a>
         </div>
 
         <div class="pcard accent-orange" data-aos="fade-up" data-aos-delay="250">
+          <div class="project-image"><img src="assets/images/projects/watchstation.jpg" alt="Watch Station India watches and jewellery storefront" width="1440" height="1000" loading="lazy" decoding="async"></div>
           <div class="pcard-top">
             <div class="pcard-icon-wrap"><i class="fa-solid fa-clock"></i></div>
             <span class="pcard-badge">eCommerce</span>
@@ -153,31 +164,13 @@
           <p class="pcard-desc">Worked on SEO optimization and implemented progressive enhancement to fully
             support the site when JavaScript is disabled, ensuring accessibility for all users regardless
             of browser capabilities.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>SEO</span><span>Progressive Enhancement</span><span>SSR</span>
-          </div>
-          <a href="https://www.watchstationindia.com" target="_blank" class="pcard-link">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site
+          <app-technology-tags [tags]="['Angular', 'SEO', 'Progressive Enhancement', 'SSR']" [compact]="true"></app-technology-tags>
+          <a href="https://www.watchstationindia.com" target="_blank" rel="noopener noreferrer" class="pcard-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View website
           </a>
         </div>
 
-        <div class="pcard accent-rose" data-aos="fade-up" data-aos-delay="300">
-          <div class="pcard-top">
-            <div class="pcard-icon-wrap"><i class="fa-solid fa-store"></i></div>
-            <span class="pcard-badge">eCommerce</span>
-          </div>
-          <span class="pcard-company">Revalsys Technologies</span>
-          <h4 class="pcard-title">Fossil India</h4>
-          <p class="pcard-desc">Built the complete eCommerce application from scratch using the Next.js
-            framework. Developed with a dynamic architecture and scalable approach to handle product
-            catalogs, user flows, and performance at scale.</p>
-          <div class="project-tech">
-            <span>Next.js</span><span>TypeScript</span><span>Dynamic Routing</span><span>SSR</span>
-          </div>
-          <a href="https://www.fossil.in" target="_blank" class="pcard-link">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site
-          </a>
-        </div>
+
 
       </div>
     </div>
@@ -187,8 +180,8 @@
       <h3 class="category-label"><i class="fa-solid fa-rocket"></i> Personal Projects</h3>
       <div class="projects-grid per-grid">
 
-        <!-- <a class="pcard accent-rose pcard-link-card" href="https://www.kongumatrimonyonline.in/login"
-           target="_blank" data-aos="fade-up" data-aos-delay="100">
+        <a class="pcard accent-rose pcard-link-card" href="https://www.kongumatrimonyonline.in/login"
+           target="_blank" rel="noopener noreferrer" data-aos="fade-up" data-aos-delay="100">
           <div class="pcard-top">
             <div class="pcard-icon-wrap"><i class="fa-solid fa-heart"></i></div>
             <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
@@ -197,13 +190,11 @@
           <p class="pcard-desc">Full-featured Tamil matrimony platform with verified profiles, 24x7 support,
             chat facility, and instant matching. Handles user authentication, profile management, and
             payment integration.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>Firebase</span><span>Zoho Pay</span>
-          </div>
-        </a> -->
+          <app-technology-tags [tags]="['Angular', 'Firebase', 'Zoho Pay']" [compact]="true"></app-technology-tags>
+        </a>
 
         <a class="pcard accent-green pcard-link-card" href="https://www.minyfin.com/"
-           target="_blank" data-aos="fade-up" data-aos-delay="150">
+           target="_blank" rel="noopener noreferrer" data-aos="fade-up" data-aos-delay="150">
           <div class="pcard-top">
             <div class="pcard-icon-wrap"><i class="fa-solid fa-piggy-bank"></i></div>
             <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
@@ -211,13 +202,12 @@
           <h4 class="pcard-title">Minyfin</h4>
           <p class="pcard-desc">Financial literacy app teaching kids money management through tasks, rewards,
             SIP investing simulation, credit scoring, and interactive stories. Trusted by 2,400+ families.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>Firebase</span><span>Gamification</span>
-          </div>
+          <app-technology-tags [tags]="['Angular', 'Firebase', 'Gamification']" [compact]="true"></app-technology-tags>
         </a>
 
         <a class="pcard accent-blue pcard-link-card" href="https://invoice-alpha-rosy.vercel.app/"
-           target="_blank" data-aos="fade-up" data-aos-delay="200">
+           target="_blank" rel="noopener noreferrer" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image"><img src="assets/images/projects/invoice.jpg" alt="InvoiceHub B2B cold chain commerce homepage" width="1440" height="1000" loading="lazy" decoding="async"></div>
           <div class="pcard-top">
             <div class="pcard-icon-wrap"><i class="fa-solid fa-file-invoice"></i></div>
             <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
@@ -225,13 +215,11 @@
           <h4 class="pcard-title">InvoiceHub</h4>
           <p class="pcard-desc">B2B cold chain commerce platform for suppliers and buyers of perishable goods.
             Features role-based auth, real-time catalog, orders, and invoices with Firebase.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>Firebase Auth</span><span>Realtime DB</span>
-          </div>
+          <app-technology-tags [tags]="['Angular', 'Firebase Auth', 'Realtime DB']" [compact]="true"></app-technology-tags>
         </a>
 
         <a class="pcard accent-amber pcard-link-card" href="https://calculators.kongumatrimonyonline.in/"
-           target="_blank" data-aos="fade-up" data-aos-delay="250">
+           target="_blank" rel="noopener noreferrer" data-aos="fade-up" data-aos-delay="250">
           <div class="pcard-top">
             <div class="pcard-icon-wrap"><i class="fa-solid fa-calculator"></i></div>
             <i class="fa-solid fa-arrow-up-right-from-square pcard-ext-icon"></i>
@@ -239,11 +227,10 @@
           <h4 class="pcard-title">Interactive Calculators</h4>
           <p class="pcard-desc">Free online calculator suite with BMI, EMI, SIP, mortgage calculators and more.
             Mobile-friendly with instant results across finance, health, and utility categories.</p>
-          <div class="project-tech">
-            <span>Angular</span><span>SEO</span><span>PWA</span>
-          </div>
+          <app-technology-tags [tags]="['Angular', 'SEO', 'PWA']" [compact]="true"></app-technology-tags>
         </a>
 
+        <a class="pcard pcard-link-card insurance-project" href="https://lic.minyfin.com/" target="_blank" rel="noopener noreferrer"><div class="pcard-top"><div class="pcard-icon-wrap"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i></div><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></div><h4 class="pcard-title">Insurance Information Website</h4><p class="pcard-desc">Insurance information website, part of my personal project portfolio.</p><span class="pcard-link">View website &nearr;</span></a>
       </div>
     </div>
 

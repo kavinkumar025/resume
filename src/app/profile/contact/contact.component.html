@@ -1,8 +1,8 @@
 <section class="contact-section" id="contact">
   <div class="contact-container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Get In Touch</h2>
-      <p class="section-subtitle">Have a project in mind? Let's work together</p>
+      <p class="eyebrow">05 / YOUR NEXT FRONTEND ENGINEER</p><h2 class="section-title">Good things start<br>with a <span class="accent-text">conversation.</span></h2>
+      <p class="section-subtitle">Have an opportunity or an idea? I would love to hear about it.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-form-wrapper" data-aos="fade-right" data-aos-delay="100">
@@ -63,6 +63,7 @@
           <div class="info-bg-pattern"></div>
           <h3>Let's connect</h3>
           <p>Feel free to reach out anytime you have a query or require support. I'm always open to new opportunities.</p>
+          <a class="text-link contact-email" href="mailto:kavinkumar025&#64;gmail.com">Say hello <span aria-hidden="true">&nearr;</span></a>
           <div class="info-items">
             <a href="tel:+919092850954" class="info-item">
               <div class="info-icon">
@@ -82,7 +83,7 @@
                 <span class="info-value">kavinkumar025&#64;gmail.com</span>
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" class="info-item">
+            <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" rel="noopener noreferrer" class="info-item">
               <div class="info-icon">
                 <i class="fa-brands fa-linkedin-in"></i>
               </div>
@@ -91,6 +92,7 @@
                 <span class="info-value">kavinkumar-m</span>
               </div>
             </a>
+            <a href="https://github.com/kavinkumar025" target="_blank" rel="noopener noreferrer" class="info-item"><div class="info-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></div><div><span class="info-label">GitHub</span><span class="info-value">kavinkumar025 &nearr;</span></div></a><a class="button button-secondary" href="assets/Kavinkumar_AngularDeveloper.pdf" download>Download resume &darr;</a>
           </div>
         </div>
       </div>
@@ -107,7 +109,7 @@
     <p class="toast-title">{{ toast.title }}</p>
     <p class="toast-message">{{ toast.message }}</p>
   </div>
-  <button class="toast-close" (click)="dismissToast()">
+  <button class="toast-close" aria-label="Dismiss notification" (click)="dismissToast()">
     <i class="fa-solid fa-xmark"></i>
   </button>
   <div class="toast-progress"></div>
