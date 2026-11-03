@@ -1,15 +1,14 @@
-import { Component, HostListener, AfterViewInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, ElementRef, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
+import { SeoService } from '../seo.service';
 import { Router } from '@angular/router';
 
-declare var AOS: any;
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements AfterViewInit {
+export class ProfileComponent implements AfterViewInit, OnDestroy {
 
   public currentYear = new Date().getFullYear();
 
@@ -25,13 +24,28 @@ export class ProfileComponent implements AfterViewInit {
     { id: 'contact', title: 'Contact' }
   ];
 
-  constructor(private router: Router, private titleService: Title) { }
+  private revealObserver?: IntersectionObserver;
+
+  constructor(private router: Router, private seo: SeoService, private element: ElementRef<HTMLElement>) { this.seo.update(); }
 
   ngAfterViewInit() {
-    if (typeof AOS !== 'undefined') {
-      AOS.init({ once: true, duration: 800, offset: 100 });
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    this.revealObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('reveal-pending');
+          this.revealObserver?.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: '0px 0px -25px 0px', threshold: 0.05 });
+    for (const node of Array.from(this.element.nativeElement.querySelectorAll<HTMLElement>('[data-aos]'))) {
+      if (node.getBoundingClientRect().top < window.innerHeight) continue;
+      node.classList.add('reveal-pending');
+      this.revealObserver.observe(node);
     }
   }
+
+  ngOnDestroy() { this.revealObserver?.disconnect(); }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
@@ -42,7 +56,6 @@ export class ProfileComponent implements AfterViewInit {
         const rect = element.getBoundingClientRect();
         if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
           currentSectionId = section.id;
-          this.titleService.setTitle(section.title);
           this.router.navigate([], { fragment: currentSectionId });
           break;
         }
