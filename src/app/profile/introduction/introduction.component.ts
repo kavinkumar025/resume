@@ -1,4 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-introduction',
@@ -6,24 +10,130 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./introduction.component.scss']
 })
 
-export class IntroductionComponent implements OnInit {
+export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  public title = 'resume';
-  @ViewChild('textContainer', { static: true })
-  public textContainerRef!: ElementRef;
-  public roles = ['Senior Web Developer', 'Data Modeler'];
+  @ViewChild('textContainer', { static: true }) public textContainerRef!: ElementRef;
+  @ViewChild('heroText') heroText!: ElementRef;
+  @ViewChild('heroVisual') heroVisual!: ElementRef;
+  @ViewChild('heroBadge') heroBadge!: ElementRef;
+  @ViewChild('heroName') heroName!: ElementRef;
+  @ViewChild('heroRole') heroRole!: ElementRef;
+  @ViewChild('heroDesc') heroDesc!: ElementRef;
+  @ViewChild('heroCtas') heroCtas!: ElementRef;
+  @ViewChild('heroSocials') heroSocials!: ElementRef;
+
+  public roles = ['Angular Developer', 'Next.js Developer', 'Frontend Developer'];
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;
   public myPhoneNumber = '9092850954';
   public experience: string = '';
 
-  constructor(){
+  private typewriterTimeout: any;
+  private scrollTriggers: ScrollTrigger[] = [];
+
+  constructor() {
     this.calculateExperience();
   }
 
   ngOnInit() {
-    this.typeWriter();
+    this.index = this.roles[0].length;
+    this.isInDeletingState = true;
+    this.typewriterTimeout = setTimeout(() => this.typeWriter(), 3000);
+  }
+
+  ngAfterViewInit() {
+    this.initHeroAnimations();
+    this.initParallax();
+  }
+
+  private initHeroAnimations() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // Badge
+    tl.fromTo(this.heroBadge?.nativeElement, {
+      opacity: 0, y: -20, scale: 0.9
+    }, {
+      opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.7)'
+    });
+
+    // Name lines stagger
+    const nameLines = this.heroName?.nativeElement?.querySelectorAll('.name-line');
+    if (nameLines?.length) {
+      tl.fromTo(nameLines, {
+        opacity: 0, y: 60, skewX: -2
+      }, {
+        opacity: 1, y: 0, skewX: 0,
+        duration: 0.9, stagger: 0.15, ease: 'power4.out'
+      }, '-=0.2');
+    }
+
+    // Role
+    tl.fromTo(this.heroRole?.nativeElement, {
+      opacity: 0, x: -30
+    }, {
+      opacity: 1, x: 0, duration: 0.6, ease: 'power3.out'
+    }, '-=0.3');
+
+    // Description
+    tl.fromTo(this.heroDesc?.nativeElement, {
+      opacity: 0, y: 30
+    }, {
+      opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+    }, '-=0.2');
+
+    // CTAs
+    tl.fromTo(this.heroCtas?.nativeElement, {
+      opacity: 0, y: 20
+    }, {
+      opacity: 1, y: 0, duration: 0.6, ease: 'power3.out'
+    }, '-=0.3');
+
+    // Socials
+    tl.fromTo(this.heroSocials?.nativeElement, {
+      opacity: 0, y: 20
+    }, {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power3.out'
+    }, '-=0.2');
+
+    // Visual
+    tl.fromTo(this.heroVisual?.nativeElement, {
+      opacity: 0, scale: 0.88, x: 40
+    }, {
+      opacity: 1, scale: 1, x: 0, duration: 1, ease: 'power4.out'
+    }, 0.4);
+  }
+
+  private initParallax() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Hero text parallax on scroll
+    const st1 = ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      onUpdate: (self) => {
+        if (this.heroText?.nativeElement) {
+          gsap.set(this.heroText.nativeElement, {
+            y: self.progress * 80,
+            opacity: 1 - self.progress * 1.2
+          });
+        }
+        if (this.heroVisual?.nativeElement) {
+          gsap.set(this.heroVisual.nativeElement, {
+            y: self.progress * 40,
+            scale: 1 - self.progress * 0.05
+          });
+        }
+      }
+    });
+    this.scrollTriggers.push(st1);
   }
 
   public downloadPDF() {
@@ -33,7 +143,6 @@ export class IntroductionComponent implements OnInit {
     link.download = 'Kavinkumar_AngularDeveloper.pdf';
     link.dispatchEvent(new MouseEvent('click'));
     link.remove();
-    window.open(pdfFilePath, '_blank');
   }
 
   public typeWriter() {
@@ -41,13 +150,14 @@ export class IntroductionComponent implements OnInit {
     const currentRole = this.roles[this.roleIndex];
     const currentText = currentRole.slice(0, this.index);
     textContainer.textContent = currentText;
+
     if (!this.isInDeletingState) {
       this.index++;
       if (this.index > currentRole.length) {
         this.isInDeletingState = true;
-        setTimeout(() => this.typeWriter(), 3000);
+        this.typewriterTimeout = setTimeout(() => this.typeWriter(), 2800);
       } else {
-        setTimeout(() => this.typeWriter(), 100);
+        this.typewriterTimeout = setTimeout(() => this.typeWriter(), 90);
       }
     } else {
       this.index--;
@@ -55,7 +165,7 @@ export class IntroductionComponent implements OnInit {
         this.isInDeletingState = false;
         this.roleIndex = (this.roleIndex + 1) % this.roles.length;
       }
-      setTimeout(() => this.typeWriter(), 50);
+      this.typewriterTimeout = setTimeout(() => this.typeWriter(), 45);
     }
   }
 
@@ -65,7 +175,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   public calculateExperience() {
-    const startDate = new Date(2022, 8); // September 2021
+    const startDate = new Date(2022, 8);
     const currentDate = new Date();
     let years = currentDate.getFullYear() - startDate.getFullYear();
     let months = currentDate.getMonth() - startDate.getMonth();
@@ -76,4 +186,8 @@ export class IntroductionComponent implements OnInit {
     this.experience = `${years}.${months}`;
   }
 
+  ngOnDestroy() {
+    clearTimeout(this.typewriterTimeout);
+    this.scrollTriggers.forEach(st => st.kill());
+  }
 }

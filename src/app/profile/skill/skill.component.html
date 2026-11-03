@@ -1,152 +1,105 @@
-<section class="skills-section" id="skill">
+<section class="skills-section" id="skill" aria-label="Skills and Expertise">
   <div class="skills-container">
-    <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">Skills &amp; Expertise</h2>
-      <p class="section-subtitle">Technologies and tools I work with daily</p>
+
+    <!-- Header -->
+    <div class="skills-header" #skillsHeader>
+      <span class="section-eyebrow">04 / Skills</span>
+      <h2 class="section-title-premium">
+        Skills &amp; <span class="grad-text">Expertise</span>
+      </h2>
+      <p class="skills-subtitle">Technologies and tools I work with daily</p>
+      <div class="gradient-divider"></div>
     </div>
-    <div class="skills-grid">
-      <div class="skills-bars" data-aos="fade-right" data-aos-delay="100">
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Angular (13+)</span>
-            <span class="skill-percent">95%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 95%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">TypeScript / JavaScript</span>
-            <span class="skill-percent">90%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 90%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">HTML5 / CSS3 / SCSS</span>
-            <span class="skill-percent">90%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 90%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Kendo UI / Telerik</span>
-            <span class="skill-percent">85%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 85%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Bootstrap 5</span>
-            <span class="skill-percent">85%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 85%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">RESTful APIs</span>
-            <span class="skill-percent">100%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 100%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Unit Testing (Karma &amp; Jasmine)</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 80%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">SonarQube / Code Quality</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 80%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Data Modelling / SQL</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 80%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Node.js / Express.js</span>
-            <span class="skill-percent">70%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 70%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header">
-            <span class="skill-name">Next.js</span>
-            <span class="skill-percent">80%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" style="--width: 80%"></div></div>
-        </div>
-      </div>
 
-      <div class="skills-right" data-aos="fade-left" data-aos-delay="200">
-        <div class="skills-highlights">
-          <div class="highlight-card">
-            <div class="highlight-icon">
-              <i class="fa-brands fa-angular"></i>
+    <!-- Primary Skills — Horizontal progress bars -->
+    <div class="primary-skills" #primarySkillsContainer>
+      <h3 class="subsection-label">Primary Expertise</h3>
+      <div class="skill-bars-grid">
+        <div class="skill-bar-item" *ngFor="let skill of primarySkills">
+          <div class="skill-bar-header">
+            <div class="skill-name-wrap">
+              <i [class]="skill.icon" *ngIf="skill.icon"></i>
+              <span class="skill-name-text">{{ skill.name }}</span>
             </div>
-            <h3>Front-End Development</h3>
-            <p>Angular 13+, TypeScript, Kendo UI, Bootstrap 5. Building responsive, scalable web applications
-              with modern Angular architecture.</p>
+            <span class="skill-label-right">{{ skill.level }}</span>
           </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">
-              <i class="fa-solid fa-vial"></i>
-            </div>
-            <h3>Testing &amp; Quality</h3>
-            <p>Karma, Jasmine, SonarQube for comprehensive unit testing and code quality analysis in Angular projects.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">
-              <i class="fa-solid fa-database"></i>
-            </div>
-            <h3>Database &amp; Backend</h3>
-            <p>Data Modelling, Stored Procedures, SQL, Node.js, Express.js for full-stack capabilities.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">
-              <i class="fa-solid fa-users"></i>
-            </div>
-            <h3>Customer-Facing Apps</h3>
-            <p>Insurance, payment systems, matrimony platforms. Angular 12-17 migrations across 5+ applications.</p>
-          </div>
-        </div>
-
-        <!-- Languages & Tools -->
-        <div class="tools-section">
-          <h3 class="tools-title">Languages</h3>
-          <div class="tools-tags">
-            <span class="tool-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-            <span class="tool-tag"><i class="fa-solid fa-code"></i> TypeScript</span>
-            <span class="tool-tag"><i class="fa-brands fa-java"></i> Java</span>
-            <span class="tool-tag"><i class="fa-solid fa-c"></i> C</span>
-            <span class="tool-tag"><i class="fa-solid fa-database"></i> SQL</span>
-            <span class="tool-tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
-            <span class="tool-tag"><i class="fa-solid fa-server"></i> Express.js</span>
-          </div>
-        </div>
-        <div class="tools-section">
-          <h3 class="tools-title">Tools &amp; Platforms</h3>
-          <div class="tools-tags">
-            <span class="tool-tag"><i class="fa-solid fa-code"></i> VS Code</span>
-            <span class="tool-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
-            <span class="tool-tag"><i class="fa-solid fa-code-branch"></i> TortoiseSVN</span>
-            <span class="tool-tag"><i class="fa-brands fa-jenkins"></i> Jenkins</span>
-            <span class="tool-tag"><i class="fa-brands fa-aws"></i> AWS CodeCommit</span>
-            <span class="tool-tag"><i class="fa-brands fa-aws"></i> S3 Bucket</span>
-            <span class="tool-tag"><i class="fa-solid fa-bug"></i> SonarQube</span>
-            <span class="tool-tag"><i class="fa-solid fa-flask-vial"></i> Mocha</span>
-            <span class="tool-tag"><i class="fa-solid fa-database"></i> DBeaver</span>
-            <span class="tool-tag"><i class="fa-brands fa-google"></i> Firebase</span>
+          <div class="skill-track">
+            <div class="skill-fill" [style.width]="skill.percent + '%'"
+                 [style.background]="skill.color"></div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Bento grid of skill categories -->
+    <div class="skills-bento" #skillsBento>
+
+      <!-- Frontend card -->
+      <div class="bento-card bento-large">
+        <div class="bento-card-icon purple"><i class="fa-brands fa-angular"></i></div>
+        <h3 class="bento-title">Front-End Development</h3>
+        <p class="bento-desc">
+          Angular 13+, TypeScript, Next.js, Kendo UI, Bootstrap 5. Building
+          responsive, scalable web applications with modern architecture.
+        </p>
+        <div class="bento-tags">
+          <span>Angular</span><span>Next.js</span><span>TypeScript</span>
+          <span>Kendo UI</span><span>SCSS</span><span>Bootstrap 5</span>
+        </div>
+      </div>
+
+      <!-- Testing card -->
+      <div class="bento-card">
+        <div class="bento-card-icon cyan"><i class="fa-solid fa-vial"></i></div>
+        <h3 class="bento-title">Testing &amp; Quality</h3>
+        <p class="bento-desc">
+          Karma, Jasmine, SonarQube for comprehensive unit testing and code quality.
+        </p>
+        <div class="bento-tags">
+          <span>Jasmine</span><span>Karma</span><span>SonarQube</span><span>Mocha</span>
+        </div>
+      </div>
+
+      <!-- Backend card -->
+      <div class="bento-card">
+        <div class="bento-card-icon green"><i class="fa-solid fa-database"></i></div>
+        <h3 class="bento-title">Database &amp; Backend</h3>
+        <p class="bento-desc">
+          Data Modelling, Stored Procedures, SQL, Node.js, Express.js, Firebase.
+        </p>
+        <div class="bento-tags">
+          <span>Node.js</span><span>Express.js</span><span>SQL</span><span>Firebase</span>
+        </div>
+      </div>
+
+      <!-- Tools card — wide -->
+      <div class="bento-card bento-wide">
+        <div class="bento-card-icon amber"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3 class="bento-title">Tools &amp; Platforms</h3>
+        <div class="tools-chip-list">
+          <span class="tool-chip"><i class="fa-solid fa-code"></i> VS Code</span>
+          <span class="tool-chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+          <span class="tool-chip"><i class="fa-solid fa-code-branch"></i> TortoiseSVN</span>
+          <span class="tool-chip"><i class="fa-brands fa-jenkins"></i> Jenkins</span>
+          <span class="tool-chip"><i class="fa-brands fa-aws"></i> AWS CodeCommit</span>
+          <span class="tool-chip"><i class="fa-brands fa-aws"></i> S3 Bucket</span>
+          <span class="tool-chip"><i class="fa-solid fa-bug"></i> SonarQube</span>
+          <span class="tool-chip"><i class="fa-solid fa-database"></i> DBeaver</span>
+          <span class="tool-chip"><i class="fa-brands fa-google"></i> Firebase</span>
+        </div>
+      </div>
+
+      <!-- Languages card -->
+      <div class="bento-card">
+        <div class="bento-card-icon rose"><i class="fa-brands fa-js"></i></div>
+        <h3 class="bento-title">Languages</h3>
+        <div class="bento-tags">
+          <span>JavaScript</span><span>TypeScript</span><span>Java</span>
+          <span>C</span><span>SQL</span><span>Python</span>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>

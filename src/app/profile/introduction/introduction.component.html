@@ -1,89 +1,137 @@
-<section class="hero" id="introduction">
-  <div class="hero-bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    <div class="grid-overlay"></div>
+<section class="hero" id="introduction" aria-label="Introduction">
+  <!-- Background layers -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="glow-orb hero-orb-1"></div>
+    <div class="glow-orb hero-orb-2"></div>
+    <div class="glow-orb hero-orb-3"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-noise"></div>
   </div>
+
+  <!-- Main content -->
   <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
-        <span class="badge-dot"></span>
-        Available for opportunities
-      </div>
-      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
-        Hi, I'm <span class="highlight">Kavinkumar M</span>
-      </h1>
-      <div class="hero-role" data-aos="fade-up" data-aos-delay="300">
-        <span #textContainer class="typewriter"></span><span class="cursor">|</span>
-      </div>
-      <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
-        Passionate Angular and Next.js Developer with <strong>{{ experience }}+ years</strong> of hands-on
-        experience building dynamic, scalable, and high-performance web applications. I specialise in
-        modern frontend architectures, performance optimisation, and SEO-forward implementations
-        (SSR/SSG) to improve Core Web Vitals and accessibility. I deliver resilient user experiences
-        that work even when JavaScript is limited, and I enjoy turning complex UI challenges into
-        fast, accessible, and maintainable interfaces for enterprise and eCommerce platforms.
-      </p>
-      <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
-        <a class="btn-primary-custom" target="_blank"
-           href="mailto:kavinkumar025&#64;gmail.com?subject=Regarding%20Job%20Opportunity">
-          <i class="fa-solid fa-paper-plane"></i>
-          Recruit Me
-        </a>
-        <a class="btn-outline-custom" (click)="downloadPDF()">
-          <i class="fa-solid fa-download"></i>
-          Download CV
-        </a>
-      </div>
-      <div class="hero-socials" data-aos="fade-up" data-aos-delay="600">
-        <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank" class="social-link" title="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a (click)="openWhatsApp()" class="social-link" title="WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="https://github.com/kavinkumar025/resume" target="_blank" class="social-link" title="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://instagram.com/im_kavin__25" target="_blank" class="social-link" title="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
+    <!-- Left — Text -->
+    <div class="hero-text" #heroText>
+      <!-- Available badge -->
+      <div class="hero-badge" #heroBadge>
+        <span class="badge-pulse"></span>
+        <span>Available for opportunities</span>
       </div>
 
-      <div class="hero-tech" data-aos="fade-up" data-aos-delay="700">
-        <span class="tech-chip"><i class="fa-brands fa-angular"></i> Angular</span>
-        <span class="tech-chip"><i class="fa-solid fa-code"></i> TypeScript</span>
-        <span class="tech-chip next-chip">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.052.54-.052.479 0 .558.019.683.155a466.83 466.83 0 0 1 2.895 4.361c1.558 2.362 3.687 5.587 4.734 7.171l1.9 2.878.096-.063a12.317 12.317 0 0 0 2.465-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.499-.054z"/></svg>
-          Next.js
+      <!-- Name split animation -->
+      <h1 class="hero-name" #heroName>
+        <span class="name-line name-line-1">Hi, I'm</span>
+        <span class="name-line name-line-2">
+          <span class="name-kavinkumar">Kavinkumar</span>
+          <span class="name-m">&nbsp;M</span>
         </span>
-        <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> SCSS</span>
-        <span class="tech-chip"><i class="fa-solid fa-database"></i> Firebase</span>
+      </h1>
+
+      <!-- Animated role -->
+      <div class="hero-role-wrap" #heroRole>
+        <span class="role-prefix">— </span>
+        <span #textContainer class="typewriter">Angular Developer</span><span class="cursor" aria-hidden="true">|</span>
+      </div>
+
+      <!-- Description -->
+      <p class="hero-desc" #heroDesc>
+        I build fast, scalable web experiences with Angular and Next.js.
+        With <strong>{{ experience }}+ years of experience</strong>, I turn complex ideas into
+        polished products that are easy to use and built to last.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-ctas" #heroCtas>
+        <a class="btn-primary" href="mailto:kavinkumar025&#64;gmail.com?subject=Regarding%20Job%20Opportunity"
+           target="_blank" id="hero-recruit-btn">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Recruit Me</span>
+        </a>
+        <button class="btn-outline" (click)="downloadPDF()" id="hero-cv-btn" type="button">
+          <i class="fa-solid fa-download"></i>
+          <span>Download CV</span>
+        </button>
+      </div>
+
+      <!-- Social links -->
+      <div class="hero-socials" #heroSocials>
+        <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank"
+           class="social-icon" title="LinkedIn" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a (click)="openWhatsApp()" class="social-icon" title="WhatsApp" style="cursor:pointer">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://github.com/kavinkumar025" target="_blank"
+           class="social-icon" title="GitHub" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://instagram.com/im_kavin__25" target="_blank"
+           class="social-icon" title="Instagram" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <div class="social-divider" aria-hidden="true"></div>
+        <span class="social-label">Find me on</span>
       </div>
     </div>
-    <div class="hero-image" data-aos="zoom-in" data-aos-delay="400">
-      <div class="image-wrapper">
-        <div class="image-ring"></div>
-        <img src="assets/images/img4.jpg" alt="Kavinkumar M" />
-        <div class="image-glow"></div>
+
+    <!-- Right — Visual -->
+    <div class="hero-visual" #heroVisual>
+      <!-- Profile image area -->
+      <div class="profile-frame">
+        <div class="profile-ring ring-outer"></div>
+        <div class="profile-ring ring-inner"></div>
+        <div class="profile-img-wrap">
+          <img src="assets/images/img4.jpg" alt="Kavinkumar M — Angular Developer" loading="eager" />
+          <div class="img-overlay"></div>
+        </div>
+        <div class="profile-glow"></div>
       </div>
-      <div class="floating-card card-1" data-aos="fade-left" data-aos-delay="700">
-        <i class="fa-brands fa-angular"></i>
-        <span>Angular Expert</span>
+
+      <!-- Floating stat cards -->
+      <div class="stat-card card-exp">
+        <div class="stat-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="stat-info">
+          <span class="stat-num">{{ experience }}+</span>
+          <span class="stat-label">Years Exp.</span>
+        </div>
       </div>
-      <div class="floating-card card-2" data-aos="fade-right" data-aos-delay="800">
-        <i class="fa-solid fa-code"></i>
-        <span>{{ experience }}+ Years</span>
+
+      <div class="stat-card card-angular">
+        <div class="stat-icon angular-icon"><i class="fa-brands fa-angular"></i></div>
+        <div class="stat-info">
+          <span class="stat-tech">Angular</span>
+          <span class="stat-label">Expert</span>
+        </div>
       </div>
-      <div class="floating-card card-3" data-aos="fade-left" data-aos-delay="900">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.052.54-.052.479 0 .558.019.683.155a466.83 466.83 0 0 1 2.895 4.361c1.558 2.362 3.687 5.587 4.734 7.171l1.9 2.878.096-.063a12.317 12.317 0 0 0 2.465-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.499-.054z"/></svg>
-        <span>Next.js Expert</span>
+
+      <div class="stat-card card-next">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.052.54-.052.479 0 .558.019.683.155a466.83 466.83 0 0 1 2.895 4.361c1.558 2.362 3.687 5.587 4.734 7.171l1.9 2.878.096-.063a12.317 12.317 0 0 0 2.465-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.499-.054z"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-tech">Next.js</span>
+          <span class="stat-label">Expert</span>
+        </div>
       </div>
-      <div class="floating-card card-4" data-aos="fade-right" data-aos-delay="1000">
-        <i class="fa-solid fa-fire"></i>
-        <span>Firebase Expert</span>
+
+      <!-- Tech chips row -->
+      <div class="hero-tech-chips">
+        <span class="tech-chip-sm"><i class="fa-brands fa-angular"></i> Angular</span>
+        <span class="tech-chip-sm">TypeScript</span>
+        <span class="tech-chip-sm">Next.js</span>
+        <span class="tech-chip-sm"><i class="fa-brands fa-google"></i> Firebase</span>
       </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+    <span>Scroll</span>
   </div>
 </section>

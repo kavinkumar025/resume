@@ -1,24 +1,76 @@
-<nav class="navbar" [class.scrolled]="isScrolled">
+<nav class="navbar" [class.scrolled]="isScrolled" role="navigation" aria-label="Main navigation">
+  <!-- Scroll progress line inside nav -->
+  <div class="nav-scroll-line" [style.width]="scrollProgress + '%'"></div>
+
   <div class="nav-container">
-    <a class="nav-brand" href="#introduction" (click)="scrollTo('introduction', $event)">
-      <span class="brand-icon">K</span>
-      <span class="brand-text">Kavin</span>
+    <!-- Brand -->
+    <a class="nav-brand" href="#introduction" (click)="scrollTo('introduction', $event)" aria-label="Go to top">
+      <span class="brand-icon">
+        <span class="brand-letter">K</span>
+      </span>
+      <span class="brand-name">
+        <span class="brand-first">Kavin</span><span class="brand-last">kumar</span>
+      </span>
     </a>
-    <button class="nav-toggle" type="button" (click)="toggleMenu()" [class.active]="menuOpen"
-      [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <button type="button" class="nav-backdrop" [class.open]="menuOpen" (click)="closeMenu()"
-      aria-label="Close navigation menu"></button>
-    <ul class="nav-links" [class.open]="menuOpen">
+
+    <!-- Desktop Nav Links -->
+    <ul class="nav-links" role="list">
       <li *ngFor="let section of sections">
         <a class="nav-link" [class.active]="activeSection === section.id"
            [attr.href]="'#' + section.id" (click)="scrollTo(section.id, $event)">
           {{ section.label }}
+          <span class="nav-link-underline"></span>
         </a>
       </li>
     </ul>
+
+    <!-- CTA Button (desktop) -->
+    <a class="nav-cta" href="mailto:kavinkumar025&#64;gmail.com?subject=Regarding%20Job%20Opportunity"
+       target="_blank" aria-label="Hire me via email">
+      <i class="fa-solid fa-paper-plane"></i>
+      Hire Me
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="nav-toggle" type="button" (click)="toggleMenu()"
+      [class.active]="menuOpen"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation menu">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Backdrop -->
+  <button type="button" class="nav-backdrop" [class.open]="menuOpen"
+    (click)="closeMenu()" aria-label="Close navigation menu" tabindex="-1">
+  </button>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" [class.open]="menuOpen" role="dialog" aria-modal="true">
+    <div class="mobile-drawer-header">
+      <span class="mobile-brand">Kavinkumar M</span>
+      <button class="drawer-close" (click)="closeMenu()" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li *ngFor="let section of sections; let i = index"
+          [style.animation-delay]="(i * 0.06) + 's'">
+        <a class="mobile-nav-link" [class.active]="activeSection === section.id"
+           [attr.href]="'#' + section.id" (click)="scrollTo(section.id, $event)">
+          <span class="mobile-nav-num">0{{ i + 1 }}</span>
+          {{ section.label }}
+          <i class="fa-solid fa-arrow-right mobile-nav-arrow"></i>
+        </a>
+      </li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <a href="mailto:kavinkumar025&#64;gmail.com" class="mobile-hire-btn">
+        <i class="fa-solid fa-paper-plane"></i>
+        Get In Touch
+      </a>
+    </div>
   </div>
 </nav>

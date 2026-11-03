@@ -10,6 +10,7 @@ export class HeaderComponent implements OnDestroy {
   activeSection: string = 'introduction';
   isScrolled: boolean = false;
   menuOpen: boolean = false;
+  scrollProgress: number = 0;
   private readonly mobileBreakpoint = 768;
 
   sections = [
@@ -18,27 +19,34 @@ export class HeaderComponent implements OnDestroy {
     { id: 'projects', label: 'Projects' },
     { id: 'skill', label: 'Skills' },
     { id: 'education', label: 'Education' },
-    { id: 'certifications', label: 'Certifications' },
-    { id: 'achievements', label: 'Achievements' },
     { id: 'contact', label: 'Contact' }
   ];
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    this.isScrolled = window.pageYOffset > 50;
+    const scrollY = window.pageYOffset;
+    this.isScrolled = scrollY > 60;
+
+    // Scroll progress
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress = maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0;
 
     if (this.menuOpen && window.innerWidth <= this.mobileBreakpoint) {
       this.closeMenu();
     }
 
-    const scrollPosition = window.pageYOffset + window.innerHeight / 2;
-
-    for (let section of this.sections) {
+    const scrollPosition = scrollY + window.innerHeight / 3;
+    let found = false;
+    const sectionsCopy = [...this.sections].reverse();
+    for (let section of sectionsCopy) {
       const element = document.getElementById(section.id);
       if (element && element.offsetTop <= scrollPosition) {
         this.activeSection = section.id;
+        found = true;
+        break;
       }
     }
+    if (!found) this.activeSection = 'introduction';
   }
 
   @HostListener('window:resize')
@@ -49,16 +57,7 @@ export class HeaderComponent implements OnDestroy {
   }
 
   toggleMenu() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const checkScrollEnd = () => {
-    if (window.scrollY === 0) {
-      this.menuOpen = !this.menuOpen;
-      window.removeEventListener('scroll', checkScrollEnd);
-    }
-  };
-
-  window.addEventListener('scroll', checkScrollEnd);
+    this.menuOpen = !this.menuOpen;
     this.syncBodyScrollLock();
   }
 
@@ -71,7 +70,12 @@ window.scrollTo({ top: 0, behavior: 'smooth' });
     event.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerHeight = 80;
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementTop - headerHeight,
+        behavior: 'smooth'
+      });
     }
     this.closeMenu();
   }

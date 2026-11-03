@@ -3,17 +3,34 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Kavinkumar | Frontend Developer</title>
+  <title>Kavinkumar M | Angular Developer · Next.js Developer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="description" content="Kavinkumar M - Passionate Angular Developer with 4+ years of experience building dynamic web applications.">
+  <meta name="description" content="Kavinkumar M — Senior Angular & Next.js Developer with 4+ years of experience building dynamic, scalable, high-performance web applications. Available for opportunities.">
+  <meta name="keywords" content="Angular Developer, Next.js Developer, Frontend Developer, TypeScript, React, Kavinkumar, Tamil Nadu">
+  <meta name="author" content="Kavinkumar M">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kavinkumar M | Angular Developer · Next.js Developer">
+  <meta property="og:description" content="Senior Angular & Next.js Developer with 4+ years experience. Building scalable web applications.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kavinkumar-resume.vercel.app/">
+
+  <!-- Preconnect to font origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Space Grotesk + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="./assets/css/aos.css" rel="stylesheet">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/download.png">
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#080B12">
 </head>
 
 <body>
@@ -28,8 +45,17 @@
       gtag('config', 'G-VBC70S7YHN');
     }
   </script>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+  <!-- Custom Cursor (desktop only) -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
   <app-root></app-root>
-  <script src="./assets/js/aos.js"></script>
+
+  <!-- Tab visibility title change -->
   <script>
     var hidden, visibilityChange;
     if (typeof document.hidden !== "undefined") {
@@ -45,12 +71,46 @@
 
     function handleVisibilityChange() {
       if (document[hidden]) {
-        document.title = "Come back! \u2728 Kavin's Portfolio";
+        document.title = "Come back! ✨ Kavin's Portfolio";
       } else {
-        document.title = "Kavinkumar | Frontend Developer";
+        document.title = "Kavinkumar M | Angular Developer · Next.js Developer";
       }
     }
     document.addEventListener(visibilityChange, handleVisibilityChange, false);
+
+    // Scroll progress bar
+    window.addEventListener('scroll', function() {
+      var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
+      var bar = document.getElementById('scrollProgress');
+      if (bar) bar.style.transform = 'scaleX(' + scrolled + ')';
+    });
+
+    // Custom cursor (desktop only)
+    if (window.matchMedia('(hover: hover)').matches) {
+      var dot = document.getElementById('cursorDot');
+      var ring = document.getElementById('cursorRing');
+      var mouseX = 0, mouseY = 0;
+      var ringX = 0, ringY = 0;
+
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (dot) { dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; }
+      });
+
+      function animRing() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        if (ring) { ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; }
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+
+      document.querySelectorAll('a, button, [data-cursor]').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { if (ring) ring.classList.add('hovering'); });
+        el.addEventListener('mouseleave', function() { if (ring) ring.classList.remove('hovering'); });
+      });
+    }
   </script>
 </body>
 

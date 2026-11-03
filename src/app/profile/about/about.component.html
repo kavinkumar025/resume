@@ -1,76 +1,135 @@
-<section class="about-section" id="about">
+<section class="about-section" id="about" aria-label="About Me">
   <div class="about-container">
-    <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">About Me</h2>
-      <p class="section-subtitle">Get to know the person behind the code</p>
+
+    <!-- Section Header -->
+    <div class="about-header" #aboutHeader>
+      <span class="section-eyebrow">01 / About</span>
+      <h2 class="section-title-premium">
+        The person<br><span class="grad-text">behind the code</span>
+      </h2>
+      <div class="gradient-divider"></div>
     </div>
+
+    <!-- Two-column editorial layout -->
     <div class="about-grid">
-      <div class="about-intro" data-aos="fade-right" data-aos-delay="100">
-        <div class="about-card">
-          <div class="card-accent"></div>
-          <p class="greeting">Hello! I'm <span class="name-highlight">Kavinkumar M</span></p>
-          <p>A passionate and driven Angular Developer from <strong>Erode, Tamil Nadu</strong> with
-            <strong>{{ experience }}+ years</strong> of hands-on experience in frontend development.
-            I specialize in building responsive, scalable web applications using Angular 13+ and modern web technologies.</p>
-          <p>With a strong work ethic, adaptability, and an insatiable thirst for knowledge, I am confident in
-            my ability to bring valuable insights and fresh perspectives to any project.</p>
-          <div class="about-quick-info">
-            <div class="info-chip"><i class="fa-solid fa-map-marker-alt"></i> Erode, Tamil Nadu</div>
-            <div class="info-chip"><i class="fa-solid fa-language"></i> Tamil &amp; English</div>
-            <div class="info-chip"><i class="fa-solid fa-graduation-cap"></i> B.E - CSE</div>
-            <div class="info-chip"><i class="fa-solid fa-calendar"></i> Born 25 Jan 2001</div>
+
+      <!-- Left: Summary + quick info -->
+      <div class="about-left" #aboutLeft>
+        <div class="about-intro-card glass-card">
+          <div class="intro-accent"></div>
+          <p class="greeting-line">
+            Hello! I'm <strong>Kavinkumar M</strong>
+          </p>
+          <p class="about-bio">
+            A passionate and driven <span class="highlight-text">Angular Developer</span>
+            from <strong>Erode, Tamil Nadu</strong> with
+            <strong>{{ experience }}+ years</strong> of hands-on experience in
+            frontend development. I specialize in building responsive, scalable
+            web applications using Angular 13+ and modern web technologies.
+          </p>
+          <p class="about-bio">
+            With a strong work ethic, adaptability, and an insatiable thirst for
+            knowledge, I bring fresh perspectives and practical solutions to every
+            project I work on.
+          </p>
+
+          <!-- Quick info chips -->
+          <div class="quick-info-grid">
+            <div class="info-chip">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Erode, Tamil Nadu</span>
+            </div>
+            <div class="info-chip">
+              <i class="fa-solid fa-language"></i>
+              <span>Tamil &amp; English</span>
+            </div>
+            <div class="info-chip">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>B.E — CSE</span>
+            </div>
+            <div class="info-chip">
+              <i class="fa-solid fa-cake-candles"></i>
+              <span>Born 25 Jan 2001</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="about-details" data-aos="fade-left" data-aos-delay="200">
-        <div class="detail-card">
-          <div class="detail-icon">
+
+      <!-- Right: Detail cards -->
+      <div class="about-right" #aboutRight>
+        <div class="detail-card glass-card">
+          <div class="detail-icon-wrap">
             <i class="fa-solid fa-briefcase"></i>
           </div>
-          <h3>Experience</h3>
-          <p>{{ experience }}+ years of professional Angular development across insurance, payment systems,
-            and in-house enterprise applications. Proficient in API integration, state management, and performance optimization.</p>
+          <div class="detail-body">
+            <h3>Professional Experience</h3>
+            <p>
+              {{ experience }}+ years across insurance, ERP, and eCommerce platforms.
+              Proficient in API integration, Angular migration (v12 to v17+), state
+              management, Kendo UI, and performance optimization.
+            </p>
+          </div>
         </div>
-        <div class="detail-card">
-          <div class="detail-icon">
+
+        <div class="detail-card glass-card">
+          <div class="detail-icon-wrap cyan">
             <i class="fa-solid fa-rocket"></i>
           </div>
-          <h3>Objective</h3>
-          <p>Seeking a challenging position in a reputed organization where I can learn new skills, expand my knowledge,
-            and apply my expertise while contributing to the organization's growth.</p>
+          <div class="detail-body">
+            <h3>Career Objective</h3>
+            <p>
+              Seeking a challenging position where I can apply my Angular and Next.js
+              expertise, expand my knowledge, and contribute meaningfully to the
+              organization's growth and product vision.
+            </p>
+          </div>
+        </div>
+
+        <!-- Specialization Bento mini grid -->
+        <div class="spec-grid">
+          <div class="spec-item">
+            <i class="fa-brands fa-angular"></i>
+            <span>Angular 13+</span>
+          </div>
+          <div class="spec-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.052.54-.052.479 0 .558.019.683.155a466.83 466.83 0 0 1 2.895 4.361c1.558 2.362 3.687 5.587 4.734 7.171l1.9 2.878.096-.063a12.317 12.317 0 0 0 2.465-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.499-.054z"/></svg>
+            <span>Next.js</span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-code"></i>
+            <span>TypeScript</span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-brands fa-google"></i>
+            <span>Firebase</span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-vial"></i>
+            <span>Jasmine/Karma</span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Core Web Vitals</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Roles & Responsibilities -->
-    <div class="roles-section" data-aos="fade-up" data-aos-delay="300">
-      <h3 class="subsection-title"><i class="fa-solid fa-clipboard-check"></i> Roles &amp; Responsibilities</h3>
+    <!-- Roles & Responsibilities — full width -->
+    <div class="roles-section" #rolesSection>
+      <h3 class="roles-title">
+        <i class="fa-solid fa-clipboard-check"></i>
+        Roles &amp; Responsibilities
+      </h3>
       <div class="roles-grid">
-        <div class="role-item">
-          <i class="fa-solid fa-bug-slash"></i>
-          <span>Developing bug-free applications</span>
-        </div>
-        <div class="role-item">
-          <i class="fa-solid fa-comments"></i>
-          <span>Participating in backlog grooming calls &amp; understanding requirements</span>
-        </div>
-        <div class="role-item">
-          <i class="fa-solid fa-magnifying-glass-chart"></i>
-          <span>Conducting code reviews for junior developers</span>
-        </div>
-        <div class="role-item">
-          <i class="fa-solid fa-vial"></i>
-          <span>Writing unit tests for specific user stories</span>
-        </div>
-        <div class="role-item">
-          <i class="fa-solid fa-people-group"></i>
-          <span>Collaborating with the architecture team</span>
-        </div>
-        <div class="role-item">
-          <i class="fa-solid fa-clock"></i>
-          <span>Delivering the application within set deadlines</span>
+        <div class="role-item" *ngFor="let role of roles; let i = index">
+          <div class="role-icon-wrap">
+            <i [class]="role.icon"></i>
+          </div>
+          <span>{{ role.label }}</span>
         </div>
       </div>
     </div>
+
   </div>
 </section>
