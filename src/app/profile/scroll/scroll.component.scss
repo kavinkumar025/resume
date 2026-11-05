@@ -1,1 +1,23 @@
-/* Presentation is shared through src/styles/_portfolio.scss. */
+.scroll-to-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(167, 139, 250, .35);
+  border-radius: 15px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 10px 30px rgba(109, 40, 217, .3);
+  color: white;
+  cursor: pointer;
+}
+
+.scroll-to-top-btn:hover { transform: translateY(-3px); }
+.scroll-to-top-btn:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
+
+@media (max-width: 600px) {
+  .scroll-to-top-btn { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+}

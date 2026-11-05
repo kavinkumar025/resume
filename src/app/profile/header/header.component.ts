@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,9 @@ export class HeaderComponent implements OnDestroy {
   isScrolled: boolean = false;
   menuOpen: boolean = false;
   scrollProgress: number = 0;
-  private readonly mobileBreakpoint = 768;
+  private readonly mobileBreakpoint = 1100;
+  @ViewChild('menuToggle') menuToggle?: ElementRef<HTMLButtonElement>;
+  @ViewChild('menuDrawer') menuDrawer?: ElementRef<HTMLElement>;
 
   sections = [
     { id: 'about', label: 'About' },
@@ -19,6 +21,8 @@ export class HeaderComponent implements OnDestroy {
     { id: 'projects', label: 'Projects' },
     { id: 'skill', label: 'Skills' },
     { id: 'education', label: 'Education' },
+    { id: 'certifications', label: 'Certificates' },
+    { id: 'achievements', label: 'Highlights' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -30,10 +34,6 @@ export class HeaderComponent implements OnDestroy {
     // Scroll progress
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     this.scrollProgress = maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0;
-
-    if (this.menuOpen && window.innerWidth <= this.mobileBreakpoint) {
-      this.closeMenu();
-    }
 
     const scrollPosition = scrollY + window.innerHeight / 3;
     let found = false;
@@ -57,13 +57,35 @@ export class HeaderComponent implements OnDestroy {
   }
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-    this.syncBodyScrollLock();
+    if (this.menuOpen) this.closeMenu();
+    else {
+      this.menuOpen = true;
+      this.syncBodyScrollLock();
+      requestAnimationFrame(() => this.menuDrawer?.nativeElement.querySelector<HTMLButtonElement>('.drawer-close')?.focus());
+    }
   }
 
-  closeMenu() {
+  closeMenu(restoreFocus = false) {
+    const wasOpen = this.menuOpen;
     this.menuOpen = false;
     this.syncBodyScrollLock();
+    if (restoreFocus && wasOpen) requestAnimationFrame(() => this.menuToggle?.nativeElement.focus());
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent) {
+    if (!this.menuOpen) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeMenu(true);
+    } else if (event.key === 'Tab') {
+      const focusable = Array.from(this.menuDrawer?.nativeElement.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
   }
 
   scrollTo(id: string, event: Event) {
@@ -74,8 +96,9 @@ export class HeaderComponent implements OnDestroy {
       const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: elementTop - headerHeight,
-        behavior: 'smooth'
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
       });
+      history.replaceState(null, '', `#${id}`);
     }
     this.closeMenu();
   }

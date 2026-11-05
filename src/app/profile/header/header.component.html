@@ -1,4 +1,4 @@
-<nav class="navbar" [class.scrolled]="isScrolled" role="navigation" aria-label="Main navigation">
+<nav class="navbar" [class.scrolled]="isScrolled" [class.menu-open]="menuOpen" role="navigation" aria-label="Main navigation">
   <!-- Scroll progress line inside nav -->
   <div class="nav-scroll-line" [style.width]="scrollProgress + '%'"></div>
 
@@ -32,10 +32,10 @@
     </a>
 
     <!-- Mobile toggle -->
-    <button class="nav-toggle" type="button" (click)="toggleMenu()"
+    <button #menuToggle class="nav-toggle" type="button" (click)="toggleMenu()"
       [class.active]="menuOpen"
       [attr.aria-expanded]="menuOpen"
-      aria-label="Toggle navigation menu">
+      aria-controls="mobile-navigation" [attr.aria-label]="menuOpen ? 'Close navigation menu' : 'Open navigation menu'">
       <span class="bar bar-1"></span>
       <span class="bar bar-2"></span>
       <span class="bar bar-3"></span>
@@ -44,14 +44,15 @@
 
   <!-- Mobile Backdrop -->
   <button type="button" class="nav-backdrop" [class.open]="menuOpen"
-    (click)="closeMenu()" aria-label="Close navigation menu" tabindex="-1">
+    (click)="closeMenu(true)" aria-label="Close navigation menu" tabindex="-1" [attr.aria-hidden]="!menuOpen">
   </button>
 
   <!-- Mobile Drawer -->
-  <div class="mobile-drawer" [class.open]="menuOpen" role="dialog" aria-modal="true">
+  <div #menuDrawer id="mobile-navigation" class="mobile-drawer" [class.open]="menuOpen"
+       role="dialog" [attr.aria-modal]="menuOpen ? 'true' : null" aria-label="Mobile navigation" [attr.aria-hidden]="!menuOpen" [attr.inert]="menuOpen ? null : ''">
     <div class="mobile-drawer-header">
       <span class="mobile-brand">Kavinkumar M</span>
-      <button class="drawer-close" (click)="closeMenu()" aria-label="Close menu">
+      <button class="drawer-close" type="button" (click)="closeMenu(true)" aria-label="Close menu">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -67,7 +68,7 @@
       </li>
     </ul>
     <div class="mobile-drawer-footer">
-      <a href="mailto:kavinkumar025&#64;gmail.com" class="mobile-hire-btn">
+      <a href="mailto:kavinkumar025&#64;gmail.com" class="mobile-hire-btn" (click)="closeMenu()">
         <i class="fa-solid fa-paper-plane"></i>
         Get In Touch
       </a>

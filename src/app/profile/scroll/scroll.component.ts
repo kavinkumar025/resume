@@ -8,7 +8,7 @@ import { Component, HostListener } from '@angular/core';
 
 export class ScrollComponent {
 
-  public showScrollButton = true;
+  public showScrollButton = false;
   @HostListener('window:scroll', [])
 
   public onWindowScroll() {

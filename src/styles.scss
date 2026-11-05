@@ -14,6 +14,8 @@
   box-sizing: border-box;
 }
 
+section[id] { scroll-margin-top: 88px; }
+
 /* === DESIGN TOKENS === */
 :root {
   /* Backgrounds */
@@ -86,7 +88,71 @@ body {
 
 body.mobile-nav-open {
   overflow: hidden;
-  touch-action: none;
+}
+
+.hero-marquee {
+  overflow: hidden;
+  background: #a78bfa;
+  border-block: 1px solid rgba(255, 255, 255, .3);
+  color: #090d18;
+  transform: rotate(-1.2deg) scale(1.02);
+  transform-origin: center;
+  position: relative;
+  z-index: 4;
+  margin-top: -12px;
+  box-shadow: 0 18px 60px rgba(71, 41, 145, .25);
+}
+.hero-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: max-content;
+  padding: 15px 0;
+  animation: heroMarquee 25s linear infinite;
+  font: 800 clamp(.78rem, 1.15vw, 1rem)/1 'Space Grotesk', sans-serif;
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+.hero-marquee-track i { font-style: normal; font-size: 1.1rem; }
+@keyframes heroMarquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .hero-marquee-track { animation: none; } }
+
+/* Shared interaction language across every portfolio section. */
+:where(a, button, input, textarea, summary):focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+}
+
+:where(.about-section, .experience-section, .projects-section, .skills-section,
+  .education-section, .certifications-section, .achievements-section, .contact-section) {
+  position: relative;
+  isolation: isolate;
+}
+
+:where(.about-section, .experience-section, .projects-section, .skills-section,
+  .education-section, .certifications-section, .achievements-section, .contact-section)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 35% at 90% 0%, rgba(139, 92, 246, .055), transparent 75%);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :where(.about-section, .experience-section, .projects-section, .skills-section,
+    .education-section, .certifications-section, .achievements-section, .contact-section)
+    :where(a, button):not(:disabled) { transition: transform .24s var(--ease-out), color .24s ease, background-color .24s ease, border-color .24s ease, box-shadow .24s ease; }
+  :where(.about-section, .experience-section, .projects-section, .skills-section,
+    .education-section, .certifications-section, .achievements-section, .contact-section)
+    :where(a, button):not(:disabled):hover { transform: translateY(-2px); }
+}
+
+@media (max-width: 600px) {
+  :where(.about-section, .experience-section, .projects-section, .skills-section,
+    .education-section, .certifications-section, .achievements-section, .contact-section) {
+    overflow-wrap: anywhere;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -372,6 +438,9 @@ button {
   pointer-events: none;
   z-index: 99999;
   transition: opacity 0.3s ease;
+  opacity: 0;
+
+  &.is-visible { opacity: 1; }
 
   @media (hover: none) {
     display: none !important;

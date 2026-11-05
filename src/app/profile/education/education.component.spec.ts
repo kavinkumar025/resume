@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
+import { TechnologyTagsComponent } from '../../shared/technology-tags.component';
 
 import { EducationComponent } from './education.component';
 
@@ -8,7 +10,8 @@ describe('EducationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EducationComponent]
+      imports: [CommonModule],
+      declarations: [EducationComponent, TechnologyTagsComponent]
     });
     fixture = TestBed.createComponent(EducationComponent);
     component = fixture.componentInstance;

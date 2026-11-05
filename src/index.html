@@ -91,10 +91,18 @@
       var ring = document.getElementById('cursorRing');
       var mouseX = 0, mouseY = 0;
       var ringX = 0, ringY = 0;
+      var cursorMoved = false;
 
       document.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        if (!cursorMoved) {
+          cursorMoved = true;
+          ringX = mouseX;
+          ringY = mouseY;
+          if (dot) dot.classList.add('is-visible');
+          if (ring) ring.classList.add('is-visible');
+        }
         if (dot) { dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; }
       });
 

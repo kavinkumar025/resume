@@ -21,6 +21,9 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('heroDesc') heroDesc!: ElementRef;
   @ViewChild('heroCtas') heroCtas!: ElementRef;
   @ViewChild('heroSocials') heroSocials!: ElementRef;
+  @ViewChild('heroSection') heroSection!: ElementRef<HTMLElement>;
+  @ViewChild('reelSection') reelSection!: ElementRef<HTMLElement>;
+  @ViewChild('reelTrack') reelTrack!: ElementRef<HTMLElement>;
 
   public roles = ['Angular Developer', 'Next.js Developer', 'Frontend Developer'];
   public index = 0;
@@ -31,20 +34,35 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private typewriterTimeout: any;
   private scrollTriggers: ScrollTrigger[] = [];
+  private pointerFrame = 0;
+  private pointerX = 0;
+  private pointerY = 0;
 
   constructor() {
     this.calculateExperience();
   }
 
   ngOnInit() {
-    this.index = this.roles[0].length;
-    this.isInDeletingState = true;
-    this.typewriterTimeout = setTimeout(() => this.typeWriter(), 3000);
+    // Keep the role visible and complete as soon as the page loads.
   }
 
   ngAfterViewInit() {
-    this.initHeroAnimations();
     this.initParallax();
+    this.initReelMotion();
+  }
+
+  private initReelMotion() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 769) return;
+    const section = this.reelSection?.nativeElement;
+    const track = this.reelTrack?.nativeElement;
+    if (!section || !track) return;
+    this.scrollTriggers.push(ScrollTrigger.create({
+      trigger: section,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.6,
+      onUpdate: self => gsap.set(track, { x: (0.5 - self.progress) * 80 })
+    }));
   }
 
   private initHeroAnimations() {
@@ -136,6 +154,34 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
     this.scrollTriggers.push(st1);
   }
 
+  public onHeroPointerMove(event: PointerEvent) {
+    if (event.pointerType === 'touch' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hero = this.heroSection?.nativeElement;
+    if (!hero) return;
+    const rect = hero.getBoundingClientRect();
+    this.pointerX = (event.clientX - rect.left) / rect.width;
+    this.pointerY = (event.clientY - rect.top) / rect.height;
+    if (this.pointerFrame) return;
+    this.pointerFrame = requestAnimationFrame(() => {
+      hero.style.setProperty('--pointer-x', `${this.pointerX * 100}%`);
+      hero.style.setProperty('--pointer-y', `${this.pointerY * 100}%`);
+      hero.style.setProperty('--tilt-x', `${(0.5 - this.pointerY) * 8}deg`);
+      hero.style.setProperty('--tilt-y', `${(this.pointerX - 0.5) * 8}deg`);
+      this.pointerFrame = 0;
+    });
+  }
+
+  public resetHeroPointer() {
+    const hero = this.heroSection?.nativeElement;
+    if (!hero) return;
+    if (this.pointerFrame) cancelAnimationFrame(this.pointerFrame);
+    this.pointerFrame = 0;
+    hero.style.setProperty('--tilt-x', '0deg');
+    hero.style.setProperty('--tilt-y', '0deg');
+    hero.style.setProperty('--pointer-x', '50%');
+    hero.style.setProperty('--pointer-y', '45%');
+  }
+
   public downloadPDF() {
     const pdfFilePath = 'assets/Kavinkumar_AngularDeveloper.pdf';
     const link = document.createElement('a');
@@ -188,6 +234,7 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     clearTimeout(this.typewriterTimeout);
+    if (this.pointerFrame) cancelAnimationFrame(this.pointerFrame);
     this.scrollTriggers.forEach(st => st.kill());
   }
 }

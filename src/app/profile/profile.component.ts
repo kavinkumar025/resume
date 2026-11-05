@@ -1,6 +1,5 @@
-import { Component, ElementRef, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { SeoService } from '../seo.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,9 +25,13 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
 
   private revealObserver?: IntersectionObserver;
 
-  constructor(private router: Router, private seo: SeoService, private element: ElementRef<HTMLElement>) { this.seo.update(); }
+  constructor(private seo: SeoService, private element: ElementRef<HTMLElement>) { this.seo.update(); }
 
   ngAfterViewInit() {
+    if (window.location.hash) {
+      const sectionId = decodeURIComponent(window.location.hash.slice(1));
+      requestAnimationFrame(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'instant' }));
+    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
     this.revealObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
@@ -46,22 +49,6 @@ export class ProfileComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() { this.revealObserver?.disconnect(); }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-    let currentSectionId = '';
-    for (let section of this.sections) {
-      const element = document.getElementById(section.id);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-          currentSectionId = section.id;
-          this.router.navigate([], { fragment: currentSectionId });
-          break;
-        }
-      }
-    }
-  }
 
   public onRightClick(event: MouseEvent): void {
     event.preventDefault();
