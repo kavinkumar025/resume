@@ -68,7 +68,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #22D3EE;
+    color: var(--light-cyan, #22D3EE);
     margin-bottom: 24px;
     justify-content: center;
 
@@ -87,13 +87,13 @@
   font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: #F8FAFC;
+  color: var(--light-ink, #F8FAFC);
   line-height: 1.05;
   margin-bottom: 28px;
 }
 
 .contact-title-gradient {
-  background: linear-gradient(135deg, #a78bfa 0%, #22D3EE 50%, #6ee7b7 100%);
+  background: linear-gradient(135deg, var(--light-purple, #a78bfa) 0%, var(--light-cyan, #22D3EE) 50%, var(--light-green, #6ee7b7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -109,7 +109,7 @@
 
 .contact-desc {
   font-size: 1rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.45));
   max-width: 540px;
   margin: 0 auto;
   line-height: 1.8;
@@ -141,9 +141,9 @@
   align-items: center;
   gap: 16px;
   padding: 18px 22px;
-  background: rgba(23, 29, 44, 0.6);
+  background: rgba(var(--surface-rgb), 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(var(--neutral-rgb),0.06);
   border-radius: 16px;
   text-decoration: none;
   color: inherit;
@@ -163,7 +163,7 @@
 
   &:hover {
     border-color: rgba(139,92,246,0.25);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 20px rgba(139,92,246,0.08);
+    box-shadow: 0 8px 30px rgba(var(--shadow-tint),0.3), 0 0 20px rgba(139,92,246,0.08);
     transform: translateX(4px);
 
     &::before { opacity: 1; }
@@ -178,12 +178,12 @@
   border: 1px solid rgba(139,92,246,0.2);
   border-radius: 12px;
   font-size: 1rem;
-  color: #a78bfa;
+  color: var(--light-purple, #a78bfa);
   flex-shrink: 0;
   transition: all 0.3s ease;
 
-  &.cyan-icon { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.2); color: #67e8f9; }
-  &.blue-icon { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2); color: #93c5fd; }
+  &.cyan-icon { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.2); color: var(--light-cyan, #67e8f9); }
+  &.blue-icon { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2); color: var(--light-blue, #93c5fd); }
 
   .info-card:hover & { transform: scale(1.1) rotate(-5deg); }
 }
@@ -197,7 +197,7 @@
 
 .info-card-label {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.3);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.3));
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -206,12 +206,12 @@
 .info-card-value {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.8);
+  color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.8));
 }
 
 .info-card-ext {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.2);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.2));
   opacity: 0;
   transform: translate(-4px, 4px);
   transition: all 0.3s ease;
@@ -250,8 +250,8 @@
 
   &.outline-quick {
     background: transparent;
-    color: rgba(255,255,255,0.75);
-    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.75));
+    border: 1px solid rgba(var(--neutral-rgb),0.12);
 
     &:hover {
       border-color: rgba(139,92,246,0.4);
@@ -263,9 +263,9 @@
 
 /* === CONTACT FORM === */
 .contact-form-wrap {
-  background: rgba(23, 29, 44, 0.6);
+  background: rgba(var(--surface-rgb), 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(var(--neutral-rgb),0.06);
   border-radius: 24px;
   padding: 40px;
   will-change: transform, opacity;
@@ -297,24 +297,24 @@
   label {
     font-size: 0.82rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.5));
     letter-spacing: 0.02em;
   }
 
   input, textarea {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(var(--neutral-rgb),0.04);
+    border: 1px solid rgba(var(--neutral-rgb),0.08);
     border-radius: 12px;
     padding: 13px 16px;
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.85);
+    color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.85));
     transition: all 0.3s ease;
     outline: none;
     width: 100%;
     font-family: 'Inter', sans-serif;
     resize: none;
 
-    &::placeholder { color: rgba(255,255,255,0.25); }
+    &::placeholder { color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.25)); }
 
     &:focus {
       border-color: rgba(139,92,246,0.5);
@@ -331,7 +331,7 @@
 
 .field-error {
   font-size: 0.75rem;
-  color: #f87171;
+  color: var(--light-red, #f87171);
   display: flex;
   align-items: center;
   gap: 4px;

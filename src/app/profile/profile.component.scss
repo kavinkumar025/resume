@@ -1,7 +1,7 @@
 /* Profile component — footer styles */
 .site-footer {
-  background: #080B12;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--bg-primary);
+  border-top: 1px solid rgba(var(--neutral-rgb),0.06);
   padding: 48px 24px 40px;
 }
 
@@ -51,13 +51,13 @@
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: #F8FAFC;
+  color: var(--light-ink, #F8FAFC);
   letter-spacing: -0.02em;
 }
 
 .footer-tagline {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.35));
 }
 
 .footer-links {
@@ -71,15 +71,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(var(--neutral-rgb),0.1);
     border-radius: 10px;
-    color: rgba(255,255,255,0.45);
+    color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.45));
     font-size: 1rem;
     text-decoration: none;
     transition: all 0.3s ease;
 
     &:hover {
-      color: white;
+      color: var(--light-ink, white);
       border-color: rgba(139,92,246,0.4);
       background: rgba(139,92,246,0.12);
       transform: translateY(-3px);
@@ -89,13 +89,13 @@
 
 .footer-divider {
   height: 1px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(var(--neutral-rgb),0.06);
   margin-bottom: 28px;
 }
 
 .footer-copy {
   text-align: center;
-  color: rgba(255,255,255,0.2);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.2));
   font-size: 0.82rem;
 }
 

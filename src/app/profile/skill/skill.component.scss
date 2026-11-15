@@ -31,7 +31,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #22D3EE;
+    color: var(--light-cyan, #22D3EE);
     margin-bottom: 20px;
 
     &::before {
@@ -48,11 +48,11 @@
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: #F8FAFC;
+    color: var(--light-ink, #F8FAFC);
     margin-bottom: 12px;
 
     .grad-text {
-      background: linear-gradient(135deg, #a78bfa, #22D3EE);
+      background: linear-gradient(135deg, var(--light-purple, #a78bfa), var(--light-cyan, #22D3EE));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -60,7 +60,7 @@
   }
 
   .skills-subtitle {
-    color: rgba(255,255,255,0.4);
+    color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.4));
     font-size: 0.95rem;
     margin-bottom: 20px;
   }
@@ -81,7 +81,7 @@
   font-family: 'Space Grotesk', sans-serif !important;
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.35);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.35));
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 28px;
@@ -111,25 +111,25 @@
   align-items: center;
   gap: 8px;
 
-  i { color: #a78bfa; font-size: 0.9rem; }
+  i { color: var(--light-purple, #a78bfa); font-size: 0.9rem; }
 }
 
 .skill-name-text {
   font-size: 0.88rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.75);
+  color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.75));
 }
 
 .skill-label-right {
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.3);
+  color: var(--light-ink-muted, rgba(var(--neutral-rgb),0.3));
   letter-spacing: 0.04em;
 }
 
 .skill-track {
   height: 5px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(var(--neutral-rgb),0.07);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -151,9 +151,9 @@
 }
 
 .bento-card {
-  background: rgba(23, 29, 44, 0.6);
+  background: rgba(var(--surface-rgb), 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(var(--neutral-rgb),0.06);
   border-radius: 20px;
   padding: 28px;
   display: flex;
@@ -164,7 +164,7 @@
 
   &:hover {
     border-color: rgba(139,92,246,0.2);
-    box-shadow: 0 12px 50px rgba(0,0,0,0.3), 0 0 30px rgba(139,92,246,0.06);
+    box-shadow: 0 12px 50px rgba(var(--shadow-tint),0.3), 0 0 30px rgba(139,92,246,0.06);
     transform: translateY(-4px);
   }
 
@@ -184,11 +184,11 @@
   font-size: 1.2rem;
   transition: transform 0.3s ease;
 
-  background: rgba(139,92,246,0.12); color: #a78bfa;
-  &.cyan  { background: rgba(34,211,238,0.1);  color: #67e8f9; }
-  &.green { background: rgba(52,211,153,0.1);  color: #6ee7b7; }
-  &.amber { background: rgba(245,158,11,0.1);  color: #fcd34d; }
-  &.rose  { background: rgba(244,63,94,0.1);   color: #fda4af; }
+  background: rgba(139,92,246,0.12); color: var(--light-purple, #a78bfa);
+  &.cyan  { background: rgba(34,211,238,0.1);  color: var(--light-cyan, #67e8f9); }
+  &.green { background: rgba(52,211,153,0.1);  color: var(--light-green, #6ee7b7); }
+  &.amber { background: rgba(245,158,11,0.1);  color: var(--light-amber, #fcd34d); }
+  &.rose  { background: rgba(244,63,94,0.1);   color: var(--light-rose, #fda4af); }
 
   .bento-card:hover & { transform: rotate(-8deg) scale(1.1); }
 }
@@ -197,13 +197,13 @@
   font-family: 'Space Grotesk', sans-serif !important;
   font-size: 1rem;
   font-weight: 700;
-  color: #F8FAFC;
+  color: var(--light-ink, #F8FAFC);
   letter-spacing: -0.01em;
 }
 
 .bento-desc {
   font-size: 0.84rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.45));
   line-height: 1.75;
 }
 
@@ -220,12 +220,12 @@
     border-radius: 50px;
     font-size: 0.72rem;
     font-weight: 600;
-    color: #c4b5fd;
+    color: var(--light-purple, #c4b5fd);
     transition: all 0.2s ease;
 
     &:hover {
       background: rgba(139,92,246,0.18);
-      color: white;
+      color: var(--light-ink, white);
     }
   }
 }
@@ -242,20 +242,20 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(var(--neutral-rgb),0.04);
+  border: 1px solid rgba(var(--neutral-rgb),0.07);
   border-radius: 8px;
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.5);
+  color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.5));
   transition: all 0.25s ease;
 
-  i { font-size: 0.72rem; color: #f59e0b; }
+  i { font-size: 0.72rem; color: var(--light-amber, #f59e0b); }
 
   &:hover {
     background: rgba(245,158,11,0.08);
     border-color: rgba(245,158,11,0.2);
-    color: rgba(255,255,255,0.75);
+    color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.75));
   }
 }
 

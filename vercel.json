@@ -4,7 +4,16 @@
   "outputDirectory": "dist/resume",
   "routes": [
     {
+      "src": "/seo(?:/|[.]html)",
+      "status": 308,
+      "headers": { "Location": "/seo" }
+    },
+    {
       "handle": "filesystem"
+    },
+    {
+      "src": "/seo",
+      "dest": "/seo.html"
     },
     {
       "src": "/(.*)",

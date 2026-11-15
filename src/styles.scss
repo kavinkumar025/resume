@@ -18,20 +18,7 @@ section[id] { scroll-margin-top: 88px; }
 
 /* === DESIGN TOKENS === */
 :root {
-  /* Backgrounds */
-  --bg-primary:   #080B12;
-  --bg-secondary: #101624;
-  --bg-surface:   #171D2C;
-  --bg-card:      #1C2435;
-
-  /* Text */
-  --text-primary:   #F8FAFC;
-  --text-secondary: #A4AEC1;
-  --text-muted:     #64748B;
-
   /* Accents */
-  --accent-purple: #8B5CF6;
-  --accent-cyan:   #22D3EE;
   --accent-pink:   #EC4899;
   --accent-green:  #34D399;
   --accent-amber:  #F59E0B;
@@ -40,11 +27,9 @@ section[id] { scroll-margin-top: 88px; }
   --grad-purple-cyan: linear-gradient(135deg, #8B5CF6, #22D3EE);
   --grad-purple:      linear-gradient(135deg, #8B5CF6, #6D28D9);
   --grad-hero:        linear-gradient(135deg, #080B12 0%, #101624 60%, #1e1240 100%);
-  --grad-text:        linear-gradient(135deg, #a78bfa 0%, #22D3EE 60%, #34D399 100%);
+  --grad-text:        linear-gradient(135deg, var(--light-purple, #a78bfa) 0%, var(--light-cyan, #22d3ee) 60%, var(--light-green, #34d399) 100%);
 
   /* Borders */
-  --border-subtle: rgba(255,255,255,0.06);
-  --border-mid:    rgba(255,255,255,0.12);
   --border-accent: rgba(139,92,246,0.3);
 
   /* Shadows */
@@ -64,10 +49,6 @@ section[id] { scroll-margin-top: 88px; }
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --transition: all 0.3s var(--ease-out);
-
-  /* Typography scale */
-  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
-  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* === BASE === */
@@ -265,7 +246,7 @@ button {
 
 /* === GLASS CARD === */
 .glass-card {
-  background: rgba(23, 29, 44, 0.7);
+  background: rgba(var(--surface-rgb), .7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
@@ -350,13 +331,13 @@ button {
   border-radius: 50px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #c4b5fd;
+  color: var(--light-purple, #c4b5fd);
   transition: var(--transition);
 
   &:hover {
     background: rgba(139, 92, 246, 0.2);
     border-color: rgba(139, 92, 246, 0.5);
-    color: white;
+    color: var(--light-ink, white);
   }
 }
 

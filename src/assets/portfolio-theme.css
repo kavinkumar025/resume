@@ -1,0 +1,67 @@
+:root {
+  color-scheme: dark;
+  --bg-primary: #080b12;
+  --bg-secondary: #101624;
+  --bg-surface: #171d2c;
+  --bg-card: #1c2435;
+  --text-primary: #f8fafc;
+  --text-secondary: #a4aec1;
+  --text-muted: #64748b;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #22d3ee;
+  --border-subtle: rgba(255, 255, 255, .06);
+  --border-mid: rgba(255, 255, 255, .12);
+  --neutral-rgb: 255, 255, 255;
+  --surface-rgb: 23, 29, 44;
+  --hero-proof-rgb: 18, 24, 45;
+  --nav-background: rgba(8, 11, 18, .88);
+  --hero-background: linear-gradient(135deg, #080b12 0%, #0d1220 46%, #111735 100%);
+  --hero-title-gradient: linear-gradient(135deg, #a78bfa, #22d3ee 60%, #6ee7b7);
+  --hero-statement-gradient: linear-gradient(100deg, #c4b5fd, #67e8f9 58%, #6ee7b7);
+  --reel-background: #0b1020;
+  --reel-card-start: rgba(38, 43, 73, .87);
+  --reel-card-start-purple: rgba(45, 31, 76, .92);
+  --reel-card-start-cyan: rgba(20, 51, 69, .82);
+  --reel-card-end: rgba(16, 22, 39, .96);
+  --shadow-tint: 0, 0, 0;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-primary: #f7f8ff;
+  --bg-secondary: #edf1fb;
+  --bg-surface: #fff;
+  --bg-card: #fff;
+  --text-primary: #1b2440;
+  --text-secondary: #44536c;
+  --text-muted: #53617a;
+  --accent-purple: #613bbd;
+  --accent-cyan: #006475;
+  --border-subtle: rgba(36, 50, 88, .12);
+  --border-mid: rgba(36, 50, 88, .22);
+  --neutral-rgb: 36, 50, 88;
+  --surface-rgb: 255, 255, 255;
+  --hero-proof-rgb: 255, 255, 255;
+  --nav-background: rgba(247, 248, 255, .90);
+  --hero-background: linear-gradient(135deg, #fbfbff 0%, #eef0ff 53%, #e1f5fb 100%);
+  --hero-title-gradient: linear-gradient(135deg, var(--light-purple), var(--light-cyan) 60%, var(--light-green));
+  --hero-statement-gradient: linear-gradient(100deg, var(--light-purple), var(--light-cyan) 58%, var(--light-green));
+  --reel-background: #eff2fc;
+  --reel-card-start: #f2efff;
+  --reel-card-start-purple: #f2e9fc;
+  --reel-card-start-cyan: #e4f4f5;
+  --reel-card-end: #fff;
+  --shadow-tint: 75, 85, 125;
+  --light-ink: #1b2440;
+  --light-ink-soft: #44536c;
+  --light-ink-muted: #53617a;
+  --light-purple: #623db8;
+  --light-cyan: #006475;
+  --light-green: #176745;
+  --light-amber: #804b00;
+  --light-blue: #2458a2;
+  --light-rose: #a41d4e;
+  --light-red: #ac2029;
+}

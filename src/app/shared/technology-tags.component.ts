@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
     .technology-tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .technology-tags span { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 7px;
       background: rgba(139, 92, 246, .11); border: 1px solid rgba(139, 92, 246, .2);
-      color: #c4b5fd; font-size: .72rem; line-height: 1.3; font-weight: 600; }
+      color: var(--light-purple, #c4b5fd); font-size: .72rem; line-height: 1.3; font-weight: 600; }
   `]
 })
 export class TechnologyTagsComponent {

@@ -260,69 +260,39 @@
       </div>
     </div>
 
-    <!-- Personal Projects -->
-    <div class="projects-category personal-category">
+    <div id="personal-projects" class="projects-category personal-category">
       <div class="category-header" #personalHeader>
-        <span class="section-eyebrow personal-eyebrow">Independent Work</span>
         <h2 class="section-title-premium">
           Personal <span class="grad-text-green">Projects</span>
         </h2>
-        <p class="category-note">Side projects I've built independently</p>
-        <div class="gradient-divider green-divider"></div>
+        <p class="category-note">Websites, apps, and demos I built independently.</p>
+        <a class="project-link" href="/seo">See how I improved search visibility <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="personal-projects-grid" #personalGrid>
+        <ng-container *ngTemplateOutlet="projectCards; context: { $implicit: personalProjects }"></ng-container>
+      </div>
 
-        <a class="personal-card" href="https://www.minyfin.com/" target="_blank"
-           rel="noopener noreferrer" data-color="green">
-          <div class="personal-card-header">
-            <div class="personal-icon green-icon"><i class="fa-solid fa-piggy-bank"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-          </div>
-          <h4 class="personal-title">Minyfin</h4>
-          <p class="personal-desc">
-            Financial literacy app teaching kids money management through tasks, rewards,
-            SIP simulation, credit scoring &amp; interactive stories. Trusted by 2,400+ families.
-          </p>
-          <div class="personal-tech-row">
-            <span>Angular</span><span>Firebase</span><span>Gamification</span>
-          </div>
-        </a>
-
-        <a class="personal-card" href="https://invoice-alpha-rosy.vercel.app/" target="_blank"
-           rel="noopener noreferrer" data-color="blue">
-          <div class="personal-card-header">
-            <div class="personal-icon blue-icon"><i class="fa-solid fa-file-invoice"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-          </div>
-          <h4 class="personal-title">InvoiceHub</h4>
-          <p class="personal-desc">
-            B2B cold chain commerce platform for suppliers and buyers of perishable goods.
-            Features role-based auth, real-time catalog, orders &amp; invoices.
-          </p>
-          <div class="personal-tech-row">
-            <span>Angular</span><span>Firebase Auth</span><span>Realtime DB</span>
-          </div>
-        </a>
-
-        <a class="personal-card" href="https://calculators.kongumatrimonyonline.in/" target="_blank"
-           rel="noopener noreferrer" data-color="amber">
-          <div class="personal-card-header">
-            <div class="personal-icon amber-icon"><i class="fa-solid fa-calculator"></i></div>
-            <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-          </div>
-          <h4 class="personal-title">Interactive Calculators</h4>
-          <p class="personal-desc">
-            Free online calculator suite — BMI, EMI, SIP, mortgage &amp; more.
-            Mobile-friendly with instant results across finance, health &amp; utility.
-          </p>
-          <div class="personal-tech-row">
-            <span>Angular</span><span>SEO</span><span>PWA</span>
-          </div>
-        </a>
-
+      <h3 class="prototype-title">Prototypes and earlier builds</h3>
+      <div class="personal-projects-grid">
+        <ng-container *ngTemplateOutlet="projectCards; context: { $implicit: personalPrototypes }"></ng-container>
       </div>
     </div>
 
+    <ng-template #projectCards let-projects>
+      <article class="personal-card" *ngFor="let project of projects">
+        <span class="personal-icon" [ngClass]="project.tone + '-icon'" aria-hidden="true">
+          <i [ngClass]="['fa-solid', project.icon]"></i>
+        </span>
+        <h4 class="personal-title">{{ project.name }}</h4>
+        <p class="personal-desc">{{ project.description }}</p>
+        <div class="personal-tech-row">
+          <span *ngFor="let technology of project.technologies">{{ technology }}</span>
+        </div>
+        <a class="project-link" *ngIf="project.href" [href]="project.href">
+          {{ project.linkText }} <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </ng-template>
   </div>
 </section>

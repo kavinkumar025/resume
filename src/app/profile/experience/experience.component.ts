@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PERSONAL_PROJECTS, PERSONAL_PROTOTYPES } from './personal-projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,9 @@ export class ExperienceComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('proGrid') proGrid!: ElementRef;
   @ViewChild('personalHeader') personalHeader!: ElementRef;
   @ViewChild('personalGrid') personalGrid!: ElementRef;
+
+  readonly personalProjects = PERSONAL_PROJECTS;
+  readonly personalPrototypes = PERSONAL_PROTOTYPES;
 
   totalExperience = '';
   currentJobDuration = '';
