@@ -18,10 +18,11 @@
   }
 
   function syncControl() {
-    const select = document.querySelector(control);
-    if (!select) return false;
-    select.value = preference;
-    select.hidden = false;
+    const group = document.querySelector(control);
+    if (!group) return false;
+    group.querySelector('[data-theme-toggle]').setAttribute('aria-checked', String(root.dataset.theme === 'dark'));
+    group.querySelector('[data-theme-auto]').setAttribute('aria-pressed', String(preference === 'auto'));
+    group.hidden = false;
     return true;
   }
 
@@ -33,6 +34,7 @@
 
     const theme = preference === 'auto' ? (isDay ? 'light' : 'dark') : preference;
     root.dataset.theme = theme;
+    syncControl();
     themeColor?.setAttribute('content', theme === 'light' ? '#f7f8ff' : '#080b12');
 
     if (preference !== 'auto') return;
@@ -52,16 +54,16 @@
     });
     observer.observe(document.body, { childList: true, subtree: true });
   });
-  document.addEventListener('change', event => {
-    if (!event.target.matches(control)) return;
-    preference = event.target.value;
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-theme-toggle], [data-theme-auto]');
+    if (!button) return;
+    preference = button.hasAttribute('data-theme-auto') ? 'auto' : root.dataset.theme === 'dark' ? 'light' : 'dark';
     try { localStorage.setItem(preferenceKey, preference); } catch {}
     updateTheme();
   });
   window.addEventListener('storage', event => {
     if (event.key !== preferenceKey && event.key !== null) return;
     readPreference();
-    syncControl();
     updateTheme();
   });
   window.addEventListener('focus', updateTheme);

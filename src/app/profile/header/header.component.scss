@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
+  gap: 16px;
 }
 
 /* === BRAND === */
@@ -52,8 +52,8 @@
 }
 
 .brand-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +79,7 @@
 .brand-name {
   font-family: 'Space Grotesk', sans-serif !important;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: .95rem;
   letter-spacing: -0.02em;
 }
 
@@ -100,10 +100,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 8px 11px;
+  padding: 8px 9px;
   white-space: nowrap;
   color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.6));
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 500;
   border-radius: 8px;
   text-decoration: none;
@@ -145,7 +145,7 @@
   padding: 9px 20px;
   background: linear-gradient(135deg, #8B5CF6, #6D28D9);
   color: white;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: 10px;
   text-decoration: none;
