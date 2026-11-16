@@ -65,3 +65,65 @@
   --light-rose: #a41d4e;
   --light-red: #ac2029;
 }
+
+:root[data-theme='light'] {
+  --timeline-highlight: linear-gradient(130deg, #fff 55%, #f0eaff);
+}
+
+.theme-control {
+  min-height: 42px;
+  max-width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--accent-purple);
+  border-radius: 9px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: 600 .85rem var(--font-body);
+  cursor: pointer;
+}
+
+.theme-control:focus-visible,
+.hero-socials a:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+}
+
+.hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-socials .social-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--social-fill);
+  color: white;
+  font-size: .85rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(24, 28, 51, .18);
+}
+
+.hero-socials .social-icon:hover {
+  filter: brightness(1.13);
+  transform: translateY(-2px);
+}
+
+.hero-socials .linkedin { --social-fill: #075796; }
+.hero-socials .whatsapp { --social-fill: #0c6546; }
+.hero-socials .github { --social-fill: #2b3348; }
+.hero-socials .instagram { --social-fill: #94356b; }
+
+@media (max-width: 900px) {
+  .hero-socials { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .nav-bar { flex-wrap: wrap; }
+}

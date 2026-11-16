@@ -29,7 +29,7 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
   public index = 0;
   public roleIndex = 0;
   public isInDeletingState = false;
-  public myPhoneNumber = '9092850954';
+  public myPhoneNumber = '919092850954';
   public experience: string = '';
 
   private typewriterTimeout: any;
@@ -139,8 +139,7 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
       onUpdate: (self) => {
         if (this.heroText?.nativeElement) {
           gsap.set(this.heroText.nativeElement, {
-            y: self.progress * 80,
-            opacity: 1 - self.progress * 1.2
+            y: self.progress * 32
           });
         }
         if (this.heroVisual?.nativeElement) {
@@ -215,10 +214,7 @@ export class IntroductionComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public openWhatsApp() {
-    const whatsappLink = `https://wa.me/${this.myPhoneNumber}`;
-    window.open(whatsappLink, '_blank');
-  }
+
 
   public calculateExperience() {
     const startDate = new Date(2022, 8);

@@ -3,7 +3,27 @@
   const nightStart = 18;
   const root = document.documentElement;
   const themeColor = document.querySelector('meta[name="theme-color"]');
+  const preferenceKey = 'portfolio-theme';
+  const control = '[data-theme-control]';
+  let preference = 'auto';
   let timer;
+
+  function readPreference() {
+    try {
+      const saved = localStorage.getItem(preferenceKey);
+      preference = saved === 'light' || saved === 'dark' ? saved : 'auto';
+    } catch {
+      // The current page can still use a manual choice when storage is unavailable.
+    }
+  }
+
+  function syncControl() {
+    const select = document.querySelector(control);
+    if (!select) return false;
+    select.value = preference;
+    select.hidden = false;
+    return true;
+  }
 
   function updateTheme() {
     window.clearTimeout(timer);
@@ -11,9 +31,11 @@
     const hour = now.getHours();
     const isDay = hour >= dayStart && hour < nightStart;
 
-    root.dataset.theme = isDay ? 'light' : 'dark';
-    themeColor?.setAttribute('content', isDay ? '#f7f8ff' : '#080b12');
+    const theme = preference === 'auto' ? (isDay ? 'light' : 'dark') : preference;
+    root.dataset.theme = theme;
+    themeColor?.setAttribute('content', theme === 'light' ? '#f7f8ff' : '#080b12');
 
+    if (preference !== 'auto') return;
     const next = new Date(now);
     next.setHours(isDay ? nightStart : dayStart, 0, 0, 0);
     if (next <= now) next.setDate(next.getDate() + 1);
@@ -21,7 +43,27 @@
     timer = window.setTimeout(updateTheme, Math.min(next - now, 60_000));
   }
 
+  readPreference();
   updateTheme();
+  document.addEventListener('DOMContentLoaded', () => {
+    if (syncControl()) return;
+    const observer = new MutationObserver(() => {
+      if (syncControl()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+  document.addEventListener('change', event => {
+    if (!event.target.matches(control)) return;
+    preference = event.target.value;
+    try { localStorage.setItem(preferenceKey, preference); } catch {}
+    updateTheme();
+  });
+  window.addEventListener('storage', event => {
+    if (event.key !== preferenceKey && event.key !== null) return;
+    readPreference();
+    syncControl();
+    updateTheme();
+  });
   window.addEventListener('focus', updateTheme);
   window.addEventListener('pageshow', updateTheme);
   document.addEventListener('visibilitychange', () => {

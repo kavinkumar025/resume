@@ -172,7 +172,7 @@
 
   &[data-highlight="true"] {
     border-color: rgba(139,92,246,0.15);
-    background: rgba(28, 36, 60, 0.7);
+    background: var(--timeline-highlight, rgba(28, 36, 60, 0.7));
   }
 
   &.compact-card {

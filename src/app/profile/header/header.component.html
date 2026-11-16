@@ -32,6 +32,12 @@
       Hire Me
     </a>
 
+    <select class="theme-control" data-theme-control aria-label="Colour theme" hidden>
+      <option value="auto">Auto theme</option>
+      <option value="light">Light theme</option>
+      <option value="dark">Dark theme</option>
+    </select>
+
     <!-- Mobile toggle -->
     <button #menuToggle class="nav-toggle" type="button" (click)="toggleMenu()"
       [class.active]="menuOpen"

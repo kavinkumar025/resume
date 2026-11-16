@@ -62,25 +62,19 @@
         </button>
       </div>
 
-      <!-- Social links -->
-      <div class="hero-socials" #heroSocials>
-        <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" target="_blank"
-           class="social-icon" title="LinkedIn" rel="noopener noreferrer">
-          <i class="fa-brands fa-linkedin-in"></i>
+      <div class="hero-socials" #heroSocials aria-label="Social and messaging links" role="group">
+        <a href="https://www.linkedin.com/in/kavinkumar-m-17511b20a/" class="social-icon linkedin" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn
         </a>
-        <a (click)="openWhatsApp()" class="social-icon" title="WhatsApp" style="cursor:pointer">
-          <i class="fa-brands fa-whatsapp"></i>
+        <a [href]="'https://wa.me/' + myPhoneNumber" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
         </a>
-        <a href="https://github.com/kavinkumar025" target="_blank"
-           class="social-icon" title="GitHub" rel="noopener noreferrer">
-          <i class="fa-brands fa-github"></i>
+        <a href="https://github.com/kavinkumar025" class="social-icon github" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
         </a>
-        <a href="https://instagram.com/im_kavin__25" target="_blank"
-           class="social-icon" title="Instagram" rel="noopener noreferrer">
-          <i class="fa-brands fa-instagram"></i>
+        <a href="https://instagram.com/im_kavin__25" class="social-icon instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram
         </a>
-        <div class="social-divider" aria-hidden="true"></div>
-        <span class="social-label">Find me on</span>
       </div>
     </div>
 
