@@ -1,12 +1,1 @@
-.privacy-controls { position: fixed; z-index: 10000; right: 1rem; bottom: 1rem; max-width: min(440px, calc(100vw - 2rem)); font: 14px/1.5 system-ui, sans-serif; color: #f8fafc; }
-.privacy-prompt { padding: 1.1rem; border: 1px solid #64748b; border-radius: 14px; background: #111827; box-shadow: 0 12px 36px #0009; }
-.privacy-prompt[hidden] { display: none; }
-.privacy-prompt p { margin: .45rem 0 1rem; color: #e2e8f0; }
-.privacy-prompt a { color: #67e8f9; text-decoration: underline; }
-.privacy-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
-.privacy-actions button, .privacy-settings { min-height: 44px; padding: .55rem .8rem; border: 1px solid #94a3b8; border-radius: 8px; background: #1e293b; color: #fff; cursor: pointer; font: inherit; }
-.privacy-actions button { flex: 1 1 130px; }
-.privacy-actions button:last-child { background: #0e7490; }
-.privacy-actions button:focus-visible, .privacy-settings:focus-visible { outline: 3px solid #facc15; outline-offset: 2px; }
-.privacy-settings { display: block; margin: .5rem 0 0 auto; background: #111827; }
-@media (max-width: 480px) { .privacy-controls { left: 1rem; right: 1rem; max-width: none; } }
+.privacy-controls{position:fixed;z-index:10000;inset:auto 0 0;width:100%;font:14px/1.5 system-ui,sans-serif;color:#f8fafc}.privacy-prompt{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:clamp(1rem,2vw,1.5rem) max(1rem,calc((100vw - 1200px)/2));border-top:1px solid #64748b;background:#111827;box-shadow:0 -8px 28px #0006}.privacy-prompt[hidden]{display:none}.privacy-prompt p{margin:.35rem 0 0;color:#e2e8f0}.privacy-prompt a{color:#67e8f9;text-decoration:underline}.privacy-actions{display:flex;flex-wrap:wrap;gap:.5rem;flex:0 0 auto}.privacy-actions button{min-height:44px;padding:.55rem 1rem;border:1px solid #94a3b8;border-radius:6px;background:#1e293b;color:#fff;cursor:pointer;font:inherit}.privacy-actions button:last-child{background:#0e7490}.privacy-actions button:focus-visible{outline:3px solid #facc15;outline-offset:2px}@media(max-width:700px){.privacy-prompt{display:block;padding:1rem}.privacy-actions{margin-top:.8rem}.privacy-actions button{flex:1 1 120px}}
