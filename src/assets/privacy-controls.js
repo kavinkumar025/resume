@@ -3,7 +3,6 @@
   var key = 'portfolio-analytics-consent-v1';
   var measurementId = 'G-VBC70S7YHN';
   var prompt = document.getElementById('privacy-prompt');
-  var settings = document.getElementById('privacy-settings');
   var loaded = false;
 
   function savedChoice() {
@@ -25,7 +24,6 @@
 
   function showPrompt(show) {
     prompt.hidden = !show;
-    settings.setAttribute('aria-expanded', String(show));
   }
 
   function clearAnalyticsCookies() {
@@ -53,7 +51,6 @@
 
   document.getElementById('privacy-accept').addEventListener('click', function () { choose('allowed'); });
   document.getElementById('privacy-reject').addEventListener('click', function () { choose('rejected'); });
-  settings.addEventListener('click', function () { showPrompt(prompt.hidden); });
   if (savedChoice() === 'allowed') loadAnalytics();
   else if (savedChoice() !== 'rejected') showPrompt(true);
 })();
