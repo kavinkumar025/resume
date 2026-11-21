@@ -35,21 +35,10 @@
   <meta name="theme-color" content="#080b12">
   <script src="/assets/portfolio-theme.js"></script>
   <link rel="stylesheet" href="/assets/portfolio-theme.css">
+  <link rel="stylesheet" href="/assets/privacy-controls.css">
 </head>
 
 <body>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBC70S7YHN"></script>
-  <script>
-    var host = window.location.origin;
-    if (!host.includes("local")) {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-VBC70S7YHN');
-    }
-  </script>
-
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-bar" id="scrollProgress"></div>
 
@@ -58,6 +47,14 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <app-root></app-root>
+  <div id="privacy-controls" class="privacy-controls" aria-label="Privacy preferences">
+    <div id="privacy-prompt" class="privacy-prompt" hidden>
+      <div><strong>Choose your analytics preference</strong><p>Essential site features work without analytics. If you allow it, Google Analytics measures visits using cookies. <a href="/privacy">Read the privacy notice</a>.</p></div>
+      <div class="privacy-actions"><button id="privacy-reject" type="button">Reject optional</button><button id="privacy-accept" type="button">Allow analytics</button></div>
+    </div>
+    <button id="privacy-settings" class="privacy-settings" type="button" aria-controls="privacy-prompt" aria-expanded="false">Privacy settings</button>
+  </div>
+  <script src="/assets/privacy-controls.js" defer></script>
 
   <!-- Tab visibility title change -->
   <script>

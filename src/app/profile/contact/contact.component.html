@@ -129,6 +129,8 @@
             <span class="field-error" *ngIf="isInvalid('description')">{{ getErrorMessage('description') }}</span>
           </div>
 
+          <p class="contact-privacy-note">Your name, email, subject and message are used to reply to your enquiry. Phone is optional. Delivery may use email or a secure message queue if email delivery fails. See the <a href="/privacy">privacy notice</a>.</p>
+
           <button type="submit" class="submit-btn" [disabled]="isSubmitting" id="contact-submit-btn">
             <i class="fa-solid"
                [class.fa-paper-plane]="!isSubmitting"

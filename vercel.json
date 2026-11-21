@@ -12,6 +12,10 @@
       "handle": "filesystem"
     },
     {
+      "src": "/privacy/?",
+      "dest": "/privacy.html"
+    },
+    {
       "src": "/seo",
       "dest": "/seo.html"
     },
