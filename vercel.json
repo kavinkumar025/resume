@@ -4,9 +4,25 @@
   "outputDirectory": "dist/resume",
   "routes": [
     {
+      "src": "/npm/next-server-api-debugger(?:/|[.]html)",
+      "status": 308,
+      "headers": {
+        "Location": "/npm/next-server-api-debugger"
+      }
+    },
+    {
+      "src": "/insights/nextjs-server-api-debugging(?:/|[.]html)",
+      "status": 308,
+      "headers": {
+        "Location": "/insights/nextjs-server-api-debugging"
+      }
+    },
+    {
       "src": "/seo(?:/|[.]html)",
       "status": 308,
-      "headers": { "Location": "/seo" }
+      "headers": {
+        "Location": "/seo"
+      }
     },
     {
       "handle": "filesystem"
@@ -18,6 +34,14 @@
     {
       "src": "/seo",
       "dest": "/seo.html"
+    },
+    {
+      "src": "/npm/next-server-api-debugger",
+      "dest": "/npm/next-server-api-debugger.html"
+    },
+    {
+      "src": "/insights/nextjs-server-api-debugging",
+      "dest": "/insights/nextjs-server-api-debugging.html"
     },
     {
       "src": "/(.*)",

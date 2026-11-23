@@ -17,8 +17,8 @@ export const PERSONAL_PROJECTS: readonly PersonalProject[] = [
     icon: 'fa-bug',
     tone: 'blue',
     technologies: ['npm package', 'Next.js 16', 'Node.js', 'Developer tooling'],
-    href: 'https://www.npmjs.com/package/next-server-api-debugger',
-    linkText: 'View on npm',
+    href: '/npm/next-server-api-debugger',
+    linkText: 'Explore package',
     badge: 'Owner & maintainer',
     sourceHref: 'https://github.com/kavinkumar025/next-server-api-debugger'
   },

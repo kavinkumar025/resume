@@ -11,7 +11,7 @@ export class HeaderComponent implements OnDestroy {
   isScrolled: boolean = false;
   menuOpen: boolean = false;
   scrollProgress: number = 0;
-  private readonly mobileBreakpoint = 1100;
+  private readonly mobileBreakpoint = 1260;
   @ViewChild('menuToggle') menuToggle?: ElementRef<HTMLButtonElement>;
   @ViewChild('menuDrawer') menuDrawer?: ElementRef<HTMLElement>;
 
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnDestroy {
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'npm-package', label: 'Open Source' },
     { id: 'skill', label: 'Skills' },
     { id: 'education', label: 'Education' },
     { id: 'certifications', label: 'Certificates' },

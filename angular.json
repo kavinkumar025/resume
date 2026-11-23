@@ -33,7 +33,9 @@
               "src/sitemap.xml",
               "src/404.html",
               "src/privacy.html",
-              "src/seo.html"
+              "src/seo.html",
+              "src/npm/next-server-api-debugger.html",
+              "src/insights/nextjs-server-api-debugging.html"
             ],
             "styles": [
               "src/styles.scss"

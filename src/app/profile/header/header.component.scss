@@ -386,11 +386,11 @@
 }
 
 /* === MOBILE MEDIA === */
-@media (max-width: 1100px) {
+@media (max-width: 1260px) {
   .nav-cta { display: none; }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1260px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .nav-backdrop { display: block; }
@@ -409,7 +409,7 @@
   .mobile-nav-list li { opacity: 1; transform: none; }
 }
 
-@media (min-width: 1101px) and (max-width: 1250px) {
+@media (min-width: 1261px) and (max-width: 1400px) {
   .nav-container { gap: 12px; }
   .nav-link { padding-inline: 6px; }
 }
