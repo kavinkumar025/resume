@@ -288,3 +288,43 @@
   .theme-switch { min-width: 76px; }
   .theme-switch span { width: 32px; height: 32px; }
 }
+
+/* Developer-tool ownership and links */
+.project-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.project-owner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, .24);
+  background: rgba(139, 92, 246, .1);
+  color: var(--light-purple, #c4b5fd);
+  font-size: .69rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.project-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 10px;
+  margin-top: auto;
+}
+.project-actions .project-link {
+  margin: 0;
+  min-height: 34px;
+}
+:root .project-source-link {
+  color: var(--light-ink-soft, #cbd5e1);
+}
+:root .project-source-link:hover {
+  color: var(--light-purple, #c4b5fd);
+}
