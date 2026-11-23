@@ -265,7 +265,7 @@
         <h2 class="section-title-premium">
           Personal <span class="grad-text-green">Projects</span>
         </h2>
-        <p class="category-note">Websites, apps, and demos I built independently.</p>
+        <p class="category-note">Websites, developer tools, and apps I've built and maintain.</p>
         <a class="project-link" href="/seo">See how I improved search visibility <span aria-hidden="true">→</span></a>
       </div>
 
@@ -281,17 +281,30 @@
 
     <ng-template #projectCards let-projects>
       <article class="personal-card" *ngFor="let project of projects">
-        <span class="personal-icon" [ngClass]="project.tone + '-icon'" aria-hidden="true">
-          <i [ngClass]="['fa-solid', project.icon]"></i>
-        </span>
+        <div class="project-card-heading">
+          <span class="personal-icon" [ngClass]="project.tone + '-icon'" aria-hidden="true">
+            <i [ngClass]="['fa-solid', project.icon]"></i>
+          </span>
+          <span class="project-owner-badge" *ngIf="project.badge">
+            <i class="fa-solid fa-cube" aria-hidden="true"></i> {{ project.badge }}
+          </span>
+        </div>
         <h4 class="personal-title">{{ project.name }}</h4>
         <p class="personal-desc">{{ project.description }}</p>
         <div class="personal-tech-row">
           <span *ngFor="let technology of project.technologies">{{ technology }}</span>
         </div>
-        <a class="project-link" *ngIf="project.href" [href]="project.href">
-          {{ project.linkText }} <span aria-hidden="true">→</span>
-        </a>
+        <div class="project-actions" *ngIf="project.href || project.sourceHref">
+          <a class="project-link" *ngIf="project.href" [href]="project.href"
+             [attr.target]="project.href && project.href.indexOf('http') === 0 ? '_blank' : null"
+             [attr.rel]="project.href && project.href.indexOf('http') === 0 ? 'noopener noreferrer' : null">
+            {{ project.linkText }} <span aria-hidden="true">→</span>
+          </a>
+          <a class="project-link project-source-link" *ngIf="project.sourceHref" [href]="project.sourceHref"
+             target="_blank" rel="noopener noreferrer">
+            Source code <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
       </article>
     </ng-template>
   </div>
