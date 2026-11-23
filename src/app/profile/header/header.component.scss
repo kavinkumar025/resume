@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: clamp(10px, 1.2vw, 18px);
 }
 
 /* === BRAND === */
@@ -90,7 +90,7 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 4px;
+  gap: 2px;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -100,11 +100,11 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 8px 9px;
+  padding: 8px 7px;
   white-space: nowrap;
   color: var(--light-ink-soft, rgba(var(--neutral-rgb),0.6));
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.76rem;
+  font-weight: 550;
   border-radius: 8px;
   text-decoration: none;
   transition: color 0.2s ease, background 0.2s ease;

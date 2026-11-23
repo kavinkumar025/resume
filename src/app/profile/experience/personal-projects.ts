@@ -6,9 +6,22 @@ interface PersonalProject {
   technologies: readonly string[];
   href?: string;
   linkText?: string;
+  badge?: string;
+  sourceHref?: string;
 }
 
 export const PERSONAL_PROJECTS: readonly PersonalProject[] = [
+  {
+    name: 'next-server-api-debugger',
+    description: 'An open-source npm developer tool I created and maintain for Next.js 16 App Router. It helps developers inspect supported server-side fetch calls in the browser Console during local development, including request and response previews, HTTP status, and timing. Setup can generate the necessary instrumentation and protected routes.',
+    icon: 'fa-bug',
+    tone: 'blue',
+    technologies: ['npm package', 'Next.js 16', 'Node.js', 'Developer tooling'],
+    href: 'https://www.npmjs.com/package/next-server-api-debugger',
+    linkText: 'View on npm',
+    badge: 'Owner & maintainer',
+    sourceHref: 'https://github.com/kavinkumar025/next-server-api-debugger'
+  },
   {
     name: 'Minyfin',
     description: 'A financial literacy site for India with budgeting and saving guides, money challenges, and eight calculators for topics such as SIP investments, EMIs and emergency funds.',
@@ -65,7 +78,7 @@ export const PERSONAL_PROJECTS: readonly PersonalProject[] = [
   },
   {
     name: 'Developer Portfolio',
-    description: 'My resume site brings together my work experience, technical skills, and project demos. It adapts to the visitor’s local time and includes examples of my search visibility work.',
+    description: 'My resume site brings together my work experience, technical skills, and project demos. It uses a time-aware default theme with a manual light/dark toggle and showcases examples of my search visibility work.',
     icon: 'fa-laptop-code',
     tone: 'blue',
     technologies: ['Angular', 'TypeScript', 'Responsive design'],
