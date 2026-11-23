@@ -274,6 +274,11 @@
   border-width: 1.5px;
   box-shadow: 0 3px 13px rgba(34, 47, 75, .05);
 }
+:root[data-theme='light'] .hero-socials .social-icon:hover {
+  background: var(--social-ink);
+  color: #fff;
+  border-color: var(--social-ink);
+}
 :root[data-theme='light'] .btn-outline {
   color: #263651;
   background: rgba(255,255,255,.88);
