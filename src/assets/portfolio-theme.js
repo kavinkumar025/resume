@@ -20,8 +20,12 @@
   function syncControl() {
     const group = document.querySelector(control);
     if (!group) return false;
-    group.querySelector('[data-theme-toggle]').setAttribute('aria-checked', String(root.dataset.theme === 'dark'));
-    group.querySelector('[data-theme-auto]').setAttribute('aria-pressed', String(preference === 'auto'));
+    const toggle = group.querySelector('[data-theme-toggle]');
+    if (!toggle) return false;
+    const dark = root.dataset.theme === 'dark';
+    toggle.setAttribute('aria-checked', String(dark));
+    toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    toggle.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
     group.hidden = false;
     return true;
   }
@@ -55,9 +59,9 @@
     observer.observe(document.body, { childList: true, subtree: true });
   });
   document.addEventListener('click', event => {
-    const button = event.target.closest('[data-theme-toggle], [data-theme-auto]');
+    const button = event.target.closest('[data-theme-toggle]');
     if (!button) return;
-    preference = button.hasAttribute('data-theme-auto') ? 'auto' : root.dataset.theme === 'dark' ? 'light' : 'dark';
+    preference = root.dataset.theme === 'dark' ? 'light' : 'dark';
     try { localStorage.setItem(preferenceKey, preference); } catch {}
     updateTheme();
   });
