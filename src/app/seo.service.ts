@@ -15,8 +15,8 @@ export interface PageSeo {
 }
 
 export const HOME_SEO: PageSeo = {
-  title: 'Angular Developer | Next.js Developer | Kavinkumar',
-  description: 'Angular Developer with 4+ years of frontend experience in Angular, TypeScript, Next.js and React.js. Explore professional experience, projects and technical skills.',
+  title: 'Kavinkumar M | Next.js Developer & Open-Source Package Author',
+  description: 'Explore projects by Kavinkumar M, an Angular and Next.js developer and creator of the next-server-api-debugger npm package. Read engineering insights and view my work.',
   path: '/', robots: 'index,follow,max-image-preview:large',
   image: '/assets/images/img4.jpg',
   imageAlt: 'Portrait of Kavinkumar M, Angular Developer',

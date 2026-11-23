@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Next.js Server API Calls Don't Show in Network Tab | Kavinkumar</title>
+<meta name="description" content="Learn why Next.js server-to-server API calls are absent from Chrome Network, how to inspect them locally, and the limitations of automatic fetch debugging.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Kavinkumar M">
+<meta name="theme-color" content="#080b12">
+<link rel="canonical" href="https://kavinkumar-resume.vercel.app/insights/nextjs-server-api-debugging">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kavinkumar Portfolio">
+<meta property="og:title" content="Why Next.js Server API Calls Don't Show in Network Tab | Kavinkumar">
+<meta property="og:description" content="Learn why Next.js server-to-server API calls are absent from Chrome Network, how to inspect them locally, and the limitations of automatic fetch debugging.">
+<meta property="og:url" content="https://kavinkumar-resume.vercel.app/insights/nextjs-server-api-debugging">
+<meta property="og:image" content="https://kavinkumar-resume.vercel.app/assets/next-server-api-debugger-cover.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Original illustration of GET and POST server API requests displayed in a browser debugging console">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Next.js Server API Calls Don't Show in Network Tab | Kavinkumar">
+<meta name="twitter:description" content="Learn why Next.js server-to-server API calls are absent from Chrome Network, how to inspect them locally, and the limitations of automatic fetch debugging.">
+<meta name="twitter:image" content="https://kavinkumar-resume.vercel.app/assets/next-server-api-debugger-cover.png">
+<meta property="article:published_time" content="2026-11-23T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-11-23T00:00:00+05:30">
+<meta property="article:author" content="https://kavinkumar-resume.vercel.app/">
+<link rel="icon" type="image/png" href="/assets/images/download.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://kavinkumar-resume.vercel.app/insights/nextjs-server-api-debugging#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://kavinkumar-resume.vercel.app/insights/nextjs-server-api-debugging"},"headline":"Why Next.js Server API Calls Are Missing From the Browser Network Tab","description":"A developer-authored guide to browser-vs-server fetch calls, using browser Console logs for supported Next.js requests, and security limits.","datePublished":"2026-11-23T00:00:00+05:30","dateModified":"2026-11-23T00:00:00+05:30","author":{"@type":"Person","@id":"https://kavinkumar-resume.vercel.app/#person","name":"Kavinkumar M","url":"https://kavinkumar-resume.vercel.app/"},"publisher":{"@type":"Person","name":"Kavinkumar M","url":"https://kavinkumar-resume.vercel.app/"},"image":{"@type":"ImageObject","url":"https://kavinkumar-resume.vercel.app/assets/next-server-api-debugger-cover.png","width":1280,"height":720},"isAccessibleForFree":true}</script>
+<script src="/assets/portfolio-theme.js"></script>
+<link rel="stylesheet" href="/assets/portfolio-theme.css">
+<link rel="stylesheet" href="/assets/package-article.css">
+</head><body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><nav class="wrap top-nav" aria-label="Main navigation">
+<a class="brand" href="/"><span aria-hidden="true">K</span> Kavinkumar M</a>
+<div class="top-links">
+<a href="/">Portfolio</a><a href="/seo">SEO work</a><a href="/npm/next-server-api-debugger">npm package</a>
+<div class="theme-control" data-theme-control role="group" aria-label="Colour theme" hidden>
+<button class="theme-switch" data-theme-toggle type="button" role="switch" aria-label="Toggle dark theme" aria-checked="false" title="Switch between light and dark">
+<span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></span>
+<span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.5 15A9 9 0 0 1 9 3.5 9 9 0 1 0 20.5 15Z"/></svg></span>
+</button>
+</div></div></nav></header>
+<main id="main-content">
+<article class="article-body wrap" aria-labelledby="article-heading">
+<div class="article-header">
+<p class="eyebrow">Developer notes · Next.js · Server-side debugging</p>
+<h1 id="article-heading">Why Next.js server API calls don't appear in the browser Network tab</h1>
+<p class="lede">When a page fetches data on the server, Chrome DevTools does not show that outgoing request as a normal browser request. Here's what's happening, how to debug it, and what I learned while building <a href="/npm/next-server-api-debugger">next-server-api-debugger</a>.</p>
+<div class="byline"><span>By <a href="/">Kavinkumar M</a></span><span>Published <time datetime="2026-11-23">November 23, 2026</time></span><span>Practical engineering guide</span></div>
+</div>
+<figure class="article-cover"><img src="/assets/next-server-api-debugger-cover.png" width="1280" height="720" alt="Illustration of Next.js server-side GET and POST API calls displayed in a local browser Console" fetchpriority="high"><figcaption>Original illustration of the kind of local server API diagnostics a developer may want to see.</figcaption></figure>
+<div class="story-grid"><div class="article-prose">
+<h2>1. Browser requests and server requests run in different places</h2>
+<p>Think of an App Router page that needs a product list. Some parts of a Next.js application run in your browser, while a Server Component or server-side route can perform work on the server. If server code calls a backend API, the connection happens between the Next.js server and that backend—not between your browser and the backend.</p>
+<p>Chrome's Network tab shows requests initiated by the browser. You might see the page navigation and the response delivered to the browser, but not the internal fetch that took place entirely on the Next.js server. The missing backend request is not necessarily an error.</p>
+<div class="diagram"><div>Browser<br><small>Network tab</small></div><span aria-hidden="true">↔</span><div>Next.js server<br><small>Server Component</small></div><span aria-hidden="true">↔</span><div>External API<br><small>Server-to-server</small></div></div>
+<h2>2. Start with the right debugging surface</h2>
+<p>Before installing anything, identify where the request executes. For browser-side requests, open the Network tab and inspect status codes, headers, and timings. For server-side requests, start with the terminal running <code>npm run dev</code>, the relevant backend logs, and your existing server instrumentation.</p>
+<p>You can also add focused logging around a server fetch. In a simplified example, a Server Component may call an API and check the response status:</p>
+<pre><code>// Runs in server-side code
+const response = await fetch("https://api.example.test/products", {
+  cache: "no-store"
+});
+if (!response.ok) throw new Error("Products request failed");
+const products = await response.json();</code></pre>
+<p>This call will not appear as a direct outgoing request to <code>api.example.test</code> in the browser Network tab when it runs entirely on the server.</p>
+<h2>3. Why I built a local Console bridge</h2>
+<p>As a developer working with server-rendered applications, I wanted a more familiar way to inspect supported server-side API events without losing the browser context while testing pages. That's the problem my npm package <strong>next-server-api-debugger</strong> aims to address.</p>
+<p>For compatible Next.js 16 App Router projects, the initializer creates the required instrumentation and protected local routes. Captured events can include method, URL, HTTP status, elapsed time, and sanitized request or response previews. A logged-in local browser session receives those events and prints readable Console groups.</p>
+<pre><code>npm install next-server-api-debugger
+npx next-server-api-debugger init
+npm run dev</code></pre>
+<p>Then, in the browser Console for your local application, enter your custom key:</p>
+<pre><code>localStorage.setItem("apiDebugLogging", "YOUR_KEY")</code></pre>
+<p>The package verifies the key before enabling the Console session. These tools are meant for local testing, not as a way to expose backend logs to application users.</p>
+<h2>4. Interception is best-effort—not magic</h2>
+<p>It's tempting to promise that every server-side request will appear automatically. That would be misleading. Next.js can use or replace request internals that prevent a global <code>fetch</code> wrapper from seeing every call. The package therefore treats automatic interception as best-effort and offers an optional explicit <code>debugFetch</code> wrapper when a particular request is not captured.</p>
+<p>Calls made through Axios, raw HTTP clients, database drivers, or the Edge runtime are not automatically intercepted. Multiple processes and restarts also make local in-memory event buffers unsuitable for durable monitoring. For production diagnostics, use a purpose-built observability approach.</p>
+<h2>5. Security matters when logs contain API data</h2>
+<p>A response body can contain contact details, session identifiers, or internal data. Even with filtering, logs can accidentally reveal sensitive information. I recommend using synthetic data, avoiding real credentials, and keeping this debugging workflow on a trusted local machine. The package's sanitization is best-effort.</p>
+<p>For team handovers, the local key cannot be read back in plaintext because the configuration stores only a salted hash. A developer can check installation with <code>npx next-server-api-debugger status</code> and rotate a key with <code>init --reset</code>, rather than expecting an uninstall/reinstall to clear application settings.</p>
+<h2>6. A practical debugging checklist</h2>
+<ol><li>Locate the code that performs the request: browser, Server Component, or backend.</li><li>Use the browser Network tab for client-originated calls, and terminal/server logs for server-originated calls.</li><li>Check HTTP status and application errors before examining timing.</li><li>For supported local Next.js fetch calls, use optional Console instrumentation if it improves your workflow.</li><li>Never enable debug endpoints for live customer traffic, and remove logs containing private data.</li></ol>
+<h2>What I'd improve next</h2>
+<p>Like any developer tool, this one benefits from testing across Next.js releases and varied applications. My priorities are reliable setup, clarity about unsupported cases, and preventing accidental exposure of private data. Feedback and reproducible issues are welcome in the project's <a href="https://github.com/kavinkumar025/next-server-api-debugger/issues" target="_blank" rel="noopener noreferrer">GitHub issue tracker</a>.</p>
+<div class="article-cta"><h2>Try the package only if it fits your environment</h2><p>See the exact supported versions, caveats, npm installation, and source code before adding it to a project.</p><a class="action-primary" href="/npm/next-server-api-debugger">Explore next-server-api-debugger <span aria-hidden="true">→</span></a></div>
+</div>
+<aside class="page-aside" aria-label="Article summary">
+<h2>At a glance</h2><p>Browser DevTools shows browser requests, not every server-to-server fetch.</p>
+<hr><strong>Read next</strong>
+<a href="/npm/next-server-api-debugger">Package overview</a>
+<a href="/seo">My SEO work</a>
+<a href="https://github.com/kavinkumar025/next-server-api-debugger" target="_blank" rel="noopener noreferrer">View GitHub repository ↗</a>
+</aside></div>
+</article>
+</main><footer class="site-footer"><div class="wrap footer-inner">
+<p>© 2026 Kavinkumar M · Open-source development and practical engineering notes.</p>
+<div><a href="/">Portfolio</a><a href="/seo">SEO work</a><a href="https://github.com/kavinkumar025" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</div></footer></body></html>
